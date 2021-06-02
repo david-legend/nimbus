@@ -32,7 +32,9 @@ class StringConst {
 
   //URL Links
   static const String LINKED_IN_URL = "https:linkedin.com/in/";
+  static const String INSTAGRAM_URL = "https:instagram.com/in/";
   static const String GITHUB_URL = "https://github.com/";
+  static const String FACEBOOK_URL = "https://facebook.com/";
   static const String TWITTER_URL = "http://twitter.com/";
   static const String DAVID_LEGEND_URL = "https://davidcobbina.com/#/";
   static const String DESIGN_URL =

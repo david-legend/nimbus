@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nimbus/presentation/widgets/buttons/social_button.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
@@ -26,6 +27,8 @@ class _NavSectionWebState extends State<NavSectionWeb> {
       child: Row(
         children: [
           ..._buildNavItems(widget.navItems),
+          Spacer(),
+          ..._buildSocialIcons(Data.socialData),
         ],
       ),
     );
@@ -61,6 +64,21 @@ class _NavSectionWebState extends State<NavSectionWeb> {
         ),
       );
       items.add(SpaceW16());
+    }
+    return items;
+  }
+
+  List<Widget> _buildSocialIcons(List<SocialButtonData> socialItems) {
+    List<Widget> items = [];
+    for (int index = 0; index < socialItems.length; index++) {
+      items.add(
+        SocialButton(
+          tag: socialItems[index].tag,
+          iconData: socialItems[index].iconData,
+          onPressed: () => openUrlLink(socialItems[index].url),
+        ),
+      );
+      items.add(SpaceW8());
     }
     return items;
   }
