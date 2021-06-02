@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/buttons/social_button.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
+import 'package:nimbus/presentation/widgets/nimbus_vertical_divider.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
@@ -24,12 +26,22 @@ class _NavSectionWebState extends State<NavSectionWeb> {
           Shadows.elevationShadow,
         ],
       ),
-      child: Row(
-        children: [
-          ..._buildNavItems(widget.navItems),
-          Spacer(),
-          ..._buildSocialIcons(Data.socialData),
-        ],
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            SizedBox(width: 60, height: 40),
+            SpaceW20(),
+            NimbusVerticalDivider(),
+            SpaceW20(),
+            ..._buildNavItems(widget.navItems),
+            Spacer(),
+            ..._buildSocialIcons(Data.socialData),
+            SpaceW20(),
+            NimbusVerticalDivider(),
+            SpaceW20(),
+            NimbusButton(buttonTitle: StringConst.CONTACT_ME)
+          ],
+        ),
       ),
     );
   }

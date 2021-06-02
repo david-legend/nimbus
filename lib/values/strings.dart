@@ -13,6 +13,8 @@ class StringConst {
   static const String SKILLS = "Skills";
   static const String CONTACT = "Contacts";
 
+  static const String CONTACT_ME = "Contact Me";
+
   static const String PYTHON = "Python";
   static const String JAVA = "Java";
   static const String C_PLUS_PLUS = "C++";
