@@ -89,6 +89,7 @@ class Sizes {
   static const double HEIGHT_36 = 36.0;
   static const double HEIGHT_32 = 32.0;
   static const double HEIGHT_30 = 30.0;
+  static const double HEIGHT_28 = 28.0;
   static const double HEIGHT_25 = 25.0;
   static const double HEIGHT_24 = 24.0;
   static const double HEIGHT_22 = 22.0;
@@ -127,6 +128,7 @@ class Sizes {
   static const double WIDTH_36 = 36.0;
   static const double WIDTH_32 = 32.0;
   static const double WIDTH_30 = 30.0;
+  static const double WIDTH_28 = 28.0;
   static const double WIDTH_25 = 25.0;
   static const double WIDTH_24 = 24.0;
   static const double WIDTH_22 = 22.0;

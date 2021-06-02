@@ -4,14 +4,15 @@ import 'package:nimbus/values/values.dart';
 class NimbusButton extends StatelessWidget {
   NimbusButton({
     required this.buttonTitle,
-    this.width,
-    this.height,
+    this.width = Sizes.WIDTH_80,
+    this.height = Sizes.HEIGHT_40,
     this.titleStyle,
     this.titleColor = AppColors.white,
     this.buttonColor = AppColors.black,
     this.onPressed,
+    this.padding = const EdgeInsets.all(Sizes.PADDING_8),
     this.borderRadius = const BorderRadius.all(
-      Radius.circular(Sizes.RADIUS_8),
+      Radius.circular(Sizes.RADIUS_4),
     ),
   });
 
@@ -22,7 +23,8 @@ class NimbusButton extends StatelessWidget {
   final TextStyle? titleStyle;
   final Color titleColor;
   final Color buttonColor;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +36,16 @@ class NimbusButton extends StatelessWidget {
         height: height,
         onPressed: onPressed,
         color: buttonColor,
-        child: Text(
-          buttonTitle,
-          style: titleStyle ?? textTheme.button?.copyWith(color: titleColor),
+        child: Padding(
+          padding: padding,
+          child: Text(
+            buttonTitle,
+            style: titleStyle ??
+                textTheme.button?.copyWith(
+                  color: titleColor,
+                  fontSize: Sizes.TEXT_SIZE_12,
+                ),
+          ),
         ),
       ),
     );

@@ -22,12 +22,18 @@ class SocialButton extends StatelessWidget {
     required this.tag,
     required this.iconData,
     required this.onPressed,
+    this.width = Sizes.WIDTH_28,
+    this.height = Sizes.HEIGHT_28,
+    this.elevation = Sizes.ELEVATION_1,
     this.buttonColor = AppColors.white,
     this.iconColor = AppColors.black,
-    this.iconSize = Sizes.ICON_SIZE_24,
+    this.iconSize = Sizes.ICON_SIZE_14,
   });
 
   final String tag;
+  final double width;
+  final double elevation;
+  final double height;
   final IconData iconData;
   final double iconSize;
   final Color iconColor;
@@ -36,10 +42,16 @@ class SocialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: onPressed,
-      heroTag: tag,
-      child: Icon(iconData, size: iconSize, color: iconColor),
+    return Container(
+      width: width,
+      height: height,
+      child: FloatingActionButton(
+        elevation: elevation,
+        onPressed: onPressed,
+        backgroundColor: buttonColor,
+        heroTag: tag,
+        child: Icon(iconData, size: iconSize, color: iconColor),
+      ),
     );
   }
 }

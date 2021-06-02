@@ -17,12 +17,13 @@ class NavItemData {
 }
 
 class NavItem extends StatelessWidget {
-  NavItem(
-      {required this.title,
-      this.titleColor = AppColors.black,
-      this.isSelected = false,
-      this.titleStyle,
-      this.onTap});
+  NavItem({
+    required this.title,
+    this.titleColor = AppColors.black,
+    this.isSelected = false,
+    this.titleStyle,
+    this.onTap,
+  });
 
   final String title;
   final TextStyle? titleStyle;
@@ -34,18 +35,25 @@ class NavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Stack(
-      children: [
-        isSelected ? SelectedIndicator() : Empty(),
-        InkWell(
-          onTap: onTap,
-          child: SelectableText(
+    return InkWell(
+      onTap: onTap,
+      child: Stack(
+        children: [
+          isSelected
+              ? Positioned(
+                  top: Sizes.SIZE_12,
+                  child: SelectedIndicator(),
+                )
+              : Empty(),
+          Text(
             title,
-            style:
-                titleStyle ?? textTheme.subtitle2?.copyWith(color: titleColor),
+            style: titleStyle ??
+                textTheme.subtitle2?.copyWith(
+                  color: titleColor,
+                ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

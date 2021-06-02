@@ -20,6 +20,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 80, //Sizes.HEIGHT_64,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -29,17 +30,25 @@ class _NavSectionWebState extends State<NavSectionWeb> {
       child: IntrinsicHeight(
         child: Row(
           children: [
-            SizedBox(width: 60, height: 40),
-            SpaceW20(),
+            SpaceW40(),
+            Container(
+              color: AppColors.red,
+              child: SizedBox(width: 60, height: 40),
+            ),
+            SpaceW30(),
             NimbusVerticalDivider(),
-            SpaceW20(),
+            Spacer(flex: 1),
             ..._buildNavItems(widget.navItems),
-            Spacer(),
+            Spacer(flex: 5),
             ..._buildSocialIcons(Data.socialData),
             SpaceW20(),
             NimbusVerticalDivider(),
-            SpaceW20(),
-            NimbusButton(buttonTitle: StringConst.CONTACT_ME)
+            SpaceW60(),
+            NimbusButton(
+              buttonTitle: StringConst.CONTACT_ME,
+              onPressed: () {},
+            ),
+            SpaceW40(),
           ],
         ),
       ),
@@ -52,7 +61,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
   }) {
     for (int index = 0; index < widget.navItems.length; index++) {
       if (navItemName == widget.navItems[index].name) {
-        scrollToSection(context.currentContext!);
+//        scrollToSection(context.currentContext!);
         setState(() {
           widget.navItems[index].isSelected = true;
         });
