@@ -7,10 +7,11 @@ class StringConst {
   //Nav Section
   static const String NAME_ABBREV = "CA";
   static const String HOME = "Home";
+  static const String SERVICES = "Services";
   static const String ABOUT = "About";
-  static const String RESUME = "Resume";
-  static const String SKILLS_AND_CERTIFICATION = "Skills & Certifications";
-  static const String CONTACT = "Contact Me";
+  static const String PROJECTS = "Projects";
+  static const String SKILLS = "Skills";
+  static const String CONTACT = "Contacts";
 
   static const String PYTHON = "Python";
   static const String JAVA = "Java";
