@@ -14,6 +14,8 @@ class StringConst {
   static const String CONTACT = "Contacts";
 
   static const String CONTACT_ME = "Contact Me";
+  static const String EMAIL = "davidcobbina47@gmail.com";
+  static const String EMAIL_URL = "mailto:<$EMAIL>?subject=&body=";
 
   static const String PYTHON = "Python";
   static const String JAVA = "Java";

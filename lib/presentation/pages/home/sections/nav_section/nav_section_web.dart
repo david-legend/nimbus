@@ -7,6 +7,13 @@ import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 
+//TODO:: Show slide animations on hover of unselected nav items
+//TODO:: Show social Icons elevation on hover
+//TODO:: Add proper link to nimbus logo to reload the page
+//TODO:: Apply proper fontSizes and font-family to nav section
+//TODO:: Add responsiveness to nav section web
+//TODO:: Add animation to contact me button (if I am feeling adventurous)
+
 class NavSectionWeb extends StatefulWidget {
   final List<NavItemData> navItems;
 
@@ -31,10 +38,14 @@ class _NavSectionWebState extends State<NavSectionWeb> {
         child: Row(
           children: [
             SpaceW40(),
-            Container(
-              color: AppColors.red,
-              child: SizedBox(width: 60, height: 40),
+            InkWell(
+              onTap: () {},
+              child: Image.asset(
+                ImagePath.LOGO_DARK,
+                height: Sizes.HEIGHT_52,
+              ),
             ),
+            SpaceW40(),
             SpaceW30(),
             NimbusVerticalDivider(),
             Spacer(flex: 1),
@@ -46,7 +57,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
             SpaceW60(),
             NimbusButton(
               buttonTitle: StringConst.CONTACT_ME,
-              onPressed: () {},
+              onPressed: () => openUrlLink(StringConst.EMAIL_URL),
             ),
             SpaceW40(),
           ],

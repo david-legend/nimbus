@@ -4,8 +4,8 @@ import 'package:nimbus/values/values.dart';
 class NimbusButton extends StatelessWidget {
   NimbusButton({
     required this.buttonTitle,
-    this.width = Sizes.WIDTH_80,
-    this.height = Sizes.HEIGHT_40,
+    this.width = Sizes.WIDTH_120,
+    this.height = Sizes.HEIGHT_52,
     this.titleStyle,
     this.titleColor = AppColors.white,
     this.buttonColor = AppColors.black,
