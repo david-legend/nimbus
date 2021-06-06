@@ -14,8 +14,22 @@ class StringConst {
   static const String CONTACT = "Contacts";
 
   static const String CONTACT_ME = "Contact Me";
-  static const String EMAIL = "davidcobbina47@gmail.com";
-  static const String EMAIL_URL = "mailto:<$EMAIL>?subject=&body=";
+  static const String DEV_EMAIL = "davidcobbina47@gmail.com";
+  static const String EMAIL_URL = "mailto:<$DEV_EMAIL>?subject=&body=";
+
+  //Header Section
+  static const String INTRO = "Hi! I'm Ameli Nimbus -";
+  static const String POSITION = "UI/UX Designer";
+  static const String ABOUT_ME_1 =
+      "Product Designer and Digital Creative Director working in design field for";
+  static const String ABOUT_ME_2 =
+      "13 years so far, specialized in UI/UX, Branding and digital designs.";
+  static const String DOWNLOAD_CV = "Download CV";
+  static const String EMAIL = "Email";
+  static const String DEV_EMAIL_2 = "nimbus2000@mail.com";
+  static const String BEHANCE = "Behance";
+  static const String BEHANCE_ID = "behance.net/nimbus200";
+  static const String HIRE_ME = "Hire Me Now";
 
   static const String PYTHON = "Python";
   static const String JAVA = "Java";

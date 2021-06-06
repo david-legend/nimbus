@@ -50,19 +50,19 @@ class AppTheme {
   static final TextTheme _textTheme = TextTheme(
     headline1: GoogleFonts.lato(
       fontSize: Sizes.TEXT_SIZE_96,
-      color: AppColors.primaryText,
+      color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
     headline2: GoogleFonts.merriweather(
       fontSize: Sizes.TEXT_SIZE_60,
-      color: AppColors.primaryText,
+      color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
     headline3: GoogleFonts.merriweather(
       fontSize: Sizes.TEXT_SIZE_48,
-      color: AppColors.primaryText,
+      color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
@@ -86,7 +86,7 @@ class AppTheme {
     ),
     subtitle1: GoogleFonts.lato(
       fontSize: Sizes.TEXT_SIZE_20,
-      color: AppColors.primaryText,
+      color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
