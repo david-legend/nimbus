@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/buttons/social_button.dart';
+import 'package:nimbus/presentation/widgets/circular_container.dart';
 import 'package:nimbus/presentation/widgets/content_area.dart';
+import 'package:nimbus/presentation/widgets/nimbus_card.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
@@ -12,6 +14,8 @@ import 'package:nimbus/values/values.dart';
 //TODO:: Finish button design
 //TODO:: Add animation to rotating dots_globe_grey and dots_globe_yellow
 //TODO:: Add background ash blobs
+//TODO:: Add Cards data, write methid to build cards, work cards styling
+
 class HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -128,6 +132,52 @@ class HeaderSection extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          Column(
+            children: [
+              Spacer(),
+              Row(
+                children: [
+                  Spacer(),
+                  NimBusCard(
+                    width: 300,
+                    height: 80,
+                    leading: CircularContainer(),
+                    title: Text("UI/UX Designer"),
+                    subtitle: Text("creativer websites for you"),
+                    trailing: Icon(
+                      Icons.chevron_right,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SpaceW40(),
+                  NimBusCard(
+                    width: 300,
+                    height: 80,
+                    leading: CircularContainer(),
+                    title: Text("UI/UX Designer"),
+                    subtitle: Text("creativer websites for you"),
+                    trailing: Icon(
+                      Icons.chevron_right,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SpaceW40(),
+                  NimBusCard(
+                    width: 300,
+                    height: 80,
+                    leading: CircularContainer(),
+                    title: Text("UI/UX Designer"),
+                    subtitle: Text("creativer websites for you"),
+                    trailing: Icon(
+                      Icons.chevron_right,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Spacer(),
+                ],
+              ),
+            ],
           ),
         ],
       ),
