@@ -62,7 +62,6 @@ class AboutMeSection extends StatelessWidget {
                   ),
                 ),
                 Container(
-//                  margin: const EdgeInsets.only(right: 40.0),
                   child: Row(
                     children: [
                       Expanded(
