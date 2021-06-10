@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
-import 'package:nimbus/values/values.dart';
-import 'package:nimbus/values/values.dart';
+import 'package:nimbus/values/values.dart';\
 
+
+//TODO:: Add appropriate fontsSizes and families
+//TODO:: Add background curves and designs
+//TODO:: Add appropriate text colors
+//TODO:: Add the right boxHeight for section
 class StatItemData {
   final String title;
   final String subtitle;
