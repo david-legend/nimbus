@@ -85,6 +85,16 @@ class StringConst {
   static const String SKILLS_4_DESC =
       "We believe direct collaboration with our clients is essential to bringing unique";
 
+  //Stats Section
+  static const String HAPPY_CLIENTS = "Happy Clients";
+  static const String HAPPY_CLIENTS_NUM = "120";
+  static const String YEARS_OF_EXPERIENCE = "Years of Experience";
+  static const String YEARS_OF_EXPERIENCE_NUM = "10";
+  static const String INCREDIBLE_PROJECTS = "Incredible Projects";
+  static const String INCREDIBLE_PROJECTS_NUM = "230";
+  static const String AWARD_WINNING = "Award Winning";
+  static const String AWARD_WINNING_NUM = "18";
+
   //Footer Section
   static const String RIGHTS_RESERVED = "© 2021 All rights reserved";
   static const String BUILT_BY = "Built with Flutter by";

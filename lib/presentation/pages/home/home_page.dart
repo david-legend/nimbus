@@ -4,13 +4,16 @@ import 'package:nimbus/presentation/pages/home/sections/header_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/nav_section/nav_section_mobile.dart';
 import 'package:nimbus/presentation/pages/home/sections/nav_section/nav_section_web.dart';
 import 'package:nimbus/presentation/pages/home/sections/skills_section.dart';
+import 'package:nimbus/presentation/pages/home/sections/statistics_section.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
+import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 //TODO:: Add ash background blob (esp the one that extends between header and about section
 //TODO:: Add huge ash background blob (the one that extends between skills section and projects
 //TODO:: Add FAB that takes user to the top page
+
 class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
@@ -49,6 +52,8 @@ class HomePage extends StatelessWidget {
                   HeaderSection(),
                   AboutMeSection(),
                   SkillsSection(),
+                  StatisticsSection(),
+                  SpaceH20(),
                 ],
               ),
             ),

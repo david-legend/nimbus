@@ -85,4 +85,18 @@ class Data {
     ),
     SkillCardData(title: "", iconData: Icons.pages_outlined), //not being used
   ];
+  static List<StatItemData> statItemsData = [
+    StatItemData(
+        title: StringConst.HAPPY_CLIENTS_NUM,
+        subtitle: StringConst.HAPPY_CLIENTS),
+    StatItemData(
+        title: StringConst.YEARS_OF_EXPERIENCE_NUM,
+        subtitle: StringConst.YEARS_OF_EXPERIENCE),
+    StatItemData(
+        title: StringConst.INCREDIBLE_PROJECTS_NUM,
+        subtitle: StringConst.INCREDIBLE_PROJECTS),
+    StatItemData(
+        title: StringConst.AWARD_WINNING_NUM,
+        subtitle: StringConst.AWARD_WINNING),
+  ];
 }
