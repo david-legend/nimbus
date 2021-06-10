@@ -12,7 +12,12 @@ const double kMainAxisSpacing = 16.0;
 const double kCrossAxisSpacing = 16.0;
 const double invisibleBoxHeight = 10;
 
-//TODO:: currently building skill Level widget
+//TODO:: Add animation to load skillLevel
+//TODO:: Add animation onHover of skillBoxes
+//TODO:: Add right fontSizes and fontFamilies
+//TODO:: Add right colors of texts and icons for skillBoxes
+//TODO:: Add proper background Blobs
+
 class SkillsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
