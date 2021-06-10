@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nimbus/presentation/widgets/buttons/social_button.dart';
+import 'package:nimbus/presentation/widgets/buttons/social_button_2.dart';
 
 part 'colors.dart';
 part 'borders.dart';

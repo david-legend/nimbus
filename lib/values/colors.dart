@@ -24,6 +24,15 @@ class AppColors {
   static const Color darkWhite = Color(0xFFDFDFDF);
   static const Color offWhite200 = Color(0xFFE5E5DB);
 
+  //Blue
+  static const Color blue300 = Color(0xFF2867F0);
+
+  //Yellow
+  static const Color yellow300 = Color(0xFFF3AF3D);
+
+  //Pink
+  static const Color pink300 = Color(0xFFDC5687);
+
   //Red
   static const Color red = Color(0xFFF1291A);
 }

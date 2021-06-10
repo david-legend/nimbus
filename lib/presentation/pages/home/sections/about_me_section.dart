@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
+import 'package:nimbus/presentation/widgets/buttons/social_button_2.dart';
 import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/nimbus_info_section.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
+import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
+
+const double kSpacing = 24.0;
+const double kRunSpacing = 16.0;
 
 class AboutMeSection extends StatelessWidget {
   @override
@@ -79,10 +84,27 @@ class AboutMeSection extends StatelessWidget {
                               title1: StringConst.CREATIVE_DESIGN,
                               title2: StringConst.HELP,
                               body: StringConst.ABOUT_ME_DESC,
-                              child: Text(
-                                StringConst.FOLLOW_ME,
-                                style: textTheme.headline6
-                                    ?.copyWith(color: AppColors.black),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    StringConst.FOLLOW_ME,
+                                    style: textTheme.headline6
+                                        ?.copyWith(color: AppColors.black),
+                                  ),
+                                  SpaceH16(),
+                                  Row(
+                                    children: [
+                                      Wrap(
+                                        spacing: kSpacing,
+                                        runSpacing: kRunSpacing,
+                                        children: _buildSocialButtons(
+                                          Data.socialData2,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                             Spacer(),
@@ -98,5 +120,23 @@ class AboutMeSection extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<Widget> _buildSocialButtons(List<SocialButton2Data> data) {
+    List<Widget> items = [];
+
+    for (int index = 0; index < data.length; index++) {
+      items.add(
+        SocialButton2(
+          title: data[index].title.toUpperCase(),
+          iconData: data[index].iconData,
+          onPressed: () => openUrlLink(data[index].url),
+          titleColor: data[index].titleColor,
+          buttonColor: data[index].buttonColor,
+          iconColor: data[index].iconColor,
+        ),
+      );
+    }
+    return items;
   }
 }
