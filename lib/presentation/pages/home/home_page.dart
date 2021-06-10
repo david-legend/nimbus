@@ -7,6 +7,7 @@ import 'package:nimbus/presentation/widgets/nav_item.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+//TODO:: Add ash background blob (esp the one that extends between header and about section
 class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();

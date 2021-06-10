@@ -7,6 +7,13 @@ import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 
+//TODO:: Add the right fontFamily and styles to text in this section
+//TODO:: Add grey dotted globe image
+//TODO:: Add the right colors to text and dividers
+//TODO:: Add the right colors to text and dividers
+//TODO:: Add animation to socialButton2
+//TODO:: Add floating bubbles if I am feeling adventurous
+
 const double kSpacing = 24.0;
 const double kRunSpacing = 16.0;
 
