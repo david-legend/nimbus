@@ -52,16 +52,21 @@ class AboutMeSection extends StatelessWidget {
             height: contentAreaHeight,
             child: Stack(
               children: [
+                //positions blob on the far right of the section
+                //based on the calculation only 10% of blob is showing
                 Positioned(
                   top: contentAreaHeight * 0.2,
-                  left: contentAreaWidth * 0.85,
+                  left: contentAreaWidth * 0.90,
                   child: Image.asset(
                     ImagePath.BLOB_BLACK,
                     height: contentAreaHeight * 0.30,
                     width: contentAreaWidth * 0.30,
                   ),
                 ),
+                //This container takes 85% of the space and leave 5% as spacing
+                //between the blob and the content
                 Container(
+                  width: contentAreaWidth * 0.85,
                   child: Row(
                     children: [
                       Expanded(
