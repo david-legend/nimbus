@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/nimbus_info_section.dart';
+import 'package:nimbus/presentation/widgets/skill_card.dart';
 import 'package:nimbus/presentation/widgets/skill_level.dart';
 import 'package:nimbus/values/values.dart';
 
 const double kRunSpacing = 20.0;
+const double kMainAxisSpacing = 16.0;
+const double kCrossAxisSpacing = 16.0;
+const double invisibleBoxHeight = 10;
 
 //TODO:: currently building skill Level widget
 class SkillsSection extends StatelessWidget {
@@ -55,7 +60,13 @@ class SkillsSection extends StatelessWidget {
           ContentArea(
             width: contentAreaWidth,
             height: contentAreaHeight,
-            backgroundColor: AppColors.pink300,
+            padding: EdgeInsets.symmetric(horizontal: Sizes.HEIGHT_48),
+            child: Center(
+              child: _buildSkillBoxes(
+                boxHeight: contentAreaHeight / 2.6,
+                invisibleBoxHeight: invisibleBoxHeight,
+              ),
+            ),
           ),
         ],
       ),
@@ -77,5 +88,38 @@ class SkillsSection extends StatelessWidget {
       );
     }
     return items;
+  }
+
+  Widget _buildSkillBoxes({
+    required double boxHeight,
+    required invisibleBoxHeight,
+  }) {
+    return Container(
+      child: StaggeredGridView.countBuilder(
+        crossAxisCount: 2,
+        itemCount: Data.skillCardData.length,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          if (index == 1 || index == 5) {
+            return Container(color: Colors.transparent);
+          } else {
+            return SkillCard(
+              title: Data.skillCardData[index].title,
+              iconData: Data.skillCardData[index].iconData,
+            );
+          }
+        },
+        staggeredTileBuilder: (int index) {
+          if (index == 1 || index == 5) {
+            return StaggeredTile.extent(1, invisibleBoxHeight);
+          } else {
+            return StaggeredTile.extent(1, boxHeight);
+          }
+        },
+        mainAxisSpacing: kMainAxisSpacing,
+        crossAxisSpacing: kCrossAxisSpacing,
+      ),
+    );
   }
 }

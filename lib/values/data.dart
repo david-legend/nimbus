@@ -64,4 +64,25 @@ class Data {
       level: 70,
     ),
   ];
+
+  static List<SkillCardData> skillCardData = [
+    SkillCardData(
+      title: StringConst.SKILLS_1,
+      iconData: FontAwesomeIcons.compress,
+    ),
+    SkillCardData(title: "", iconData: Icons.pages_outlined), //not being used
+    SkillCardData(
+      title: StringConst.SKILLS_2,
+      iconData: Icons.pages_outlined,
+    ),
+    SkillCardData(
+      title: StringConst.SKILLS_3,
+      iconData: FontAwesomeIcons.paintBrush,
+    ),
+    SkillCardData(
+      title: StringConst.SKILLS_4,
+      iconData: FontAwesomeIcons.recordVinyl,
+    ),
+    SkillCardData(title: "", iconData: Icons.pages_outlined), //not being used
+  ];
 }
