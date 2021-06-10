@@ -64,7 +64,8 @@ class StringConst {
   static const String MY_SKILLS = "my skills";
   static const String SKILLS_TITLE_1 = "What My Design";
   static const String SKILLS_TITLE_2 = "Skills Include";
-  static const String SKILLS_DESC = "my skills";
+  static const String SKILLS_DESC =
+      "These are the words we live by in everything we do. Every story we tell, every brand we build, and every interaction we create must not only look beautiful.";
   static const String TOOLS_1_NAME = "Photoshop";
   static const String TOOLS_1_PROFICIENCY = "80%";
   static const String TOOLS_2_NAME = "Illustrator";

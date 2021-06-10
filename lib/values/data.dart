@@ -49,4 +49,19 @@ class Data {
       iconColor: AppColors.white,
     ),
   ];
+
+  static List<SkillLevelData> skillLevelData = [
+    SkillLevelData(
+      skill: StringConst.SKILLS_1,
+      level: 80,
+    ),
+    SkillLevelData(
+      skill: StringConst.SKILLS_2,
+      level: 90,
+    ),
+    SkillLevelData(
+      skill: StringConst.SKILLS_3,
+      level: 70,
+    ),
+  ];
 }
