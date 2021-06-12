@@ -85,7 +85,7 @@ class AppTheme {
       fontStyle: FontStyle.normal,
     ),
     subtitle1: GoogleFonts.lato(
-      fontSize: Sizes.TEXT_SIZE_20,
+      fontSize: Sizes.TEXT_SIZE_18,
       color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,

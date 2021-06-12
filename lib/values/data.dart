@@ -99,4 +99,12 @@ class Data {
         title: StringConst.AWARD_WINNING_NUM,
         subtitle: StringConst.AWARD_WINNING),
   ];
+
+  static List<ProjectCategoryData> projectCategories = [
+    ProjectCategoryData(title: StringConst.ALL, number: 6),
+    ProjectCategoryData(title: StringConst.BRANDING, number: 6),
+    ProjectCategoryData(title: StringConst.PACKAGING, number: 6),
+    ProjectCategoryData(title: StringConst.PHOTOGRAPHY, number: 6),
+    ProjectCategoryData(title: StringConst.WEB_DESIGN, number: 6),
+  ];
 }

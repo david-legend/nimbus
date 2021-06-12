@@ -95,6 +95,18 @@ class StringConst {
   static const String AWARD_WINNING = "Award Winning";
   static const String AWARD_WINNING_NUM = "18";
 
+  //Projects Section
+  static const String MEET_MY_PROJECTS = "Meet My Projects";
+  static const String MY_WORKS = "my works";
+  static const String PROJECTS_DESC =
+      "Product Designer and Digital Creative Director working in design field for 13 years so far, specialized in UI/UX, Branding and digital designs. These are the words we live by in everything we do.";
+  static const String ALL_PROJECTS = "All Projects";
+  static const String ALL = "All";
+  static const String BRANDING = "Branding";
+  static const String PACKAGING = "Packaging";
+  static const String PHOTOGRAPHY = "Photography";
+  static const String WEB_DESIGN = "Web Design";
+
   //Footer Section
   static const String RIGHTS_RESERVED = "© 2021 All rights reserved";
   static const String BUILT_BY = "Built with Flutter by";

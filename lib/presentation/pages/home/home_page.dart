@@ -3,6 +3,7 @@ import 'package:nimbus/presentation/pages/home/sections/about_me_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/header_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/nav_section/nav_section_mobile.dart';
 import 'package:nimbus/presentation/pages/home/sections/nav_section/nav_section_web.dart';
+import 'package:nimbus/presentation/pages/home/sections/projects_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/skills_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/statistics_section.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
@@ -54,6 +55,7 @@ class HomePage extends StatelessWidget {
                   SkillsSection(),
                   StatisticsSection(),
                   SpaceH20(),
+                  ProjectsSection(),
                 ],
               ),
             ),

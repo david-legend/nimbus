@@ -7,6 +7,7 @@ class NimbusInfoSection extends StatelessWidget {
   final String sectionTitle;
   final String title1;
   final String title2;
+  final bool hasTitle2;
   final String body;
   final TextStyle? sectionTitleStyle;
   final TextStyle? title1Style;
@@ -21,10 +22,11 @@ class NimbusInfoSection extends StatelessWidget {
   NimbusInfoSection({
     required this.sectionTitle,
     required this.title1,
-    required this.title2,
     required this.body,
+    this.title2 = "",
     this.sectionTitleStyle,
     this.title1Style,
+    this.hasTitle2 = true,
     this.title2Style,
     this.bodyStyle,
     this.thickness,
@@ -71,11 +73,13 @@ class NimbusInfoSection extends StatelessWidget {
                     title1,
                     style: title1Style ?? titleStyle,
                   ),
-                  SpaceH16(),
-                  Text(
-                    title2,
-                    style: title2Style ?? titleStyle,
-                  ),
+                  hasTitle2 ? SpaceH16() : Empty(),
+                  hasTitle2
+                      ? Text(
+                          title2,
+                          style: title2Style ?? titleStyle,
+                        )
+                      : Empty(),
                   SpaceH20(),
                   Text(
                     body,
