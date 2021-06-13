@@ -5,6 +5,10 @@ import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/nimbus_info_section.dart';
 import 'package:nimbus/values/values.dart';
 
+//TODO:: Add proper fontFamilies and styles
+//TODO:: Add project slides and tabs
+//TODO:: Add proper padding and arrangements of screens
+
 const double kSpacing = 16.0;
 const double kRunSpacing = 16.0;
 
