@@ -6,6 +6,11 @@ import 'package:nimbus/presentation/widgets/nimbus_info_section.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 
+//TODO:: Add correct fontStyle, fontSizes, fontFamilies
+//TODO:: Add yellow dots globe under image.
+//TODO:: Add correct spacing and padding
+//TODO:: Decide whether to add My CV on top of the dev image
+
 class AwardsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
