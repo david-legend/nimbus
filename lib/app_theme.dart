@@ -68,19 +68,19 @@ class AppTheme {
     ),
     headline4: GoogleFonts.lato(
       fontSize: Sizes.TEXT_SIZE_34,
-      color: AppColors.primaryText,
+      color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
     headline5: GoogleFonts.lato(
       fontSize: Sizes.TEXT_SIZE_24,
-      color: AppColors.primaryText,
+      color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
     headline6: GoogleFonts.merriweather(
       fontSize: Sizes.TEXT_SIZE_20,
-      color: AppColors.primaryText,
+      color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
@@ -104,13 +104,13 @@ class AppTheme {
     ),
     bodyText2: GoogleFonts.lato(
       fontSize: Sizes.TEXT_SIZE_14,
-      color: AppColors.primaryText,
+      color: AppColors.black,
       fontWeight: _light,
       fontStyle: FontStyle.normal,
     ),
     button: GoogleFonts.lato(
       fontSize: Sizes.TEXT_SIZE_16,
-      color: AppColors.primaryText,
+      color: AppColors.black,
       fontStyle: FontStyle.normal,
       fontWeight: _regular,
     ),

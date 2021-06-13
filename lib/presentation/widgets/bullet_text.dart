@@ -22,7 +22,10 @@ class TextWithBullet extends StatelessWidget {
         spacing == null ? SpaceW16() : SizedBox(width: spacing),
         Text(
           text,
-          style: textStyle ?? textTheme.bodyText1,
+          style: textStyle ??
+              textTheme.bodyText1?.copyWith(
+                color: AppColors.black,
+              ),
         ),
       ],
     );
