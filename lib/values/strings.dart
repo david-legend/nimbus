@@ -29,7 +29,7 @@ class StringConst {
   static const String DEV_EMAIL_2 = "nimbus2000@mail.com";
   static const String BEHANCE = "Behance";
   static const String BEHANCE_ID = "behance.net/nimbus200";
-  static const String HIRE_ME = "Hire Me Now";
+  static const String HIRE_ME_NOW = "Hire Me Now";
 
   static const String PYTHON = "Python";
   static const String JAVA = "Java";
@@ -56,7 +56,7 @@ class StringConst {
       "create must not only look beautiful. beautifully, too.";
   static const String CREATIVE_DESIGN = "Need Creative Design?";
   static const String HELP = "I can Help You!";
-  static const String FOLLOW_ME = "You can also follow me here:";
+  static const String FOLLOW_ME_1 = "You can also follow me here:";
   static const String DRIBBLE = "Dribble";
   static const String INSTA = "Insta";
 
@@ -107,12 +107,67 @@ class StringConst {
   static const String PHOTOGRAPHY = "Photography";
   static const String WEB_DESIGN = "Web Design";
 
+  //Awards & Section
+  static const String MY_AWARDS = "Honours & Awards";
+  static const String AWARDS_TITLE = "Honours & Awards";
+  static const String AWARDS_DESC =
+      "Since 2015 I have been a visionary and a reliable software engineering partner for world-class brands.";
+  static const String AWARDS_TYPE_TITLE_1 = "In Press";
+  static const String AWARDS_TYPE_TITLE_2 = "Awards";
+  static const String AWARDS_1 = "Forbes";
+  static const String AWARDS_2 = "New York Times";
+  static const String AWARDS_3 = "Smashing Magazine";
+  static const String AWARDS_4 = "Entrepreneur";
+  static const String AWARDS_5 = "First Magazine";
+  static const String AWARDS_6 = "The Type Direction Club 60";
+  static const String AWARDS_7 = "ClassiCon-Brochure 2017";
+  static const String AWARDS_8 = "The Good Design Awards 2017";
+  static const String AWARDS_9 = "For Print Only-Under consideration";
+  static const String AWARDS_10 = "CI Magazine 2017";
+
+  //Brands Section
+  static const String BRANDS_SECTION_TITLE = "Brands I've worked with";
+  static const String HIRE_ME = "Hire me";
+
+  //Testimonials Section
+  static const String MY_TESTIMONIALS = "my testimonials";
+  static const String TESTIMONIALS_SECTION_TITLE = "Client Testimonials";
+  static const String TESTIMONIALS_1_NAME = "Arnold Wilson";
+  static const String TESTIMONIALS_1_POSITION = "PHP Developer";
+  static const String TESTIMONIALS_1 =
+      "Ameli has quickly become an indispensable partner in capturing the innovation in our products in a way that best represents our brand voice. She bring fresh ideas and challenges to the way our industry typically markets products. An integrated marketing campaign supporting a major 2015 product launch exceeded goals by as much as 300%.";
+  static const String TESTIMONIALS_2_NAME = "Ronald Green";
+  static const String TESTIMONIALS_2_POSITION = "UI Designer";
+  static const String TESTIMONIALS_2 =
+      "What a fantastic day it's been at Max Nimbus! Huge shoutout to the team for connecting us all and making this amazing event possible. She bring fresh ideas and challenges to the way our industry typically markets products. This year I brought friends. Come say hi! Development is one of our values & a theme of Max Nimbus talks.";
+
+  //Blog Section
+  static const String MY_BLOG = "my blog";
+  static const String BLOG_SECTION_TITLE_1 = "Read My Own";
+  static const String BLOG_SECTION_TITLE_2 = "Blog. Be Trendy";
+  static const String BLOG_DESC =
+      "We met years ago at an advertising agency where we learned a ton of dos and some don'ts. There were project deadlines, happy hours, client proposals and a few sparks flying.";
+  static const String BLOG_VIEW_ALL = "View All";
+  static const String BLOG_CATEGORY_1 = "inspiration";
+  static const String BLOG_CATEGORY_2 = "design";
+  static const String BLOG_CATEGORY_3 = "creative";
+  static const String BLOG_DATE = "My Blog";
+  static const String BLOG_TITLE_1 = "How Much Does a Website Cost to Build?";
+  static const String BLOG_TITLE_2 = "10 Tips How Create Best Packaging Design";
+  static const String BLOG_TITLE_3 = "How Get Your Visitors Love Your Brand";
+
   //Footer Section
+  static const String LETS_TALK = "Let's Talk!";
+  static const String PHONE_ME = "Phone Me";
+  static const String PHONE_NUMBER = "+1 800 123 456 789";
+  static const String MAIL_ME = "Mail Me";
+  static const String FOLLOW_ME_2 = "Follow Me";
+  static const String FOLLOW_ME_2_URL = "behance.net/nimbus2000";
   static const String RIGHTS_RESERVED = "© 2021 All rights reserved";
   static const String BUILT_BY = "Built with Flutter by";
   static const String DAVID_COBBINA = "David Cobbina";
   static const String DESIGNED_BY = "Designed by";
-  static const String ADEEL_RAZA = "Adeel Raza";
+  static const String WEB_GENIUS_LAB = "WebGeniusLab";
   static const String MADE_IN_GHANA = "Made in";
   static const String WITH_LOVE = "with";
   static const String FIND_ME = "Find me on..";

@@ -95,7 +95,7 @@ class AboutMeSection extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    StringConst.FOLLOW_ME,
+                                    StringConst.FOLLOW_ME_1,
                                     style: textTheme.headline6
                                         ?.copyWith(color: AppColors.black),
                                   ),
