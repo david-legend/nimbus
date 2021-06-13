@@ -48,7 +48,7 @@ class ProjectsSection extends StatelessWidget {
           ),
           Spacer(),
           NimbusButton(
-            buttonTitle: "My Projects",
+            buttonTitle: StringConst.ALL_PROJECTS,
             buttonColor: AppColors.primaryColor,
             onPressed: () {},
           ),

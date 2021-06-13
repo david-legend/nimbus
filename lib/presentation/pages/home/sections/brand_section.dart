@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/skill_card.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
@@ -39,6 +40,15 @@ class BrandSection extends StatelessWidget {
                   title: "Brand",
                 );
               },
+            ),
+          ),
+          SpaceH24(),
+          Align(
+            alignment: Alignment.center,
+            child: NimbusButton(
+              buttonTitle: StringConst.HIRE_ME,
+              buttonColor: AppColors.primaryColor,
+              onPressed: () {},
             ),
           ),
         ],
