@@ -108,7 +108,7 @@ class StringConst {
   static const String WEB_DESIGN = "Web Design";
 
   //Awards & Section
-  static const String MY_AWARDS = "Honours & Awards";
+  static const String MY_AWARDS = "my awards";
   static const String AWARDS_TITLE = "Honours & Awards";
   static const String AWARDS_DESC =
       "Since 2015 I have been a visionary and a reliable software engineering partner for world-class brands.";

@@ -107,4 +107,19 @@ class Data {
     ProjectCategoryData(title: StringConst.PHOTOGRAPHY, number: 6),
     ProjectCategoryData(title: StringConst.WEB_DESIGN, number: 6),
   ];
+
+  static List<String> awards1 = [
+    StringConst.AWARDS_1,
+    StringConst.AWARDS_2,
+    StringConst.AWARDS_3,
+    StringConst.AWARDS_4,
+    StringConst.AWARDS_5,
+  ];
+  static List<String> awards2 = [
+    StringConst.AWARDS_6,
+    StringConst.AWARDS_7,
+    StringConst.AWARDS_8,
+    StringConst.AWARDS_9,
+    StringConst.AWARDS_10,
+  ];
 }
