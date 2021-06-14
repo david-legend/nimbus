@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/pages/home/sections/about_me_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/awards_section.dart';
+import 'package:nimbus/presentation/pages/home/sections/blog_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/brand_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/footer_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/header_section.dart';
@@ -61,6 +62,7 @@ class HomePage extends StatelessWidget {
                   ProjectsSection(),
                   AwardsSection(),
                   BrandSection(),
+                  BlogSection(),
                   SpaceH40(),
                   FooterSection(),
                 ],

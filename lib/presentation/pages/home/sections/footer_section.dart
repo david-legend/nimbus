@@ -6,6 +6,11 @@ import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 
+//TODO:: Add proper background to footerCard
+//TODO:: Add proper icons for footerItems
+//TODO:: Add proper backgrounds to button
+//TODO:: Add proper textSizes, fontStyles, fontFamilies etc.
+
 List<FooterItem> footerItems = [
   FooterItem(
     title: StringConst.PHONE_ME + ":",
@@ -182,7 +187,7 @@ class FooterItem extends StatelessWidget {
         Icon(
           iconData,
           color: AppColors.primaryColor,
-          size: 36,
+          size: Sizes.ICON_SIZE_36,
         ),
         SpaceH8(),
         Text(
