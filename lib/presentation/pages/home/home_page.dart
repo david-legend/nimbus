@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
                   ProjectsSection(),
                   AwardsSection(),
                   BrandSection(),
-                  TestimonialsSection(),
+//                  TestimonialsSection(),
                   BlogSection(),
                   SpaceH40(),
                   FooterSection(),
