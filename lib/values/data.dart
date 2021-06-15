@@ -122,4 +122,27 @@ class Data {
     StringConst.AWARDS_9,
     StringConst.AWARDS_10,
   ];
+  static List<BlogCardData> blogData = [
+    BlogCardData(
+      category: StringConst.BLOG_CATEGORY_1,
+      title: StringConst.BLOG_TITLE_1,
+      date: StringConst.BLOG_DATE,
+      buttonText: StringConst.READ_MORE,
+      imageUrl: ImagePath.BLOG_01,
+    ),
+    BlogCardData(
+      category: StringConst.BLOG_CATEGORY_2,
+      title: StringConst.BLOG_TITLE_2,
+      date: StringConst.BLOG_DATE,
+      buttonText: StringConst.READ_MORE,
+      imageUrl: ImagePath.BLOG_02,
+    ),
+    BlogCardData(
+      category: StringConst.BLOG_CATEGORY_3,
+      title: StringConst.BLOG_TITLE_3,
+      date: StringConst.BLOG_DATE,
+      buttonText: StringConst.READ_MORE,
+      imageUrl: ImagePath.BLOG_03,
+    ),
+  ];
 }

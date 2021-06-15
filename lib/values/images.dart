@@ -15,4 +15,7 @@ class ImagePath {
   static const String DEV_ABOUT_ME = "$imageDir/dev_aboutme.png";
   static const String DEV_AWARD = "$imageDir/dev_award.png";
   static const String GHANA_FLAG = "$imageDir/ghana_flag.png";
+  static const String BLOG_01 = "$imageDir/blog_01-700x700.jpeg";
+  static const String BLOG_02 = "$imageDir/blog_02-700x700.jpeg";
+  static const String BLOG_03 = "$imageDir/blog_03-700x700.jpeg";
 }

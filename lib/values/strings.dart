@@ -151,10 +151,11 @@ class StringConst {
   static const String BLOG_CATEGORY_1 = "inspiration";
   static const String BLOG_CATEGORY_2 = "design";
   static const String BLOG_CATEGORY_3 = "creative";
-  static const String BLOG_DATE = "My Blog";
+  static const String BLOG_DATE = "February 4, 2020";
   static const String BLOG_TITLE_1 = "How Much Does a Website Cost to Build?";
   static const String BLOG_TITLE_2 = "10 Tips How Create Best Packaging Design";
   static const String BLOG_TITLE_3 = "How Get Your Visitors Love Your Brand";
+  static const String READ_MORE = "Read More";
 
   //Footer Section
   static const String LETS_TALK = "Let's Talk!";
