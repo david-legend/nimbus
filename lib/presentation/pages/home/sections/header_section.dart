@@ -9,12 +9,13 @@ import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 
-//TODO:: Add background name
-//TODO:: Add correct font family and sizes.
-//TODO:: Finish button design
-//TODO:: Add animation to rotating dots_globe_grey and dots_globe_yellow
+//TODO:: Add background name (add correct fontFamily to background name)
+//TODO:: Add dots_globe_grey beneath headerImage
+//TODO:: Position cards at right position with right spacing (in between them)
 //TODO:: Add background ash blobs
-//TODO:: Add Cards data, write methid to build cards, work cards styling
+//TODO:: Add animation to rotating dots_globe_grey and dots_globe_yellow
+//TODO:: Animation to button. (Channel your adventurous self)
+//TODO:: Add Responsiveness to header section
 
 class HeaderSection extends StatefulWidget {
   @override
@@ -45,7 +46,7 @@ class _HeaderSectionState extends State<HeaderSection> {
             ),
           ),
           Positioned(
-            left: -(contentAreaWidth * 0.3),
+            left: -(contentAreaWidth * 0.38),
             child: Row(
               children: [
                 Image.asset(
@@ -75,12 +76,12 @@ class _HeaderSectionState extends State<HeaderSection> {
                       StringConst.ABOUT_ME_1,
                       style: bodyTextStyle,
                     ),
-                    SpaceH4(),
+                    SpaceH8(),
                     SelectableText(
                       StringConst.ABOUT_ME_2,
                       style: bodyTextStyle,
                     ),
-                    SpaceH16(),
+                    SpaceH30(),
                     Row(
                       children: [
                         Column(
@@ -90,7 +91,7 @@ class _HeaderSectionState extends State<HeaderSection> {
                               "${StringConst.EMAIL}:",
                               style: socialTitleStyle,
                             ),
-                            SpaceH4(),
+                            SpaceH8(),
                             SelectableText(
                               "${StringConst.DEV_EMAIL_2}",
                               style: bodyTextStyle,
@@ -105,7 +106,7 @@ class _HeaderSectionState extends State<HeaderSection> {
                               "${StringConst.BEHANCE}:",
                               style: socialTitleStyle,
                             ),
-                            SpaceH4(),
+                            SpaceH8(),
                             SelectableText(
                               "${StringConst.BEHANCE_ID}",
                               style: bodyTextStyle,
