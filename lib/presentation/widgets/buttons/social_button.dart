@@ -28,6 +28,7 @@ class SocialButton extends StatelessWidget {
     this.buttonColor = AppColors.white,
     this.iconColor = AppColors.black,
     this.iconSize = Sizes.ICON_SIZE_14,
+    this.decoration,
   });
 
   final String tag;
@@ -38,6 +39,7 @@ class SocialButton extends StatelessWidget {
   final double iconSize;
   final Color iconColor;
   final Color buttonColor;
+  final BoxDecoration? decoration;
   final VoidCallback? onPressed;
 
   @override
@@ -45,12 +47,17 @@ class SocialButton extends StatelessWidget {
     return Container(
       width: width,
       height: height,
+      decoration: decoration,
       child: FloatingActionButton(
         elevation: elevation,
         onPressed: onPressed,
         backgroundColor: buttonColor,
         heroTag: tag,
-        child: Icon(iconData, size: iconSize, color: iconColor),
+        child: Icon(
+          iconData,
+          size: iconSize,
+          color: iconColor,
+        ),
       ),
     );
   }

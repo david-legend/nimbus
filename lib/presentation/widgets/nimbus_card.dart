@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/widgets/empty.dart';
+import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
+
+class NimBusCardData {
+  IconData leadingIcon;
+  IconData trailingIcon;
+  Color trailingIconColor;
+  Color leadingIconColor;
+  Color circleBgColor;
+  String title;
+  String subtitle;
+
+  NimBusCardData({
+    required this.leadingIcon,
+    required this.trailingIcon,
+    this.circleBgColor = AppColors.black,
+    this.leadingIconColor = AppColors.white,
+    this.trailingIconColor = AppColors.grey300,
+    required this.title,
+    required this.subtitle,
+  });
+}
 
 class NimBusCard extends StatelessWidget {
   NimBusCard({
@@ -17,7 +38,7 @@ class NimBusCard extends StatelessWidget {
     this.elevation = Sizes.ELEVATION_4,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.padding = const EdgeInsets.symmetric(
-      horizontal: Sizes.PADDING_12,
+      horizontal: Sizes.PADDING_20,
       vertical: Sizes.PADDING_12,
     ),
   });
@@ -59,6 +80,7 @@ class NimBusCard extends StatelessWidget {
                   children: [
                     Spacer(),
                     title ?? Empty(),
+                    title != null ? SpaceH8() : Empty(),
                     subtitle ?? Empty(),
                     Spacer(),
                   ],

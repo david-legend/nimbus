@@ -104,7 +104,7 @@ class Data {
     ProjectCategoryData(title: StringConst.ALL, number: 6),
     ProjectCategoryData(title: StringConst.BRANDING, number: 6),
     ProjectCategoryData(title: StringConst.PACKAGING, number: 6),
-    ProjectCategoryData(title: StringConst.PHOTOGRAPHY, number: 6),
+    ProjectCategoryData(title: StringConst.PHOTOGRAPHER, number: 6),
     ProjectCategoryData(title: StringConst.WEB_DESIGN, number: 6),
   ];
 
@@ -143,6 +143,30 @@ class Data {
       date: StringConst.BLOG_DATE,
       buttonText: StringConst.READ_MORE,
       imageUrl: ImagePath.BLOG_03,
+    ),
+  ];
+
+  static List<NimBusCardData> nimbusCardData = [
+    NimBusCardData(
+      title: StringConst.UI_UX,
+      subtitle: StringConst.UI_UX_DESC,
+      leadingIcon: Icons.done,
+      trailingIcon: Icons.chevron_right,
+    ),
+    NimBusCardData(
+      title: StringConst.PHOTOGRAPHER,
+      subtitle: StringConst.PHOTOGRAPHER_DESC,
+      leadingIcon: Icons.done,
+      trailingIcon: Icons.chevron_right,
+      circleBgColor: AppColors.yellow100,
+    ),
+    NimBusCardData(
+      title: StringConst.FREELANCER,
+      subtitle: StringConst.FREELANCER_DESC,
+      leadingIcon: Icons.done,
+      trailingIcon: Icons.chevron_right,
+      leadingIconColor: AppColors.black,
+      circleBgColor: AppColors.grey50,
     ),
   ];
 }

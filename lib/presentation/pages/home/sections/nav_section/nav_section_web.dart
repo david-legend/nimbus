@@ -27,7 +27,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80, //Sizes.HEIGHT_64,
+      height: Sizes.HEIGHT_100,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -95,7 +95,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
           ),
         ),
       );
-      items.add(SpaceW16());
+      items.add(Spacer());
     }
     return items;
   }
@@ -110,7 +110,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
           onPressed: () => openUrlLink(socialItems[index].url),
         ),
       );
-      items.add(SpaceW8());
+      items.add(SpaceW16());
     }
     return items;
   }

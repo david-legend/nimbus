@@ -16,7 +16,12 @@ import 'package:nimbus/values/values.dart';
 //TODO:: Add background ash blobs
 //TODO:: Add Cards data, write methid to build cards, work cards styling
 
-class HeaderSection extends StatelessWidget {
+class HeaderSection extends StatefulWidget {
+  @override
+  _HeaderSectionState createState() => _HeaderSectionState();
+}
+
+class _HeaderSectionState extends State<HeaderSection> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -119,7 +124,7 @@ class HeaderSection extends StatelessWidget {
                         ),
                         SpaceW20(),
                         NimbusButton(
-                          buttonTitle: StringConst.CONTACT_ME,
+                          buttonTitle: StringConst.HIRE_ME_NOW,
                           onPressed: () => openUrlLink(StringConst.EMAIL_URL),
                         ),
                       ],
@@ -139,40 +144,9 @@ class HeaderSection extends StatelessWidget {
               Row(
                 children: [
                   Spacer(),
-                  NimBusCard(
-                    width: 300,
-                    height: 80,
-                    leading: CircularContainer(),
-                    title: Text("UI/UX Designer"),
-                    subtitle: Text("creativer websites for you"),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  SpaceW40(),
-                  NimBusCard(
-                    width: 300,
-                    height: 80,
-                    leading: CircularContainer(),
-                    title: Text("UI/UX Designer"),
-                    subtitle: Text("creativer websites for you"),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  SpaceW40(),
-                  NimBusCard(
-                    width: 300,
-                    height: 80,
-                    leading: CircularContainer(),
-                    title: Text("UI/UX Designer"),
-                    subtitle: Text("creativer websites for you"),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                      color: Colors.grey,
-                    ),
+                  ..._buildCardRow(
+                    data: Data.nimbusCardData,
+                    width: contentAreaWidth,
                   ),
                   Spacer(),
                 ],
@@ -199,6 +173,46 @@ class HeaderSection extends StatelessWidget {
       );
       items.add(SpaceW20());
     }
+    return items;
+  }
+
+  List<Widget> _buildCardRow({
+    required List<NimBusCardData> data,
+    required double width,
+  }) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    List<Widget> items = [];
+
+    for (int index = 0; index < data.length; index++) {
+      items.add(
+        NimBusCard(
+          width: width / 4,
+          height: 100,
+          leading: CircularContainer(
+            width: Sizes.WIDTH_40,
+            height: Sizes.HEIGHT_40,
+            iconSize: Sizes.ICON_SIZE_24,
+            backgroundColor: data[index].circleBgColor,
+            iconColor: data[index].leadingIconColor,
+          ),
+          title: SelectableText(
+            data[index].title,
+            style: textTheme.subtitle1?.copyWith(),
+          ),
+          subtitle: SelectableText(
+            data[index].subtitle,
+            style: textTheme.bodyText1,
+          ),
+          trailing: Icon(
+            Icons.chevron_right,
+            size: Sizes.ICON_SIZE_30,
+            color: data[index].trailingIconColor,
+          ),
+        ),
+      );
+      items.add(SpaceW40());
+    }
+
     return items;
   }
 }

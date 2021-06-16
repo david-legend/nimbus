@@ -48,49 +48,49 @@ class AppTheme {
   static const _light = FontWeight.w300;
 
   static final TextTheme _textTheme = TextTheme(
-    headline1: GoogleFonts.lato(
+    headline1: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_96,
       color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
-    headline2: GoogleFonts.merriweather(
+    headline2: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_60,
       color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
-    headline3: GoogleFonts.merriweather(
+    headline3: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_48,
       color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
-    headline4: GoogleFonts.lato(
+    headline4: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_34,
       color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
-    headline5: GoogleFonts.lato(
+    headline5: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_24,
       color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
-    headline6: GoogleFonts.merriweather(
+    headline6: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_20,
       color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
-    subtitle1: GoogleFonts.lato(
+    subtitle1: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_18,
       color: AppColors.black,
       fontWeight: _bold,
       fontStyle: FontStyle.normal,
     ),
-    subtitle2: GoogleFonts.lato(
+    subtitle2: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_14,
       color: AppColors.black,
       fontWeight: _bold,
@@ -102,7 +102,7 @@ class AppTheme {
       fontWeight: _regular,
       fontStyle: FontStyle.normal,
     ),
-    bodyText2: GoogleFonts.lato(
+    bodyText2: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_14,
       color: AppColors.black,
       fontWeight: _light,
@@ -114,7 +114,7 @@ class AppTheme {
       fontStyle: FontStyle.normal,
       fontWeight: _regular,
     ),
-    caption: GoogleFonts.lato(
+    caption: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_12,
       color: AppColors.primaryText,
       fontWeight: _regular,

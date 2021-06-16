@@ -30,6 +30,12 @@ class StringConst {
   static const String BEHANCE = "Behance";
   static const String BEHANCE_ID = "behance.net/nimbus200";
   static const String HIRE_ME_NOW = "Hire Me Now";
+  static const String UI_UX = "UI/UX Designer";
+  static const String UI_UX_DESC = "creative websites for you";
+  static const String PHOTOGRAPHER = "Photographer";
+  static const String PHOTOGRAPHER_DESC = "Awesome photo & video";
+  static const String FREELANCER = "Freelancer";
+  static const String FREELANCER_DESC = "You can hire me now";
 
   static const String PYTHON = "Python";
   static const String JAVA = "Java";

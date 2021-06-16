@@ -9,6 +9,7 @@ import 'package:nimbus/presentation/pages/home/sections/statistics_section.dart'
 import 'package:nimbus/presentation/widgets/blog_card.dart';
 import 'package:nimbus/presentation/widgets/buttons/social_button.dart';
 import 'package:nimbus/presentation/widgets/buttons/social_button_2.dart';
+import 'package:nimbus/presentation/widgets/nimbus_card.dart';
 import 'package:nimbus/presentation/widgets/skill_card.dart';
 import 'package:nimbus/presentation/widgets/skill_level.dart';
 

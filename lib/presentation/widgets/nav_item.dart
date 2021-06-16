@@ -48,7 +48,8 @@ class NavItem extends StatelessWidget {
           Text(
             title,
             style: titleStyle ??
-                textTheme.subtitle2?.copyWith(
+                textTheme.subtitle1?.copyWith(
+                  fontSize: Sizes.TEXT_SIZE_16,
                   color: titleColor,
                 ),
           ),

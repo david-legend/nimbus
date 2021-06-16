@@ -4,11 +4,11 @@ import 'package:nimbus/values/values.dart';
 class NimbusButton extends StatelessWidget {
   NimbusButton({
     required this.buttonTitle,
-    this.width = Sizes.WIDTH_120,
-    this.height = Sizes.HEIGHT_52,
+    this.width = Sizes.WIDTH_150,
+    this.height = Sizes.HEIGHT_60,
     this.titleStyle,
     this.titleColor = AppColors.white,
-    this.buttonColor = AppColors.black,
+    this.buttonColor = AppColors.black100,
     this.onPressed,
     this.padding = const EdgeInsets.all(Sizes.PADDING_8),
     this.borderRadius = const BorderRadius.all(
@@ -42,9 +42,10 @@ class NimbusButton extends StatelessWidget {
             buttonTitle,
             style: titleStyle ??
                 textTheme.button?.copyWith(
-                  color: titleColor,
-                  fontSize: Sizes.TEXT_SIZE_12,
-                ),
+                    color: titleColor,
+                    fontSize: Sizes.TEXT_SIZE_16,
+                    letterSpacing: 1.1,
+                    fontWeight: FontWeight.bold),
           ),
         ),
       ),
