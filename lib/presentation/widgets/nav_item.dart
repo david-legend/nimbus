@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/selected_indicator.dart';
 import 'package:nimbus/values/values.dart';
+import 'package:layout/layout.dart';
 
 import 'empty.dart';
 
@@ -34,6 +36,12 @@ class NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    double textSize = responsiveSize(
+      context,
+      Sizes.TEXT_SIZE_14,
+      Sizes.TEXT_SIZE_16,
+      md: Sizes.TEXT_SIZE_15,
+    );
 
     return InkWell(
       onTap: onTap,
@@ -49,7 +57,7 @@ class NavItem extends StatelessWidget {
             title,
             style: titleStyle ??
                 textTheme.subtitle1?.copyWith(
-                  fontSize: Sizes.TEXT_SIZE_16,
+                  fontSize: textSize,
                   color: titleColor,
                 ),
           ),

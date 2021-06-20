@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/values/values.dart';
 
 class NimbusButton extends StatelessWidget {
@@ -29,6 +30,12 @@ class NimbusButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    double textSize = responsiveSize(
+      context,
+      Sizes.TEXT_SIZE_14,
+      Sizes.TEXT_SIZE_16,
+      md: Sizes.TEXT_SIZE_15,
+    );
     return ClipRRect(
       borderRadius: borderRadius,
       child: MaterialButton(
@@ -42,10 +49,11 @@ class NimbusButton extends StatelessWidget {
             buttonTitle,
             style: titleStyle ??
                 textTheme.button?.copyWith(
-                    color: titleColor,
-                    fontSize: Sizes.TEXT_SIZE_16,
-                    letterSpacing: 1.1,
-                    fontWeight: FontWeight.bold),
+                  color: titleColor,
+                  fontSize: textSize,
+                  letterSpacing: 1.1,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ),
       ),

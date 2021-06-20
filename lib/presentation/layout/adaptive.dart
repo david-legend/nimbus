@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:layout/layout.dart';
 
 enum DisplayType {
   desktop,
@@ -68,4 +69,38 @@ double assignWidth(
   double subs = 0,
 }) {
   return (widthOfScreen(context) - (subs) + (additions)) * fraction;
+}
+
+double responsiveSize(
+  BuildContext context,
+  double xs,
+  double lg, {
+  double? sm,
+  double? md,
+  double? xl,
+}) {
+  return context.layout.value(
+    xs: xs,
+    sm: sm ?? xs,
+    md: md ?? xs,
+    lg: lg,
+    xl: xl ?? lg,
+  );
+}
+
+int responsiveSizeInt(
+  BuildContext context,
+  int xs,
+  int lg, {
+  int? sm,
+  int? md,
+  int? xl,
+}) {
+  return context.layout.value(
+    xs: xs,
+    sm: sm ?? xs,
+    md: md ?? xs,
+    lg: lg,
+    xl: xl ?? lg,
+  );
 }
