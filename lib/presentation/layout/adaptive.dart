@@ -104,3 +104,7 @@ int responsiveSizeInt(
     xl: xl ?? lg,
   );
 }
+
+double getSidePadding(BuildContext context) {
+  return assignWidth(context, 0.05);
+}

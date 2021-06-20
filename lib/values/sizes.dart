@@ -26,6 +26,7 @@ class Sizes {
   static const double SIZE_0 = 0.0;
 
   //TextSizes
+  static const double TEXT_SIZE_100 = 100.0;
   static const double TEXT_SIZE_96 = 96.0;
   static const double TEXT_SIZE_80 = 80.0;
   static const double TEXT_SIZE_60 = 60.0;

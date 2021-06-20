@@ -18,6 +18,7 @@ class StringConst {
   static const String EMAIL_URL = "mailto:<$DEV_EMAIL>?subject=&body=";
 
   //Header Section
+  static const String FIRST_NAME = "Ameli";
   static const String INTRO = "Hi! I'm Ameli Nimbus -";
   static const String POSITION = "UI/UX Designer";
   static const String ABOUT_ME_1 =

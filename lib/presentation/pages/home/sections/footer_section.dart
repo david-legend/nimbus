@@ -10,7 +10,7 @@ import 'package:nimbus/values/values.dart';
 //TODO:: Add proper icons for footerItems
 //TODO:: Add proper backgrounds to button
 //TODO:: Add proper textSizes, fontStyles, fontFamilies etc.
-
+//Sacramento font for footer
 List<FooterItem> footerItems = [
   FooterItem(
     title: StringConst.PHONE_ME + ":",
