@@ -11,13 +11,11 @@ import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Add background name (add correct fontFamily to background name)
-//TODO:: Add dots_globe_grey beneath headerImage
+//TODO:: Add Responsiveness to header section (working on dev_image and globe image)
 //TODO:: Position cards at right position with right spacing (in between them)
 //TODO:: Add background ash blobs
 //TODO:: Add animation to rotating dots_globe_grey and dots_globe_yellow
 //TODO:: Animation to button. (Channel your adventurous self)
-//TODO:: Add Responsiveness to header section
 const double bodyTextSizeLg = 16.0;
 const double bodyTextSizeSm = 14.0;
 const double socialTextSizeLg = 18.0;
