@@ -9,7 +9,7 @@ class NimbusButton extends StatelessWidget {
     this.height = Sizes.HEIGHT_60,
     this.titleStyle,
     this.titleColor = AppColors.white,
-    this.buttonColor = AppColors.black100,
+    this.buttonColor = AppColors.black400,
     this.onPressed,
     this.padding = const EdgeInsets.all(Sizes.PADDING_8),
     this.borderRadius = const BorderRadius.all(

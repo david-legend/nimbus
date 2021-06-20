@@ -41,7 +41,8 @@ class HomePage extends StatelessWidget {
           ResponsiveBuilder(
             refinedBreakpoints: RefinedBreakpoints(),
             builder: (context, sizingInformation) {
-              if (sizingInformation.isMobile) {
+              double screenWidth = sizingInformation.screenSize.width;
+              if (screenWidth < RefinedBreakpoints().desktopSmall) {
                 return NavSectionMobile(scaffoldKey: _scaffoldKey);
               } else {
                 return NavSectionWeb(

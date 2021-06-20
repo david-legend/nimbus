@@ -57,6 +57,7 @@ class Sizes {
   static const double ICON_SIZE_36 = 36.0;
   static const double ICON_SIZE_32 = 32.0;
   static const double ICON_SIZE_30 = 30.0;
+  static const double ICON_SIZE_26 = 26.0;
   static const double ICON_SIZE_24 = 24.0;
   static const double ICON_SIZE_22 = 22.0;
   static const double ICON_SIZE_20 = 20.0;

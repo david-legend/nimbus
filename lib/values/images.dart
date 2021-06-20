@@ -7,6 +7,7 @@ class ImagePath {
 
   //Splash Items
   static const String LOGO_DARK = "$imageDir/logo-dark.png";
+  static const String LOGO_LIGHT = "$imageDir/logo-light.png";
   static const String BLOB_BLACK = "$imageDir/blob_black.png";
   static const String DEV_HEADER = "$imageDir/dev_header.png";
   static const String DOTS_GLOBE_GREY = "$imageDir/dots_globe_grey.png";
