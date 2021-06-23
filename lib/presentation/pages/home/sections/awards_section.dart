@@ -34,7 +34,7 @@ class AwardsSection extends StatelessWidget {
                     child: Column(
                       children: [
                         Spacer(),
-                        NimbusInfoSection(
+                        NimbusInfoSection1(
                           sectionTitle: StringConst.MY_AWARDS,
                           title1: StringConst.AWARDS_TITLE,
                           hasTitle2: false,

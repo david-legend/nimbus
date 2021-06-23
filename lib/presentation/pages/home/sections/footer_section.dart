@@ -34,7 +34,7 @@ class FooterSection extends StatelessWidget {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     TextStyle? footerTextStyle = textTheme.bodyText2?.copyWith(
-      color: AppColors.primaryText,
+      color: AppColors.primaryText1,
       fontWeight: FontWeight.bold,
     );
     double screenWidth = widthOfScreen(context);
@@ -200,7 +200,7 @@ class FooterItem extends StatelessWidget {
         Text(
           subtitle,
           style: textTheme.bodyText1?.copyWith(
-            color: AppColors.primaryText,
+            color: AppColors.primaryText1,
           ),
         ),
       ],

@@ -38,7 +38,7 @@ class _BlogSectionState extends State<BlogSection> {
             children: [
               ContentArea(
                 width: blogWidth,
-                child: NimbusInfoSection(
+                child: NimbusInfoSection1(
                   sectionTitle: StringConst.MY_BLOG,
                   title1: StringConst.BLOG_SECTION_TITLE_1,
                   title2: StringConst.BLOG_SECTION_TITLE_2,

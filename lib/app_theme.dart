@@ -102,7 +102,7 @@ class AppTheme {
     ),
     bodyText1: GoogleFonts.lato(
       fontSize: Sizes.TEXT_SIZE_16,
-      color: AppColors.primaryText,
+      color: AppColors.primaryText2,
       fontWeight: _regular,
       fontStyle: FontStyle.normal,
     ),
@@ -120,7 +120,7 @@ class AppTheme {
     ),
     caption: GoogleFonts.ibmPlexMono(
       fontSize: Sizes.TEXT_SIZE_12,
-      color: AppColors.primaryText,
+      color: AppColors.primaryText1,
       fontWeight: _regular,
       fontStyle: FontStyle.normal,
     ),

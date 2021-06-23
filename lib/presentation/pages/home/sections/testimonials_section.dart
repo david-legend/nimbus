@@ -25,7 +25,7 @@ class TestimonialsSection extends StatelessWidget {
 //                width: contentAreaWidth * 0.5,
 //              ),
               Card(
-                child: NimbusInfoSection(
+                child: NimbusInfoSection1(
                   sectionTitle: StringConst.MY_TESTIMONIALS,
                   title1: StringConst.TESTIMONIALS_SECTION_TITLE,
                   hasTitle2: false,

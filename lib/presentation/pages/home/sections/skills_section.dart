@@ -41,7 +41,7 @@ class SkillsSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Spacer(),
-                        NimbusInfoSection(
+                        NimbusInfoSection1(
                           sectionTitle: StringConst.MY_SKILLS,
                           title1: StringConst.SKILLS_TITLE_1,
                           title2: StringConst.SKILLS_TITLE_2,

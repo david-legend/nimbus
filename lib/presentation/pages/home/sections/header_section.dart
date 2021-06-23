@@ -277,7 +277,6 @@ class _HeaderSectionState extends State<HeaderSection> {
       refinedBreakpoints: RefinedBreakpoints(),
       builder: (context, sizingInformation) {
         double screenWidth = sizingInformation.screenSize.width;
-        print("SCREEN SIZE:: ${screenWidth}");
         if (screenWidth <= RefinedBreakpoints().tabletNormal) {
           return _buildHeaderImage(
             devImageWidth: contentWidth,

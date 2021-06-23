@@ -34,7 +34,7 @@ class ProjectsSection extends StatelessWidget {
         children: [
           ContentArea(
             width: contentAreaWidth * 0.6,
-            child: NimbusInfoSection(
+            child: NimbusInfoSection1(
               sectionTitle: StringConst.MY_WORKS,
               title1: StringConst.MEET_MY_PROJECTS,
               hasTitle2: false,

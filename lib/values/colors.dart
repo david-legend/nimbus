@@ -13,7 +13,8 @@ class AppColors {
   static const Color accentColor100 = Color(0xFFF2F0F1);
 
   //Accent colors
-  static const Color primaryText = Color(0xFF959595);
+  static const Color primaryText1 = Color(0xFF959595);
+  static const Color primaryText2 = Color(0xFF717171);
 
   //black
   static const Color black = Color(0xFF000000);
@@ -39,7 +40,9 @@ class AppColors {
   //Grey
   static const Color grey50 = Color(0xFFF2F1F1);
   static const Color grey100 = Color(0xFFE7E7E7);
+  static const Color grey250 = Color(0xFFBBBBBB);
   static const Color grey300 = Color(0xFFBABABA);
+  static const Color grey350 = Color(0xFFADADAD);
   //Red
   static const Color red = Color(0xFFF1291A);
 }
