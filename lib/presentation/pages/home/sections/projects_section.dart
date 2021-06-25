@@ -3,7 +3,9 @@ import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/nimbus_info_section.dart';
+import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 //TODO:: Add proper fontFamilies and styles
 //TODO:: Add project slides and tabs
@@ -29,31 +31,72 @@ class ProjectsSection extends StatelessWidget {
     return ContentArea(
       width: contentAreaWidth,
       height: contentAreaHeight,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ContentArea(
-            width: contentAreaWidth * 0.6,
-            child: NimbusInfoSection1(
-              sectionTitle: StringConst.MY_WORKS,
-              title1: StringConst.MEET_MY_PROJECTS,
-              hasTitle2: false,
-              body: StringConst.PROJECTS_DESC,
-              child: Wrap(
-                spacing: kSpacing,
-                runSpacing: kRunSpacing,
-                children: _buildProjectCategories(Data.projectCategories),
-              ),
-            ),
-          ),
-          Spacer(),
-          NimbusButton(
-            buttonTitle: StringConst.ALL_PROJECTS,
-            buttonColor: AppColors.primaryColor,
-            onPressed: () {},
-          ),
-          Spacer(),
-        ],
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: ResponsiveBuilder(
+        refinedBreakpoints: RefinedBreakpoints(),
+        builder: (context, sizingInformation) {
+          double screenWidth = sizingInformation.screenSize.width;
+          if (screenWidth < (RefinedBreakpoints().tabletLarge)) {
+            return Column(
+              children: [
+                _buildNimbusInfoSectionSm(),
+                SpaceH40(),
+                NimbusButton(
+                  buttonTitle: StringConst.ALL_PROJECTS,
+                  buttonColor: AppColors.primaryColor,
+                  onPressed: () {},
+                ),
+                SpaceH40(),
+//                Wrap(
+//                  spacing: kSpacing,
+//                  runSpacing: kRunSpacing,
+//                  children: _buildProjectCategories(Data.projectCategories),
+//                )
+              ],
+            );
+          } else {
+            return Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ContentArea(
+                  width: contentAreaWidth * 0.6,
+                  child: _buildNimbusInfoSectionLg(),
+                ),
+                Spacer(),
+                NimbusButton(
+                  buttonTitle: StringConst.ALL_PROJECTS,
+                  buttonColor: AppColors.primaryColor,
+                  onPressed: () {},
+                ),
+                Spacer(),
+              ],
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildNimbusInfoSectionSm() {
+    return NimbusInfoSection2(
+      sectionTitle: StringConst.MY_WORKS,
+      title1: StringConst.MEET_MY_PROJECTS,
+      hasTitle2: false,
+      body: StringConst.PROJECTS_DESC,
+//      child: ,
+    );
+  }
+
+  Widget _buildNimbusInfoSectionLg() {
+    return NimbusInfoSection1(
+      sectionTitle: StringConst.MY_WORKS,
+      title1: StringConst.MEET_MY_PROJECTS,
+      hasTitle2: false,
+      body: StringConst.PROJECTS_DESC,
+      child: Wrap(
+        spacing: kSpacing,
+        runSpacing: kRunSpacing,
+        children: _buildProjectCategories(Data.projectCategories),
       ),
     );
   }
