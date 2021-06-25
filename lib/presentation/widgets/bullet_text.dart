@@ -24,7 +24,7 @@ class TextWithBullet extends StatelessWidget {
           text,
           style: textStyle ??
               textTheme.bodyText1?.copyWith(
-                color: AppColors.black,
+                color: AppColors.primaryText2,
               ),
         ),
       ],
