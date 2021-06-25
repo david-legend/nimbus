@@ -9,7 +9,7 @@ import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Make nimbusInfosection 1 & 2 break at right break points
+//TODO:: Make nimbusInfoSection 1 & 2 break at right break points
 //TODO:: Add the right fontFamily and styles to text in this section
 //TODO:: Add grey dotted globe image
 //TODO:: Add the right colors to text and dividers
@@ -17,8 +17,10 @@ import 'package:responsive_builder/responsive_builder.dart';
 //TODO:: Add animation to socialButton2
 //TODO:: Add floating bubbles if I am feeling adventurous
 
-const double kSpacing = 24.0;
-const double kRunSpacing = 16.0;
+const double kSpacingSm = 40.0;
+const double kRunSpacingSm = 24.0;
+const double kSpacingLg = 24.0;
+const double kRunSpacingLg = 16.0;
 
 class AboutMeSection extends StatefulWidget {
   @override
@@ -32,7 +34,7 @@ class _AboutMeSectionState extends State<AboutMeSection> {
     double screenWidth = widthOfScreen(context);
     double screenHeight = heightOfScreen(context);
     double contentAreaWidthSm = screenWidth * 1.0;
-    double contentAreaHeightSm = screenHeight * 1.1;
+    double contentAreaHeightSm = screenHeight * 0.6;
     double contentAreaWidthLg = screenWidth * 0.5;
     double contentAreaHeightLg = screenHeight * 0.9;
     TextStyle? titleStyle =
@@ -194,17 +196,17 @@ class _AboutMeSectionState extends State<AboutMeSection> {
           refinedBreakpoints: RefinedBreakpoints(),
           builder: (context, sizingInformation) {
             double screenWidth = sizingInformation.screenSize.width;
-            if (screenWidth < (RefinedBreakpoints().tabletLarge)) {
+            if (screenWidth < (RefinedBreakpoints().tabletNormal)) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: nimbusInfoSectionSmScreens(),
+                child: nimbusInfoSectionSm(),
               );
             } else {
               //This container takes 85% of the space and leave 15% as spacing
               //between the blob and the content
               return Container(
                 width: width * 0.85,
-                child: nimbusInfoSectionLgScreens(),
+                child: nimbusInfoSectionLg(),
               );
             }
           },
@@ -213,8 +215,9 @@ class _AboutMeSectionState extends State<AboutMeSection> {
     );
   }
 
-  Widget nimbusInfoSectionLgScreens() {
+  Widget nimbusInfoSectionLg() {
     TextTheme textTheme = Theme.of(context).textTheme;
+
     return Row(
       children: [
         Expanded(
@@ -239,8 +242,8 @@ class _AboutMeSectionState extends State<AboutMeSection> {
                     Row(
                       children: [
                         Wrap(
-                          spacing: kSpacing,
-                          runSpacing: kRunSpacing,
+                          spacing: kSpacingLg,
+                          runSpacing: kRunSpacingLg,
                           children: _buildSocialButtons(
                             Data.socialData2,
                           ),
@@ -258,7 +261,7 @@ class _AboutMeSectionState extends State<AboutMeSection> {
     );
   }
 
-  Widget nimbusInfoSectionSmScreens() {
+  Widget nimbusInfoSectionSm() {
     TextTheme textTheme = Theme.of(context).textTheme;
     return NimbusInfoSection2(
       sectionTitle: StringConst.ABOUT_ME,
@@ -276,8 +279,8 @@ class _AboutMeSectionState extends State<AboutMeSection> {
           Row(
             children: [
               Wrap(
-                spacing: kSpacing,
-                runSpacing: kRunSpacing,
+                spacing: kSpacingSm,
+                runSpacing: kRunSpacingSm,
                 children: _buildSocialButtons(
                   Data.socialData2,
                 ),

@@ -27,8 +27,8 @@ class SocialButton2 extends StatelessWidget {
     required this.onPressed,
     this.titleStyle,
     this.titleColor = AppColors.black,
-    this.width = Sizes.WIDTH_36,
-    this.height = Sizes.HEIGHT_36,
+    this.width = Sizes.WIDTH_40,
+    this.height = Sizes.HEIGHT_40,
     this.elevation = Sizes.ELEVATION_1,
     this.buttonColor = AppColors.white,
     this.iconColor = AppColors.black,
@@ -69,12 +69,12 @@ class SocialButton2 extends StatelessWidget {
             ),
           ),
         ),
-        SpaceW8(),
+        SpaceW12(),
         Text(
           title,
           style: titleStyle ??
               textTheme.subtitle2?.copyWith(
-                fontSize: Sizes.TEXT_SIZE_12,
+                fontSize: Sizes.TEXT_SIZE_13,
                 color: titleColor,
               ),
         ),

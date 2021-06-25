@@ -11,6 +11,7 @@ class ContentArea extends StatelessWidget {
   final Widget? child;
 
   ContentArea({
+    Key? key,
     this.width,
     this.height,
     this.backgroundColor,
