@@ -114,7 +114,6 @@ class _AwardsSectionState extends State<AwardsSection> {
       hasTitle2: false,
       body: StringConst.AWARDS_DESC,
       child: Container(
-        color: Colors.red,
         child: Row(
           children: [
             _buildAwards1(),
