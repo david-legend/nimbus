@@ -7,8 +7,8 @@ import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Add yellow dots globe under image.
 //TODO:: Add correct spacing and padding
+//TODO:: Add animation for My CV and image
 
 class AwardsSection extends StatefulWidget {
   @override
@@ -18,23 +18,35 @@ class AwardsSection extends StatefulWidget {
 class _AwardsSectionState extends State<AwardsSection> {
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
     double screenWidth = widthOfScreen(context);
     double screenHeight = heightOfScreen(context);
-    double contentAreaWidth =
-        responsiveSize(context, screenWidth, screenWidth * 0.5);
+    double contentAreaWidth = responsiveSize(
+      context,
+      screenWidth,
+      screenWidth * 0.5,
+      md: screenWidth * 0.5,
+    );
     double contentAreaHeight = screenHeight * 0.9;
     return Container(
       child: ResponsiveBuilder(
         refinedBreakpoints: RefinedBreakpoints(),
         builder: (context, sizingInformation) {
           double screenWidth = sizingInformation.screenSize.width;
-          if (screenWidth < (RefinedBreakpoints().tabletLarge)) {
+          if (screenWidth <= 1024) {
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 children: [
-                  _buildNimbusInfoSectionSm(),
+                  ResponsiveBuilder(
+                    builder: (context, sizingInformation) {
+                      double screenWidth = sizingInformation.screenSize.width;
+                      if (screenWidth < (RefinedBreakpoints().tabletSmall)) {
+                        return _buildNimbusInfoSectionSm();
+                      } else {
+                        return _buildNimbusInfoSectionLg();
+                      }
+                    },
+                  ),
                   SpaceH50(),
                   _buildImage(
                     width: contentAreaWidth,
@@ -51,7 +63,6 @@ class _AwardsSectionState extends State<AwardsSection> {
                   width: contentAreaWidth,
                   height: contentAreaHeight,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Row(
                       children: [
                         Expanded(
@@ -67,7 +78,10 @@ class _AwardsSectionState extends State<AwardsSection> {
                     ),
                   ),
                 ),
-                _buildImage(width: contentAreaWidth, height: contentAreaHeight),
+                _buildImage(
+                  width: contentAreaWidth,
+                  height: contentAreaHeight,
+                ),
               ],
             );
           }
@@ -99,13 +113,16 @@ class _AwardsSectionState extends State<AwardsSection> {
       title1: StringConst.AWARDS_TITLE,
       hasTitle2: false,
       body: StringConst.AWARDS_DESC,
-      child: Row(
-        children: [
-          _buildAwards1(),
-          Spacer(),
-          _buildAwards2(),
-          Spacer(),
-        ],
+      child: Container(
+        color: Colors.red,
+        child: Row(
+          children: [
+            _buildAwards1(),
+            Spacer(),
+            _buildAwards2(),
+            Spacer(flex: 4),
+          ],
+        ),
       ),
     );
   }
@@ -127,8 +144,33 @@ class _AwardsSectionState extends State<AwardsSection> {
       height: height,
       child: Stack(
         children: [
-          Image.asset(
-            ImagePath.DEV_AWARD,
+          Stack(
+            children: [
+              Positioned(
+                left: 0,
+                bottom: 0,
+                child: ResponsiveBuilder(
+                  refinedBreakpoints: RefinedBreakpoints(),
+                  builder: (context, sizingInformation) {
+                    double screenWidth = sizingInformation.screenSize.width;
+                    if (screenWidth < (RefinedBreakpoints().tabletSmall)) {
+                      return Image.asset(
+                        ImagePath.DOTS_GLOBE_YELLOW,
+                        width: Sizes.WIDTH_150,
+                        height: Sizes.HEIGHT_150,
+                      );
+                    } else {
+                      return Image.asset(
+                        ImagePath.DOTS_GLOBE_YELLOW,
+                      );
+                    }
+                  },
+                ),
+              ),
+              Image.asset(
+                ImagePath.DEV_AWARD,
+              ),
+            ],
           ),
           Positioned(
             child: Padding(
