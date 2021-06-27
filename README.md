@@ -1,5 +1,8 @@
 # nimbus
 
+<h1 align="center">
+  <a href="https://david-legend.github.io/nimbus/" target="_blank">https://david-legend.github.io/nimbus/</a>
+</h1>
 
 <p align="center">
     This is Nimbus (Portfolio & CV), a beautifully designed portfolio website built with <strong>flutter</strong>.
