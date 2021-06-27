@@ -1,3 +1,4 @@
+import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
@@ -5,81 +6,74 @@ import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Add proper background to footerCard
-//TODO:: Add proper icons for footerItems
+//TODO:: Add proper background to footerCard (Curves and Blobs)
+//TODO:: Revisit icons for footerItems
 //TODO:: Add proper backgrounds to button
-//TODO:: Add proper textSizes, fontStyles, fontFamilies etc.
-//Sacramento font for footer
 List<FooterItem> footerItems = [
   FooterItem(
     title: StringConst.PHONE_ME + ":",
     subtitle: StringConst.PHONE_NUMBER,
-    iconData: FontAwesomeIcons.phoneAlt,
+    iconData: FeatherIcons.phone,
   ),
   FooterItem(
     title: StringConst.MAIL_ME + ":",
     subtitle: StringConst.DEV_EMAIL_2,
-    iconData: FontAwesomeIcons.solidEnvelope,
+    iconData: FontAwesomeIcons.paperPlane,
   ),
   FooterItem(
     title: StringConst.FOLLOW_ME_2 + ":",
     subtitle: StringConst.BEHANCE_ID,
-    iconData: FontAwesomeIcons.behanceSquare,
+    iconData: FontAwesomeIcons.behance,
   ),
 ];
 
-class FooterSection extends StatelessWidget {
+class FooterSection extends StatefulWidget {
+  @override
+  _FooterSectionState createState() => _FooterSectionState();
+}
+
+class _FooterSectionState extends State<FooterSection> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    TextStyle? footerTextStyle = textTheme.bodyText2?.copyWith(
-      color: AppColors.primaryText1,
+    TextStyle? footerTextStyle = textTheme.caption?.copyWith(
+      color: AppColors.primaryText2,
       fontWeight: FontWeight.bold,
     );
     double screenWidth = widthOfScreen(context);
     double screenHeight = heightOfScreen(context);
-    double contentAreaWidth = screenWidth * 1.0;
-    double contentAreaHeight = screenHeight * 1.0;
-    double spacerHeight = screenHeight * 0.15;
+    double contentAreaWidth =
+        responsiveSize(context, screenWidth, screenWidth * 0.8);
+    double contentAreaHeight = responsiveSize(
+      context,
+      screenHeight,
+      screenHeight * 0.7,
+      md: screenHeight * 0.85,
+      sm: screenHeight * 0.85,
+    );
+
     return ContentArea(
-      width: contentAreaWidth,
-      height: contentAreaHeight,
+      width: screenWidth,
       child: Column(
         children: [
-          SizedBox(height: spacerHeight),
-          ContentArea(
-            width: contentAreaWidth * 0.8,
-            height: contentAreaHeight * 0.7,
-            backgroundColor: AppColors.black,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(Sizes.RADIUS_8),
-            ),
-            child: Column(
-              children: [
-                Spacer(flex: 2),
-                Text(
-                  StringConst.LETS_TALK,
-                  style: textTheme.headline3?.copyWith(color: AppColors.white),
-                ),
-                Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Spacer(flex: 3),
-                    ..._buildFooterItems(footerItems),
-                    Spacer(flex: 3),
-                  ],
-                ),
-                Spacer(),
-                NimbusButton(
-                  buttonTitle: StringConst.HIRE_ME,
-                  buttonColor: AppColors.primaryColor,
-                  onPressed: () {},
-                ),
-                Spacer(flex: 2),
-              ],
-            ),
+          ResponsiveBuilder(
+            builder: (context, sizingInformation) {
+              double screenWidth = sizingInformation.screenSize.width;
+
+              if (screenWidth <= (RefinedBreakpoints().tabletNormal)) {
+                return _buildFooterSectionSm(
+                  width: contentAreaWidth,
+                  height: contentAreaHeight,
+                );
+              } else {
+                return _buildFooterSectionLg(
+                  width: contentAreaWidth,
+                  height: contentAreaHeight,
+                );
+              }
+            },
           ),
           SpaceH20(),
           SelectableText.rich(
@@ -93,6 +87,7 @@ class FooterSection extends StatelessWidget {
                   style: footerTextStyle?.copyWith(
                     decoration: TextDecoration.underline,
                     fontWeight: FontWeight.w900,
+                    color: AppColors.black,
                   ),
                 ),
               ],
@@ -112,6 +107,7 @@ class FooterSection extends StatelessWidget {
                       style: footerTextStyle?.copyWith(
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.w900,
+                        color: AppColors.black,
                       ),
                     ),
                   ],
@@ -144,6 +140,7 @@ class FooterSection extends StatelessWidget {
               ),
             ],
           ),
+          SpaceH20(),
         ],
       ),
     );
@@ -165,6 +162,79 @@ class FooterSection extends StatelessWidget {
       }
     }
     return items;
+  }
+
+  Widget _buildFooterSectionSm({
+    required double width,
+    required double height,
+  }) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    return ContentArea(
+      width: width,
+      height: height,
+      backgroundColor: AppColors.black,
+      borderRadius: const BorderRadius.all(
+        Radius.circular(Sizes.RADIUS_8),
+      ),
+      child: Column(
+        children: [
+          Spacer(flex: 3),
+          Text(
+            StringConst.LETS_TALK,
+            style: textTheme.headline3?.copyWith(color: AppColors.white),
+          ),
+          Spacer(flex: 2),
+          ..._buildFooterItems(footerItems),
+          Spacer(flex: 2),
+          NimbusButton(
+            buttonTitle: StringConst.HIRE_ME,
+            buttonColor: AppColors.primaryColor,
+            onPressed: () {},
+          ),
+          Spacer(flex: 3),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFooterSectionLg({
+    required double width,
+    required double height,
+  }) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    return ContentArea(
+      width: width,
+      height: height,
+      backgroundColor: AppColors.black,
+      borderRadius: const BorderRadius.all(
+        Radius.circular(Sizes.RADIUS_8),
+      ),
+      child: Column(
+        children: [
+          Spacer(flex: 2),
+          Text(
+            StringConst.LETS_TALK,
+            style: textTheme.headline3?.copyWith(color: AppColors.white),
+          ),
+          Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Spacer(flex: 3),
+              ..._buildFooterItems(footerItems),
+              Spacer(flex: 3),
+            ],
+          ),
+          Spacer(),
+          NimbusButton(
+            buttonTitle: StringConst.HIRE_ME,
+            buttonColor: AppColors.primaryColor,
+            onPressed: () {},
+          ),
+          Spacer(flex: 2),
+        ],
+      ),
+    );
   }
 }
 
@@ -200,7 +270,7 @@ class FooterItem extends StatelessWidget {
         Text(
           subtitle,
           style: textTheme.bodyText1?.copyWith(
-            color: AppColors.primaryText1,
+            color: AppColors.grey250,
           ),
         ),
       ],

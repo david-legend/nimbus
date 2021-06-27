@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/pages/home/sections/about_me_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/awards_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/blog_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/brand_section.dart';
+import 'package:nimbus/presentation/pages/home/sections/footer_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/header_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/nav_section/nav_section_mobile.dart';
 import 'package:nimbus/presentation/pages/home/sections/nav_section/nav_section_web.dart';
@@ -34,6 +36,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = heightOfScreen(context);
+    double spacerHeight = screenHeight * 0.10;
+
     return Scaffold(
       body: Column(
         children: [
@@ -57,22 +62,22 @@ class HomePage extends StatelessWidget {
                 children: [
                   HeaderSection(),
                   AboutMeSection(),
-                  SpaceH100(),
+                  SizedBox(height: spacerHeight),
                   SkillsSection(),
-                  SpaceH50(),
+                  SizedBox(height: spacerHeight),
                   StatisticsSection(),
-                  SpaceH50(),
+                  SizedBox(height: spacerHeight),
                   ProjectsSection(),
-                  SpaceH50(),
+                  SizedBox(height: spacerHeight),
                   AwardsSection(),
-                  SpaceH50(),
+                  SizedBox(height: spacerHeight),
                   BrandSection(),
-                  SpaceH50(),
+                  SizedBox(height: spacerHeight),
 //                  TestimonialsSection(),
-                  SpaceH50(),
-                  BlogSection(),
-//                  SpaceH40(),
-//                  FooterSection(),
+//                  SpaceH50(),
+//                  BlogSection(),
+                  SizedBox(height: spacerHeight),
+                  FooterSection(),
                 ],
               ),
             ),

@@ -6,6 +6,7 @@ import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/nimbus_info_section.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 const double kSpacing = 16.0;
 const double kRunSpacing = 16.0;
@@ -25,35 +26,64 @@ class _BlogSectionState extends State<BlogSection> {
   Widget build(BuildContext context) {
     double screenWidth = widthOfScreen(context);
     double screenHeight = heightOfScreen(context);
-    double contentAreaWidth = screenWidth;
+    double contentAreaWidth =
+        responsiveSize(context, screenWidth, screenWidth * 0.6);
     double contentAreaHeight = screenHeight * 1.0;
-    double blogWidth = contentAreaWidth * 0.6;
+//    double blogWidth = contentAreaWidth * 0.6;
 
     return ContentArea(
       width: contentAreaWidth,
       child: Column(
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ContentArea(
-                width: blogWidth,
-                child: NimbusInfoSection1(
-                  sectionTitle: StringConst.MY_BLOG,
-                  title1: StringConst.BLOG_SECTION_TITLE_1,
-                  title2: StringConst.BLOG_SECTION_TITLE_2,
-                  body: StringConst.BLOG_DESC,
-                ),
-              ),
-              Spacer(),
-              NimbusButton(
-                buttonTitle: StringConst.BLOG_VIEW_ALL,
-                buttonColor: AppColors.primaryColor,
-                onPressed: () {},
-              ),
-              Spacer(),
-            ],
-          ),
+          ResponsiveBuilder(builder: (context, sizingInformation) {
+            double screenWidth = sizingInformation.screenSize.width;
+            if (screenWidth <= (RefinedBreakpoints().tabletSmall)) {
+              return Column(
+                children: [
+                  ContentArea(
+                    width: contentAreaWidth,
+                    child: NimbusInfoSection2(
+                      sectionTitle: StringConst.MY_BLOG,
+                      title1: StringConst.BLOG_SECTION_TITLE_1,
+                      title2: StringConst.BLOG_SECTION_TITLE_2,
+                      body: StringConst.BLOG_DESC,
+                    ),
+                  ),
+                  SpaceH20(),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: NimbusButton(
+                      buttonTitle: StringConst.BLOG_VIEW_ALL,
+                      buttonColor: AppColors.primaryColor,
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ContentArea(
+                    width: contentAreaWidth,
+                    child: NimbusInfoSection1(
+                      sectionTitle: StringConst.MY_BLOG,
+                      title1: StringConst.BLOG_SECTION_TITLE_1,
+                      title2: StringConst.BLOG_SECTION_TITLE_2,
+                      body: StringConst.BLOG_DESC,
+                    ),
+                  ),
+                  Spacer(),
+                  NimbusButton(
+                    buttonTitle: StringConst.BLOG_VIEW_ALL,
+                    buttonColor: AppColors.primaryColor,
+                    onPressed: () {},
+                  ),
+                  Spacer(),
+                ],
+              );
+            }
+          }),
           SpaceH20(),
           Wrap(
             spacing: kSpacing,
