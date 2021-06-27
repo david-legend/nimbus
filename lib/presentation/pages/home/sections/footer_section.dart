@@ -11,6 +11,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 //TODO:: Add proper background to footerCard (Curves and Blobs)
 //TODO:: Revisit icons for footerItems
 //TODO:: Add proper backgrounds to button
+
 List<FooterItem> footerItems = [
   FooterItem(
     title: StringConst.PHONE_ME + ":",

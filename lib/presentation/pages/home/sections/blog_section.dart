@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/blog_card.dart';
@@ -22,6 +24,10 @@ class BlogSection extends StatefulWidget {
 }
 
 class _BlogSectionState extends State<BlogSection> {
+  final int blogLength = Data.blogData.length;
+  double currentPageIndex = 0;
+  CarouselController _carouselController = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = widthOfScreen(context);
@@ -29,10 +35,11 @@ class _BlogSectionState extends State<BlogSection> {
     double contentAreaWidth =
         responsiveSize(context, screenWidth, screenWidth * 0.6);
     double contentAreaHeight = screenHeight * 1.0;
-//    double blogWidth = contentAreaWidth * 0.6;
+    double blogImageHeight =
+        responsiveSize(context, screenHeight * 0.5, screenHeight * 0.5);
 
     return ContentArea(
-      width: contentAreaWidth,
+      width: screenWidth,
       child: Column(
         children: [
           ResponsiveBuilder(builder: (context, sizingInformation) {
@@ -49,7 +56,7 @@ class _BlogSectionState extends State<BlogSection> {
                       body: StringConst.BLOG_DESC,
                     ),
                   ),
-                  SpaceH20(),
+                  SpaceH50(),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: NimbusButton(
@@ -65,7 +72,7 @@ class _BlogSectionState extends State<BlogSection> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ContentArea(
-                    width: contentAreaWidth,
+                    width: screenWidth * 0.7,
                     child: NimbusInfoSection1(
                       sectionTitle: StringConst.MY_BLOG,
                       title1: StringConst.BLOG_SECTION_TITLE_1,
@@ -85,17 +92,109 @@ class _BlogSectionState extends State<BlogSection> {
             }
           }),
           SpaceH20(),
-          Wrap(
-            spacing: kSpacing,
-            runSpacing: kRunSpacing,
-            children: _buildBlogCards(
-              blogData: Data.blogData,
-              width: contentAreaWidth,
-            ),
+          ResponsiveBuilder(
+            builder: (context, sizingInformation) {
+              double screenWidth = sizingInformation.screenSize.width;
+              print("SCREEN WIDTH:: $screenWidth");
+              if (screenWidth < (RefinedBreakpoints().tabletLarge + 50)) {
+                print("SMALLEST:: $screenWidth");
+                return CarouselSlider.builder(
+                  itemCount: blogLength,
+                  itemBuilder:
+                      (BuildContext context, int index, int pageViewIndex) {
+                    return BlogCard(
+                      width: contentAreaWidth * 0.8,
+                      height: blogImageHeight,
+                      category: Data.blogData[index].category,
+                      title: Data.blogData[index].title,
+                      date: Data.blogData[index].date,
+                      buttonText: Data.blogData[index].buttonText,
+                      imageUrl: Data.blogData[index].imageUrl,
+                      onPressed: () {},
+                    );
+                  },
+                  options: carouselOptions(),
+                );
+              } else if (screenWidth >= RefinedBreakpoints().tabletExtraLarge &&
+                  screenWidth <= 1400) {
+                print("MIDDLE:: $screenWidth");
+                return Container(
+                  height: screenHeight,
+                  child: Column(
+                    children: [
+                      Container(
+                        width: screenWidth,
+                        height: screenHeight * 0.8,
+                        child: CarouselSlider.builder(
+                          itemCount: blogLength,
+                          carouselController: _carouselController,
+                          itemBuilder: (BuildContext context, int index,
+                              int pageViewIndex) {
+                            return BlogCard(
+                              width: screenWidth * 0.4,
+                              height: blogImageHeight,
+                              category: Data.blogData[index].category,
+                              title: Data.blogData[index].title,
+                              date: Data.blogData[index].date,
+                              buttonText: Data.blogData[index].buttonText,
+                              imageUrl: Data.blogData[index].imageUrl,
+                              onPressed: () {},
+                            );
+                          },
+                          options: carouselOptions(
+                            viewportFraction: 0.5,
+                            autoPlay: false,
+//                            enableInfiniteScroll: false,
+                          ),
+                        ),
+                      ),
+//                      SpaceH20(),
+                      _buildDotsIndicator(
+                        pageLength: blogLength,
+                        currentIndex: currentPageIndex,
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                return Wrap(
+                  spacing: kSpacing,
+                  runSpacing: kRunSpacing,
+                  children: _buildBlogCards(
+                    blogData: Data.blogData,
+                    width: screenWidth,
+                  ),
+                );
+              }
+            },
           ),
         ],
       ),
     );
+  }
+
+  CarouselOptions carouselOptions({
+    bool autoPlay = true,
+    bool enlargeCenterPage = false,
+    bool enableInfiniteScroll = true,
+    double viewportFraction = 1.0,
+    double aspectRatio = 0.1,
+    int initialPage = 2,
+    ScrollPhysics? scrollPhysics = const NeverScrollableScrollPhysics(),
+  }) {
+    return CarouselOptions(
+        autoPlay: autoPlay,
+        enableInfiniteScroll: enableInfiniteScroll,
+        enlargeCenterPage: enlargeCenterPage,
+        viewportFraction: viewportFraction,
+        aspectRatio: aspectRatio,
+        initialPage: initialPage,
+        scrollPhysics: scrollPhysics,
+        onPageChanged: (int index, CarouselPageChangedReason reason) {
+          setState(() {
+            currentPageIndex = index.toDouble();
+          });
+        });
   }
 
   List<Widget> _buildBlogCards({
@@ -119,5 +218,44 @@ class _BlogSectionState extends State<BlogSection> {
       );
     }
     return items;
+  }
+
+  Widget _buildDotsIndicator({
+    required int pageLength,
+    required double currentIndex,
+  }) {
+    return Container(
+      child: DotsIndicator(
+        dotsCount: pageLength,
+        position: currentIndex,
+        onTap: (index) {
+          _moveToNextCarousel(index.toInt());
+        },
+        decorator: DotsDecorator(
+          color: AppColors.yellow10,
+          activeColor: AppColors.yellow400,
+          size: Size(Sizes.SIZE_6, Sizes.SIZE_6),
+          activeSize: Size(Sizes.SIZE_24, Sizes.SIZE_6),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              const Radius.circular(Sizes.RADIUS_8),
+            ),
+          ),
+          activeShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              const Radius.circular(Sizes.RADIUS_8),
+            ),
+          ),
+          spacing: EdgeInsets.symmetric(horizontal: Sizes.SIZE_4),
+        ),
+      ),
+    );
+  }
+
+  _moveToNextCarousel(int index) {
+    setState(() {
+      currentPageIndex = index.toDouble();
+      _carouselController.animateToPage(index);
+    });
   }
 }

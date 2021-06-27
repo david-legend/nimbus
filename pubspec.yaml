@@ -38,6 +38,7 @@ dependencies:
   url_launcher: ^6.0.3
   layout: ^0.6.2
   carousel_slider: ^4.0.0
+  dots_indicator: ^2.0.0
 
 dev_dependencies:
   flutter_test:

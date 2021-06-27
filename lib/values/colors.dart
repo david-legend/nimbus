@@ -31,7 +31,9 @@ class AppColors {
   static const Color blue300 = Color(0xFF2867F0);
 
   //Yellow
+  static const Color yellow10 = Color(0xFFFBE8C5);
   static const Color yellow300 = Color(0xFFF3AF3D);
+  static const Color yellow400 = Color(0xFFF4B140);
   static const Color yellow100 = Color(0xFFF7C259);
 
   //Pink
