@@ -34,27 +34,24 @@ class _AwardsSectionState extends State<AwardsSection> {
         builder: (context, sizingInformation) {
           double screenWidth = sizingInformation.screenSize.width;
           if (screenWidth <= 1024) {
-            return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                children: [
-                  ResponsiveBuilder(
-                    builder: (context, sizingInformation) {
-                      double screenWidth = sizingInformation.screenSize.width;
-                      if (screenWidth < (RefinedBreakpoints().tabletSmall)) {
-                        return _buildNimbusInfoSectionSm();
-                      } else {
-                        return _buildNimbusInfoSectionLg();
-                      }
-                    },
-                  ),
-                  SpaceH50(),
-                  _buildImage(
-                    width: contentAreaWidth,
-                    height: contentAreaHeight,
-                  ),
-                ],
-              ),
+            return Column(
+              children: [
+                ResponsiveBuilder(
+                  builder: (context, sizingInformation) {
+                    double screenWidth = sizingInformation.screenSize.width;
+                    if (screenWidth < (RefinedBreakpoints().tabletSmall)) {
+                      return _buildNimbusInfoSectionSm();
+                    } else {
+                      return _buildNimbusInfoSectionLg();
+                    }
+                  },
+                ),
+                SpaceH50(),
+                _buildImage(
+                  width: contentAreaWidth,
+                  height: contentAreaHeight,
+                ),
+              ],
             );
           } else {
             return Row(

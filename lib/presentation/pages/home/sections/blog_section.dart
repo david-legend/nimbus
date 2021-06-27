@@ -13,7 +13,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 const double kSpacing = 16.0;
 const double kRunSpacing = 16.0;
 
-//TODO:: Add proper fontSize, fontFamily, and colors
+//TODO:: Add right padding for all views
 //TODO:: Fix View All Button Designs
 //TODO:: Add animation for readMore Button
 //TODO:: Add proper Sizes for images etc.

@@ -55,15 +55,11 @@ class _SkillsSectionState extends State<SkillsSection> {
                 ContentArea(
                   width: contentAreaWidthSm,
                   height: contentAreaHeight * 0.4,
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: _buildNimbusSm(width: contentAreaWidthSm),
                 ),
                 Flexible(
                   child: ContentArea(
                     width: contentAreaWidthSm,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: Sizes.HEIGHT_48,
-                    ),
                     child: Center(
                       child: _buildSkillBoxes(
                         boxHeight: 150,
@@ -81,15 +77,11 @@ class _SkillsSectionState extends State<SkillsSection> {
                 ContentArea(
                   width: contentAreaWidthSm,
                   height: contentAreaHeight * 0.4,
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: _buildNimbusSm(width: contentAreaWidthSm),
                 ),
                 Flexible(
                   child: ContentArea(
                     width: contentAreaWidthSm,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: Sizes.HEIGHT_48,
-                    ),
                     child: Center(
                       child: _buildSkillBoxes(
                         boxHeight: 250,

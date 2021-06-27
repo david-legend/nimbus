@@ -196,10 +196,7 @@ class _AboutMeSectionState extends State<AboutMeSection> {
           builder: (context, sizingInformation) {
             double screenWidth = sizingInformation.screenSize.width;
             if (screenWidth < (RefinedBreakpoints().tabletNormal)) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: nimbusInfoSectionSm(),
-              );
+              return nimbusInfoSectionSm();
             } else {
               //This container takes 85% of the space and leave 15% as spacing
               //between the blob and the content
