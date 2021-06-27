@@ -24,55 +24,57 @@ class ProjectCategoryData {
 class ProjectsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = widthOfScreen(context);
+    double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
     double screenHeight = heightOfScreen(context);
     double contentAreaWidth = screenWidth;
     double contentAreaHeight = screenHeight * 0.5;
-    return ContentArea(
-      width: contentAreaWidth,
-      height: contentAreaHeight,
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: ResponsiveBuilder(
-        refinedBreakpoints: RefinedBreakpoints(),
-        builder: (context, sizingInformation) {
-          double screenWidth = sizingInformation.screenSize.width;
-          if (screenWidth < (RefinedBreakpoints().tabletLarge)) {
-            return Column(
-              children: [
-                _buildNimbusInfoSectionSm(),
-                SpaceH40(),
-                NimbusButton(
-                  buttonTitle: StringConst.ALL_PROJECTS,
-                  buttonColor: AppColors.primaryColor,
-                  onPressed: () {},
-                ),
-                SpaceH40(),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
+      child: ContentArea(
+        width: contentAreaWidth,
+        height: contentAreaHeight,
+        child: ResponsiveBuilder(
+          refinedBreakpoints: RefinedBreakpoints(),
+          builder: (context, sizingInformation) {
+            double screenWidth = sizingInformation.screenSize.width;
+            if (screenWidth < (RefinedBreakpoints().tabletLarge)) {
+              return Column(
+                children: [
+                  _buildNimbusInfoSectionSm(),
+                  SpaceH40(),
+                  NimbusButton(
+                    buttonTitle: StringConst.ALL_PROJECTS,
+                    buttonColor: AppColors.primaryColor,
+                    onPressed: () {},
+                  ),
+                  SpaceH40(),
 //                Wrap(
 //                  spacing: kSpacing,
 //                  runSpacing: kRunSpacing,
 //                  children: _buildProjectCategories(Data.projectCategories),
 //                )
-              ],
-            );
-          } else {
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ContentArea(
-                  width: contentAreaWidth * 0.6,
-                  child: _buildNimbusInfoSectionLg(),
-                ),
-                Spacer(),
-                NimbusButton(
-                  buttonTitle: StringConst.ALL_PROJECTS,
-                  buttonColor: AppColors.primaryColor,
-                  onPressed: () {},
-                ),
-                Spacer(),
-              ],
-            );
-          }
-        },
+                ],
+              );
+            } else {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ContentArea(
+                    width: contentAreaWidth * 0.6,
+                    child: _buildNimbusInfoSectionLg(),
+                  ),
+                  Spacer(),
+                  NimbusButton(
+                    buttonTitle: StringConst.ALL_PROJECTS,
+                    buttonColor: AppColors.primaryColor,
+                    onPressed: () {},
+                  ),
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }

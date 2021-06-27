@@ -18,7 +18,7 @@ class AwardsSection extends StatefulWidget {
 class _AwardsSectionState extends State<AwardsSection> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = widthOfScreen(context);
+    double screenWidth = widthOfScreen(context) - (getSidePadding(context));
     double screenHeight = heightOfScreen(context);
     double contentAreaWidth = responsiveSize(
       context,
@@ -28,6 +28,7 @@ class _AwardsSectionState extends State<AwardsSection> {
     );
     double contentAreaHeight = screenHeight * 0.9;
     return Container(
+      padding: EdgeInsets.only(left: getSidePadding(context)),
       child: ResponsiveBuilder(
         refinedBreakpoints: RefinedBreakpoints(),
         builder: (context, sizingInformation) {

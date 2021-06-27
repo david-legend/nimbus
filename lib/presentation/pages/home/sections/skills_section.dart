@@ -30,7 +30,7 @@ class _SkillsSectionState extends State<SkillsSection> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = widthOfScreen(context);
+    double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
     double screenHeight = heightOfScreen(context);
     double contentAreaWidthLg = screenWidth * 0.5;
     double contentAreaWidthSm = screenWidth;
@@ -44,6 +44,7 @@ class _SkillsSectionState extends State<SkillsSection> {
 
     return Container(
       height: contentAreaHeight,
+      padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
       child: ResponsiveBuilder(
         refinedBreakpoints: RefinedBreakpoints(),
         builder: (context, sizingInformation) {

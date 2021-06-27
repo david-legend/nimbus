@@ -43,10 +43,9 @@ class _FooterSectionState extends State<FooterSection> {
       color: AppColors.primaryText2,
       fontWeight: FontWeight.bold,
     );
-    double screenWidth = widthOfScreen(context);
+    double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
     double screenHeight = heightOfScreen(context);
-    double contentAreaWidth =
-        responsiveSize(context, screenWidth, screenWidth * 0.8);
+    double contentAreaWidth = screenWidth;
     double contentAreaHeight = responsiveSize(
       context,
       screenHeight,
@@ -56,7 +55,7 @@ class _FooterSectionState extends State<FooterSection> {
     );
 
     return ContentArea(
-      width: screenWidth,
+      padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
       child: Column(
         children: [
           ResponsiveBuilder(

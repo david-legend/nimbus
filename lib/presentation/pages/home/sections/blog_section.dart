@@ -30,16 +30,15 @@ class _BlogSectionState extends State<BlogSection> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = widthOfScreen(context);
+    double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
     double screenHeight = heightOfScreen(context);
     double contentAreaWidth =
         responsiveSize(context, screenWidth, screenWidth * 0.6);
-    double contentAreaHeight = screenHeight * 1.0;
     double blogImageHeight =
         responsiveSize(context, screenHeight * 0.8, screenHeight * 0.5);
 
     return ContentArea(
-      width: screenWidth,
+      padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
       child: Column(
         children: [
           ResponsiveBuilder(builder: (context, sizingInformation) {
@@ -124,6 +123,7 @@ class _BlogSectionState extends State<BlogSection> {
 //                print("MIDDLE:: $screenWidth");
                 return Container(
                   height: screenHeight,
+                  width: screenWidth,
                   child: Column(
                     children: [
                       Container(
@@ -135,7 +135,7 @@ class _BlogSectionState extends State<BlogSection> {
                           itemBuilder: (BuildContext context, int index,
                               int pageViewIndex) {
                             return BlogCard(
-                              width: screenWidth * 0.4,
+                              width: screenWidth * 0.3,
                               height: blogImageHeight,
                               category: Data.blogData[index].category,
                               title: Data.blogData[index].title,

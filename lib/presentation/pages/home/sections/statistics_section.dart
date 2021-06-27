@@ -18,12 +18,11 @@ class StatItemData {
 class StatisticsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double contentAreaWidth = widthOfScreen(context);
+    double contentAreaWidth =
+        widthOfScreen(context) - (getSidePadding(context) * 2);
     double contentAreaHeight = assignHeight(context, 0.7);
     return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: assignWidth(context, 0.08),
-      ),
+      padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
       child: Card(
         elevation: Sizes.ELEVATION_4,
         shape: RoundedRectangleBorder(

@@ -31,15 +31,14 @@ class _AboutMeSectionState extends State<AboutMeSection> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    double screenWidth = widthOfScreen(context);
+    double screenWidth = widthOfScreen(context) - getSidePadding(context);
     double screenHeight = heightOfScreen(context);
     double contentAreaWidthSm = screenWidth * 1.0;
     double contentAreaHeightSm = screenHeight * 0.6;
     double contentAreaWidthLg = screenWidth * 0.5;
     double contentAreaHeightLg = screenHeight * 0.9;
-    TextStyle? titleStyle =
-        textTheme.headline1?.copyWith(color: AppColors.black);
     return Container(
+      padding: EdgeInsets.only(left: getSidePadding(context)),
       child: ResponsiveBuilder(
         refinedBreakpoints: RefinedBreakpoints(),
         builder: (context, sizingInformation) {
