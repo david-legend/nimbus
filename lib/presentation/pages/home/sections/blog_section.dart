@@ -36,7 +36,7 @@ class _BlogSectionState extends State<BlogSection> {
         responsiveSize(context, screenWidth, screenWidth * 0.6);
     double contentAreaHeight = screenHeight * 1.0;
     double blogImageHeight =
-        responsiveSize(context, screenHeight * 0.5, screenHeight * 0.5);
+        responsiveSize(context, screenHeight * 0.8, screenHeight * 0.5);
 
     return ContentArea(
       width: screenWidth,
@@ -95,29 +95,33 @@ class _BlogSectionState extends State<BlogSection> {
           ResponsiveBuilder(
             builder: (context, sizingInformation) {
               double screenWidth = sizingInformation.screenSize.width;
-              print("SCREEN WIDTH:: $screenWidth");
+//              print("SCREEN WIDTH:: $screenWidth");
               if (screenWidth < (RefinedBreakpoints().tabletLarge + 50)) {
-                print("SMALLEST:: $screenWidth");
-                return CarouselSlider.builder(
-                  itemCount: blogLength,
-                  itemBuilder:
-                      (BuildContext context, int index, int pageViewIndex) {
-                    return BlogCard(
-                      width: contentAreaWidth * 0.8,
-                      height: blogImageHeight,
-                      category: Data.blogData[index].category,
-                      title: Data.blogData[index].title,
-                      date: Data.blogData[index].date,
-                      buttonText: Data.blogData[index].buttonText,
-                      imageUrl: Data.blogData[index].imageUrl,
-                      onPressed: () {},
-                    );
-                  },
-                  options: carouselOptions(),
+//                print("SMALLEST:: $screenWidth");
+                return Container(
+                  width: screenWidth,
+                  height: blogImageHeight,
+                  child: CarouselSlider.builder(
+                    itemCount: blogLength,
+                    itemBuilder:
+                        (BuildContext context, int index, int pageViewIndex) {
+                      return BlogCard(
+                        width: contentAreaWidth * 0.8,
+                        height: blogImageHeight,
+                        category: Data.blogData[index].category,
+                        title: Data.blogData[index].title,
+                        date: Data.blogData[index].date,
+                        buttonText: Data.blogData[index].buttonText,
+                        imageUrl: Data.blogData[index].imageUrl,
+                        onPressed: () {},
+                      );
+                    },
+                    options: carouselOptions(),
+                  ),
                 );
               } else if (screenWidth >= RefinedBreakpoints().tabletExtraLarge &&
                   screenWidth <= 1400) {
-                print("MIDDLE:: $screenWidth");
+//                print("MIDDLE:: $screenWidth");
                 return Container(
                   height: screenHeight,
                   child: Column(

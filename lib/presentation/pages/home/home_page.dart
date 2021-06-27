@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   HeaderSection(),
-                  AboutMeSection(),
+//                  AboutMeSection(),
                   SizedBox(height: spacerHeight),
                   SkillsSection(),
                   SizedBox(height: spacerHeight),

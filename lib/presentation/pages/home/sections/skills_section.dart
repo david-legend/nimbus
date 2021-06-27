@@ -11,7 +11,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 const double kRunSpacing = 20.0;
 const double kMainAxisSpacing = 16.0;
 const double kCrossAxisSpacing = 16.0;
-const double boxHeightSm = 150;
 
 //TODO:: Stop hardcoding height values and find a dynamic way to let content grow
 //TODO:: Add animation to load skillLevel
@@ -24,101 +23,106 @@ class SkillsSection extends StatefulWidget {
 }
 
 class _SkillsSectionState extends State<SkillsSection> {
-//  GlobalKey skillsSectionKey = GlobalKey();
-//  GlobalKey skillBoxesKey = GlobalKey();
-//  late double skillsSectionHeight;
-//  late double skillBoxesHeight;
-//  late double containerHeight;
-
   @override
   void initState() {
-//    WidgetsBinding.instance!.addPostFrameCallback((_) {
-//      _getHeightOfRoleLeaf();
-//    });
     super.initState();
   }
 
-//  _getHeightOfRoleLeaf() {
-//    final RenderBox skillSectionRenderBox =
-//        skillsSectionKey.currentContext!.findRenderObject() as RenderBox;
-//    final RenderBox skillBoxesRenderBox =
-//        skillBoxesKey.currentContext!.findRenderObject() as RenderBox;
-//    final skillHeight = skillSectionRenderBox.size.height;
-//    final boxHeight = skillBoxesRenderBox.size.height;
-//    setState(() {
-//      skillsSectionHeight = skillHeight;
-//      skillBoxesHeight = boxHeight;
-//      containerHeight = boxHeight + skillHeight;
-//      print(
-//          "SKILLS: $skillsSectionHeight, BOXES: $skillBoxesHeight, Container: $containerHeight ");
-//    });
-//  }
-
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
     double screenWidth = widthOfScreen(context);
     double screenHeight = heightOfScreen(context);
-    double contentAreaWidth =
-        responsiveSize(context, screenWidth, screenWidth * 0.5);
-    double contentAreaHeight = screenHeight * 1.6;
+    double contentAreaWidthLg = screenWidth * 0.5;
+    double contentAreaWidthSm = screenWidth;
+    double contentAreaHeight = responsiveSize(
+      context,
+      screenHeight * 1.6,
+      screenHeight * 0.8,
+      md: screenHeight * 0.8,
+      sm: screenHeight * 1.6,
+    );
+
     return Container(
       height: contentAreaHeight,
       child: ResponsiveBuilder(
-          refinedBreakpoints: RefinedBreakpoints(),
-          builder: (context, sizingInformation) {
-            double screenWidth = sizingInformation.screenSize.width;
-            if (screenWidth < (RefinedBreakpoints().tabletLarge)) {
-              return Column(
-                children: [
-                  ContentArea(
-//                    key: skillsSectionKey,
-//                    backgroundColor: Colors.amber,
-                    width: contentAreaWidth,
-                    height: contentAreaHeight * 0.4,
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: _buildNimbusSm(width: contentAreaWidth),
-                  ),
-                  Flexible(
-                    child: ContentArea(
-//                      key: skillBoxesKey,
-                      width: contentAreaWidth,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: Sizes.HEIGHT_48),
-                      child: Center(
-                        child: _buildSkillBoxes(
-                          boxHeight: boxHeightSm,
-                        ),
-                      ),
+        refinedBreakpoints: RefinedBreakpoints(),
+        builder: (context, sizingInformation) {
+          double screenWidth = sizingInformation.screenSize.width;
+          if (screenWidth <= RefinedBreakpoints().tabletSmall) {
+            return Column(
+              children: [
+                ContentArea(
+                  width: contentAreaWidthSm,
+                  height: contentAreaHeight * 0.4,
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: _buildNimbusSm(width: contentAreaWidthSm),
+                ),
+                Flexible(
+                  child: ContentArea(
+                    width: contentAreaWidthSm,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: Sizes.HEIGHT_48,
                     ),
-                  ),
-                ],
-              );
-            } else {
-              return Row(
-                children: [
-                  ContentArea(
-                    width: contentAreaWidth,
-                    height: contentAreaHeight,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: _buildNimbusLg(width: contentAreaWidth),
-                    ),
-                  ),
-                  ContentArea(
-                    width: contentAreaWidth,
-                    height: contentAreaHeight,
-                    padding: EdgeInsets.symmetric(horizontal: Sizes.HEIGHT_48),
                     child: Center(
                       child: _buildSkillBoxes(
-                        boxHeight: contentAreaHeight / 2.6,
+                        boxHeight: 150,
+                        crossAxisCount: 1,
                       ),
                     ),
                   ),
-                ],
-              );
-            }
-          }),
+                ),
+              ],
+            );
+          } else if (screenWidth > RefinedBreakpoints().tabletSmall &&
+              screenWidth <= 1024) {
+            return Column(
+              children: [
+                ContentArea(
+                  width: contentAreaWidthSm,
+                  height: contentAreaHeight * 0.4,
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: _buildNimbusSm(width: contentAreaWidthSm),
+                ),
+                Flexible(
+                  child: ContentArea(
+                    width: contentAreaWidthSm,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: Sizes.HEIGHT_48,
+                    ),
+                    child: Center(
+                      child: _buildSkillBoxes(
+                        boxHeight: 250,
+                        crossAxisCount: 2,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return Row(
+              children: [
+                ContentArea(
+                  width: contentAreaWidthLg,
+                  height: contentAreaHeight,
+                  child: _buildNimbusLg(width: contentAreaWidthLg),
+                ),
+                ContentArea(
+                  width: contentAreaWidthLg,
+                  height: contentAreaHeight,
+                  padding: EdgeInsets.symmetric(horizontal: Sizes.HEIGHT_48),
+                  child: Center(
+                    child: _buildSkillBoxes(
+                      boxHeight: 250,
+                      crossAxisCount: 2,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }
+        },
+      ),
     );
   }
 
@@ -141,12 +145,14 @@ class _SkillsSectionState extends State<SkillsSection> {
 
   Widget _buildSkillBoxes({
     required double boxHeight,
+    int crossAxisCount = 2,
+    double? boxWidth,
   }) {
-    int crosAxisCount = responsiveSizeInt(context, 1, 2);
-    double invisibleBoxHeight = responsiveSize(context, 0, 10);
+    double invisibleBoxHeight = responsiveSize(context, 0, 10, md: 10, sm: 10);
+
     return Container(
       child: StaggeredGridView.countBuilder(
-        crossAxisCount: crosAxisCount,
+        crossAxisCount: crossAxisCount,
         itemCount: Data.skillCardData.length,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -155,6 +161,7 @@ class _SkillsSectionState extends State<SkillsSection> {
             return Container(color: Colors.transparent);
           } else {
             return SkillCard(
+              width: boxWidth,
               title: Data.skillCardData[index].title,
               iconData: Data.skillCardData[index].iconData,
             );
@@ -175,7 +182,6 @@ class _SkillsSectionState extends State<SkillsSection> {
 
   Widget _buildNimbusLg({required double width}) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Row(
         children: [
           Expanded(
