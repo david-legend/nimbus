@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/selected_indicator.dart';
 import 'package:nimbus/values/values.dart';
-import 'package:layout/layout.dart';
-
-import 'empty.dart';
 
 class NavItemData {
   final String name;
@@ -18,7 +15,7 @@ class NavItemData {
   });
 }
 
-class NavItem extends StatelessWidget {
+class NavItem extends StatefulWidget {
   NavItem({
     required this.title,
     this.titleColor = AppColors.black,
@@ -34,6 +31,13 @@ class NavItem extends StatelessWidget {
   final GestureTapCallback? onTap;
 
   @override
+  _NavItemState createState() => _NavItemState();
+}
+
+class _NavItemState extends State<NavItem> with SingleTickerProviderStateMixin {
+  bool _hovering = false;
+
+  @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     double textSize = responsiveSize(
@@ -43,26 +47,37 @@ class NavItem extends StatelessWidget {
       md: Sizes.TEXT_SIZE_15,
     );
 
-    return InkWell(
-      onTap: onTap,
-      child: Stack(
-        children: [
-          isSelected
-              ? Positioned(
-                  top: Sizes.SIZE_12,
-                  child: SelectedIndicator(),
-                )
-              : Empty(),
-          Text(
-            title,
-            style: titleStyle ??
-                textTheme.subtitle1?.copyWith(
-                  fontSize: textSize,
-                  color: titleColor,
-                ),
-          ),
-        ],
+    return MouseRegion(
+      onEnter: (e) => _mouseEnter(true),
+      onExit: (e) => _mouseEnter(false),
+      child: InkWell(
+        onTap: widget.onTap,
+        child: Stack(
+          children: [
+            Positioned(
+              top: Sizes.SIZE_12,
+              child: SelectedIndicator(
+                isHover: _hovering,
+                width: 60,
+              ),
+            ),
+            Text(
+              widget.title,
+              style: widget.titleStyle ??
+                  textTheme.subtitle1?.copyWith(
+                    fontSize: textSize,
+                    color: widget.titleColor,
+                  ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  void _mouseEnter(bool hovering) {
+    setState(() {
+      _hovering = hovering;
+    });
   }
 }

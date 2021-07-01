@@ -281,8 +281,6 @@ class _HeaderSectionState extends State<HeaderSection> {
           return _buildHeaderImage(
             devImageWidth: contentWidth,
             devImageHeight: contentHeight,
-//            globeImageWidth: 20,
-//            globeImageHeight: 20,
           );
         } else if (screenWidth >= RefinedBreakpoints().desktopNormal) {
           return _buildHeaderImage(devImageHeight: contentHeight);
