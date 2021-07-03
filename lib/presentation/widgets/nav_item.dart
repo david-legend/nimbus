@@ -3,6 +3,10 @@ import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/selected_indicator.dart';
 import 'package:nimbus/values/values.dart';
 
+import 'animated_indicator.dart';
+
+const double indicatorWidth = Sizes.WIDTH_60;
+
 class NavItemData {
   final String name;
   final GlobalKey key;
@@ -54,13 +58,20 @@ class _NavItemState extends State<NavItem> with SingleTickerProviderStateMixin {
         onTap: widget.onTap,
         child: Stack(
           children: [
-            Positioned(
-              top: Sizes.SIZE_12,
-              child: SelectedIndicator(
-                isHover: _hovering,
-                width: 60,
-              ),
-            ),
+            widget.isSelected
+                ? Positioned(
+                    top: Sizes.SIZE_12,
+                    child: SelectedIndicator(
+                      width: indicatorWidth,
+                    ),
+                  )
+                : Positioned(
+                    top: Sizes.SIZE_12,
+                    child: AnimatedHoverIndicator(
+                      isHover: _hovering,
+                      width: indicatorWidth,
+                    ),
+                  ),
             Text(
               widget.title,
               style: widget.titleStyle ??
