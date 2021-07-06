@@ -43,7 +43,6 @@ class _AppDrawerState extends State<AppDrawer> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-//              SpaceH16(),
               Row(
                 children: [
                   InkWell(
@@ -69,8 +68,8 @@ class _AppDrawerState extends State<AppDrawer> {
                 context: context,
                 menuList: widget.menuList,
               ),
-
-              Spacer(flex: 6), _buildFooterText(), SpaceH16(),
+              Spacer(flex: 6),
+              _buildFooterText(),
             ],
           ),
         ),
