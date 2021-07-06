@@ -24,6 +24,7 @@ class NavItem extends StatefulWidget {
     required this.title,
     this.titleColor = AppColors.black,
     this.isSelected = false,
+    this.isMobile = false,
     this.titleStyle,
     this.onTap,
   });
@@ -32,6 +33,7 @@ class NavItem extends StatefulWidget {
   final TextStyle? titleStyle;
   final Color titleColor;
   final bool isSelected;
+  final bool isMobile;
   final GestureTapCallback? onTap;
 
   @override
@@ -58,20 +60,21 @@ class _NavItemState extends State<NavItem> with SingleTickerProviderStateMixin {
         onTap: widget.onTap,
         child: Stack(
           children: [
-            widget.isSelected
-                ? Positioned(
-                    top: Sizes.SIZE_12,
-                    child: SelectedIndicator(
-                      width: indicatorWidth,
+            if (!widget.isMobile)
+              widget.isSelected
+                  ? Positioned(
+                      top: Sizes.SIZE_12,
+                      child: SelectedIndicator(
+                        width: indicatorWidth,
+                      ),
+                    )
+                  : Positioned(
+                      top: Sizes.SIZE_12,
+                      child: AnimatedHoverIndicator(
+                        isHover: _hovering,
+                        width: indicatorWidth,
+                      ),
                     ),
-                  )
-                : Positioned(
-                    top: Sizes.SIZE_12,
-                    child: AnimatedHoverIndicator(
-                      isHover: _hovering,
-                      width: indicatorWidth,
-                    ),
-                  ),
             Text(
               widget.title,
               style: widget.titleStyle ??

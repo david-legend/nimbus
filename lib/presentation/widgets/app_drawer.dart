@@ -64,30 +64,13 @@ class _AppDrawerState extends State<AppDrawer> {
                   ),
                 ],
               ),
-
-              SpaceH16(),
-
               Spacer(),
               ..._buildMenuList(
                 context: context,
                 menuList: widget.menuList,
               ),
-              Spacer(),
-//              SocialIcons(
-//                icons: [
-//                  FontAwesomeIcons.linkedin,
-//                  FontAwesomeIcons.github,
-//                  FontAwesomeIcons.twitter,
-//                ],
-//                iconColor: AppColors.offWhite,
-//                socialLinks: [
-//                  StringConst.LINKED_IN_URL,
-//                  StringConst.GITHUB_URL,
-//                  StringConst.TWITTER_URL,
-//                ],
-//                spacing: kSpacing20,
-//              ),
-              SpaceH24(),
+
+              Spacer(flex: 6), _buildFooterText(), SpaceH16(),
             ],
           ),
         ),
@@ -109,12 +92,12 @@ class _AppDrawerState extends State<AppDrawer> {
             navItemName: menuList[i].name,
           ),
           title: menuList[i].name,
+          isMobile: true,
           isSelected: menuList[i].isSelected,
           titleStyle: textTheme.bodyText1?.copyWith(
-            color: menuList[i].isSelected
-                ? AppColors.accentColor
-                : AppColors.white,
-            fontSize: Sizes.TEXT_SIZE_18,
+            color:
+                menuList[i].isSelected ? AppColors.primary200 : AppColors.white,
+            fontSize: Sizes.TEXT_SIZE_16,
             fontWeight:
                 menuList[i].isSelected ? FontWeight.bold : FontWeight.normal,
           ),
@@ -144,5 +127,81 @@ class _AppDrawerState extends State<AppDrawer> {
 
   _closeDrawer() {
     context.router.pop();
+  }
+
+  Widget _buildFooterText() {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    TextStyle? footerTextStyle = textTheme.caption?.copyWith(
+      color: AppColors.primaryText2,
+      fontWeight: FontWeight.bold,
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SelectableText.rich(
+          TextSpan(
+            text: StringConst.RIGHTS_RESERVED + " ",
+            style: footerTextStyle,
+            children: [
+              TextSpan(text: StringConst.DESIGNED_BY + " "),
+              TextSpan(
+                text: StringConst.WEB_GENIUS_LAB,
+                style: footerTextStyle?.copyWith(
+                  decoration: TextDecoration.underline,
+                  fontWeight: FontWeight.w900,
+                  color: AppColors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RichText(
+              text: TextSpan(
+                text: StringConst.BUILT_BY + " ",
+                style: footerTextStyle,
+                children: [
+                  TextSpan(
+                    text: StringConst.DAVID_COBBINA + ". ",
+                    style: footerTextStyle?.copyWith(
+                      decoration: TextDecoration.underline,
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SpaceH4(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(StringConst.MADE_IN_GHANA, style: footerTextStyle),
+            SpaceW4(),
+            ClipRRect(
+              borderRadius: BorderRadius.all(const Radius.circular(20)),
+              child: Image.asset(
+                ImagePath.GHANA_FLAG,
+                width: Sizes.WIDTH_16,
+                height: Sizes.HEIGHT_16,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SpaceW4(),
+            Text(StringConst.WITH_LOVE, style: footerTextStyle),
+            SpaceW4(),
+            Icon(
+              FontAwesomeIcons.solidHeart,
+              color: AppColors.red,
+              size: Sizes.ICON_SIZE_12,
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
