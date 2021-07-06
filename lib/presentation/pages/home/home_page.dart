@@ -11,6 +11,7 @@ import 'package:nimbus/presentation/pages/home/sections/nav_section/nav_section_
 import 'package:nimbus/presentation/pages/home/sections/projects_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/skills_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/statistics_section.dart';
+import 'package:nimbus/presentation/widgets/app_drawer.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
@@ -40,6 +41,19 @@ class HomePage extends StatelessWidget {
     double spacerHeight = screenHeight * 0.10;
 
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: ResponsiveBuilder(
+        refinedBreakpoints: RefinedBreakpoints(),
+        builder: (context, sizingInformation) {
+          if (sizingInformation.isMobile) {
+            return AppDrawer(
+              menuList: navItems,
+            );
+          } else {
+            return Container();
+          }
+        },
+      ),
       body: Column(
         children: [
           ResponsiveBuilder(

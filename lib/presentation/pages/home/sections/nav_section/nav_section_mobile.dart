@@ -25,7 +25,13 @@ class NavSectionMobile extends StatelessWidget {
               color: AppColors.white,
               size: Sizes.ICON_SIZE_26,
             ),
-            onPressed: () {},
+            onPressed: () {
+              if (scaffoldKey.currentState!.isEndDrawerOpen) {
+                scaffoldKey.currentState?.openEndDrawer();
+              } else {
+                scaffoldKey.currentState?.openDrawer();
+              }
+            },
           ),
           Spacer(),
           InkWell(
