@@ -4,7 +4,7 @@ import 'package:nimbus/values/values.dart';
 class AnimatedHoverIndicator extends StatelessWidget {
   const AnimatedHoverIndicator({
     required this.width,
-    this.indicatorColor = AppColors.primary200,
+    this.indicatorColor = AppColors.yellow450,
     this.height = Sizes.SIZE_6,
     this.opacity = 0.85,
     this.curve = Curves.linearToEaseOut,

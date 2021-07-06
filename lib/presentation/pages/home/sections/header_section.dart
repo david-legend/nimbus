@@ -50,17 +50,18 @@ class _HeaderSectionState extends State<HeaderSection> {
     double screenWidth = widthOfScreen(context);
     double screenHeight = heightOfScreen(context);
     double contentAreaWidth = screenWidth;
-    double contentAreaHeight = responsiveSize(
-      context,
-      screenHeight * 0.8,
-      screenHeight * 1.20,
-    );
+    double contentAreaHeight = screenHeight;
+//    responsiveSize(
+//      context,
+//      screenHeight * 0.8,
+//      screenHeight * 1.20,
+//    );
     double hiddenPortionOfHeaderImage = responsiveSize(
       context,
-      (contentAreaWidth * 0.5),
-      (contentAreaWidth * 0.3),
-      sm: (contentAreaWidth * 0.4),
-      md: (contentAreaWidth * 0.45),
+      (contentAreaWidth * 0.75),
+      (contentAreaWidth * 0.1),
+//      sm: (contentAreaWidth * 0.3),
+//      md: (contentAreaWidth * 0.3),
     );
     double widthOfBlackBlob = contentAreaWidth * 0.5;
     double hiddenPortionOfBlackBlob = widthOfBlackBlob * 0.95;
@@ -83,14 +84,24 @@ class _HeaderSectionState extends State<HeaderSection> {
               ),
             ),
           ),
-          Positioned(
-            right: -hiddenPortionOfHeaderImage,
-            top: -(contentAreaHeight * 0.035),
+          Container(
+//            width: -(screenWidth * 0.6),
+            height: screenHeight,
             child: _buildResponsiveHeaderImage(
-              contentWidth: contentAreaWidth,
-              contentHeight: contentAreaHeight,
+              contentWidth: 1,
+              contentHeight: 1,
             ),
           ),
+//          Positioned(
+////            right: 0,
+////            top: 0,
+//            child: Container(
+////              width: screenWidth * 0.6,
+//              height: screenHeight,
+//              child: _buildResponsiveHeaderImage(
+//                  contentWidth: 1, contentHeight: 1),
+//            ),
+//          ),
           Positioned(
             left: -hiddenPortionOfBlackBlob,
             child: _buildBlob(
@@ -252,18 +263,19 @@ class _HeaderSectionState extends State<HeaderSection> {
   }) {
     return Stack(
       children: [
-        Positioned(
-          left: 0,
-          child: Image.asset(
-            ImagePath.DOTS_GLOBE_GREY,
-            width: globeImageWidth,
-            height: globeImageHeight,
-          ),
-        ),
+//        Positioned(
+//          left: 0,
+//          child: Image.asset(
+//            ImagePath.DOTS_GLOBE_GREY,
+//            width: globeImageWidth,
+//            height: globeImageHeight,
+//          ),
+//        ),
         Image.asset(
           ImagePath.DEV_HEADER,
-          width: devImageWidth,
-          height: devImageHeight,
+//          width: devImageWidth,
+//          height: devImageHeight,
+          fit: BoxFit.cover,
         ),
       ],
     );
@@ -278,16 +290,31 @@ class _HeaderSectionState extends State<HeaderSection> {
       builder: (context, sizingInformation) {
         double screenWidth = sizingInformation.screenSize.width;
         if (screenWidth <= RefinedBreakpoints().tabletNormal) {
-          return _buildHeaderImage(
-            devImageWidth: contentWidth,
-            devImageHeight: contentHeight,
+          print("SMALL");
+          return Align(
+            alignment: Alignment(3, 1),
+            child: AspectRatio(
+              aspectRatio: 1 / 2,
+              child: Image.asset(
+                ImagePath.DEV_HEADER,
+                fit: BoxFit.fitWidth,
+              ),
+            ),
           );
-        } else if (screenWidth >= RefinedBreakpoints().desktopNormal) {
-          return _buildHeaderImage(devImageHeight: contentHeight);
-        } else {
-          return _buildHeaderImage(
-            devImageWidth: contentWidth,
-            devImageHeight: contentHeight,
+        }
+//        else if (screenWidth >= RefinedBreakpoints().desktopNormal) {
+//          return _buildHeaderImage(devImageHeight: contentHeight);
+//        }
+        else {
+          return Align(
+            alignment: Alignment(1, 1),
+            child: AspectRatio(
+              aspectRatio: 1 / 1,
+              child: Image.asset(
+                ImagePath.DEV_HEADER,
+                fit: BoxFit.fitWidth,
+              ),
+            ),
           );
         }
       },

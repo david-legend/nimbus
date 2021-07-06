@@ -10,7 +10,6 @@ import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Show slide animations on hover of unselected nav items ***
 //TODO:: Add proper link to nimbus logo to reload the page
 //TODO:: Add animation to contact me button (if I am feeling adventurous)
 const double logoSpaceLeftLg = 40.0;
