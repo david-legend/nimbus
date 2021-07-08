@@ -126,14 +126,13 @@ class _HeaderSectionState extends State<HeaderSection>
                       ],
                       onTap: () {},
                       isRepeatingAnimation: true,
-                      totalRepeatCount: 10,
+                      totalRepeatCount: 5,
                     ),
                     AnimatedTextKit(
                       animatedTexts: [
                         TypewriterAnimatedText(
                           StringConst.POSITION,
                           speed: Duration(milliseconds: 80),
-                          cursor: "!",
                           textStyle: textTheme.headline2?.copyWith(
                             fontSize: headerIntroTextSize,
                             color: AppColors.primaryColor,
@@ -143,7 +142,7 @@ class _HeaderSectionState extends State<HeaderSection>
                       ],
                       onTap: () {},
                       isRepeatingAnimation: true,
-                      totalRepeatCount: 10,
+                      totalRepeatCount: 5,
                     ),
 //                    SelectableText(
 //                      StringConst.INTRO,
