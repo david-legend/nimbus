@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
@@ -113,20 +114,51 @@ class _HeaderSectionState extends State<HeaderSection>
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SelectableText(
-                      StringConst.INTRO,
-                      style: textTheme.headline2?.copyWith(
-                        fontSize: headerIntroTextSize,
-                      ),
+                    AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          StringConst.INTRO,
+                          speed: Duration(milliseconds: 60),
+                          textStyle: textTheme.headline2?.copyWith(
+                            fontSize: headerIntroTextSize,
+                          ),
+                        ),
+                      ],
+                      onTap: () {},
+                      isRepeatingAnimation: true,
+                      totalRepeatCount: 10,
                     ),
-                    SelectableText(
-                      StringConst.POSITION,
-                      style: textTheme.headline2?.copyWith(
-                        fontSize: headerIntroTextSize,
-                        color: AppColors.primaryColor,
-                        height: 1.2,
-                      ),
+                    AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          StringConst.POSITION,
+                          speed: Duration(milliseconds: 80),
+                          cursor: "!",
+                          textStyle: textTheme.headline2?.copyWith(
+                            fontSize: headerIntroTextSize,
+                            color: AppColors.primaryColor,
+                            height: 1.2,
+                          ),
+                        ),
+                      ],
+                      onTap: () {},
+                      isRepeatingAnimation: true,
+                      totalRepeatCount: 10,
                     ),
+//                    SelectableText(
+//                      StringConst.INTRO,
+//                      style: textTheme.headline2?.copyWith(
+//                        fontSize: headerIntroTextSize,
+//                      ),
+//                    ),
+//                    SelectableText(
+//                      StringConst.POSITION,
+//                      style: textTheme.headline2?.copyWith(
+//                        fontSize: headerIntroTextSize,
+//                        color: AppColors.primaryColor,
+//                        height: 1.2,
+//                      ),
+//                    ),
                     SpaceH16(),
                     SelectableText(
                       StringConst.ABOUT_ME_1,
