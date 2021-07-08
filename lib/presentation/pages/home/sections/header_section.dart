@@ -51,18 +51,6 @@ class _HeaderSectionState extends State<HeaderSection> {
     double screenHeight = heightOfScreen(context);
     double contentAreaWidth = screenWidth;
     double contentAreaHeight = screenHeight;
-//    responsiveSize(
-//      context,
-//      screenHeight * 0.8,
-//      screenHeight * 1.20,
-//    );
-    double hiddenPortionOfHeaderImage = responsiveSize(
-      context,
-      (contentAreaWidth * 0.75),
-      (contentAreaWidth * 0.1),
-//      sm: (contentAreaWidth * 0.3),
-//      md: (contentAreaWidth * 0.3),
-    );
     double widthOfBlackBlob = contentAreaWidth * 0.5;
     double hiddenPortionOfBlackBlob = widthOfBlackBlob * 0.95;
     TextStyle? bodyTextStyle =
@@ -85,23 +73,9 @@ class _HeaderSectionState extends State<HeaderSection> {
             ),
           ),
           Container(
-//            width: -(screenWidth * 0.6),
             height: screenHeight,
-            child: _buildResponsiveHeaderImage(
-              contentWidth: 1,
-              contentHeight: 1,
-            ),
+            child: _buildResponsiveHeaderImage(),
           ),
-//          Positioned(
-////            right: 0,
-////            top: 0,
-//            child: Container(
-////              width: screenWidth * 0.6,
-//              height: screenHeight,
-//              child: _buildResponsiveHeaderImage(
-//                  contentWidth: 1, contentHeight: 1),
-//            ),
-//          ),
           Positioned(
             left: -hiddenPortionOfBlackBlob,
             child: _buildBlob(
@@ -255,64 +229,61 @@ class _HeaderSectionState extends State<HeaderSection> {
     );
   }
 
-  Widget _buildHeaderImage({
-    required double devImageHeight,
-    double? devImageWidth,
-    double? globeImageWidth,
-    double? globeImageHeight,
-  }) {
+  Widget _buildHeaderImage({double dotsGlobeSize = 150}) {
     return Stack(
       children: [
-//        Positioned(
-//          left: 0,
-//          child: Image.asset(
-//            ImagePath.DOTS_GLOBE_GREY,
-//            width: globeImageWidth,
-//            height: globeImageHeight,
-//          ),
-//        ),
+        Positioned(
+          left: 0,
+          child: Image.asset(
+            ImagePath.DOTS_GLOBE_GREY,
+            height: dotsGlobeSize,
+            width: dotsGlobeSize,
+          ),
+        ),
         Image.asset(
           ImagePath.DEV_HEADER,
-//          width: devImageWidth,
-//          height: devImageHeight,
           fit: BoxFit.cover,
         ),
       ],
     );
   }
 
-  Widget _buildResponsiveHeaderImage({
-    required double contentWidth,
-    required double contentHeight,
-  }) {
+  Widget _buildResponsiveHeaderImage() {
     return ResponsiveBuilder(
       refinedBreakpoints: RefinedBreakpoints(),
       builder: (context, sizingInformation) {
         double screenWidth = sizingInformation.screenSize.width;
-        if (screenWidth <= RefinedBreakpoints().tabletNormal) {
-          print("SMALL");
+        if (screenWidth < RefinedBreakpoints().tabletSmall) {
           return Align(
-            alignment: Alignment(3, 1),
+            alignment: Alignment(5, -1.0),
             child: AspectRatio(
-              aspectRatio: 1 / 2,
-              child: Image.asset(
-                ImagePath.DEV_HEADER,
-                fit: BoxFit.fitWidth,
+              aspectRatio: 2.5 / 4,
+              child: Align(
+                alignment: Alignment(5, -1.0),
+                child: _buildHeaderImage(),
               ),
             ),
           );
-        }
-//        else if (screenWidth >= RefinedBreakpoints().desktopNormal) {
-//          return _buildHeaderImage(devImageHeight: contentHeight);
-//        }
-        else {
+        } else if (screenWidth >= RefinedBreakpoints().tabletSmall &&
+            screenWidth <= RefinedBreakpoints().tabletExtraLarge) {
           return Align(
-            alignment: Alignment(1, 1),
+            alignment: Alignment(2, -1.0),
+            child: AspectRatio(
+              aspectRatio: 3 / 4,
+              child: Align(
+                alignment: Alignment(2, -1.0),
+                child: _buildHeaderImage(dotsGlobeSize: 200),
+              ),
+            ),
+          );
+        } else {
+          return Align(
+            alignment: Alignment(1.5, -1.5),
             child: AspectRatio(
               aspectRatio: 1 / 1,
-              child: Image.asset(
-                ImagePath.DEV_HEADER,
-                fit: BoxFit.fitWidth,
+              child: Align(
+                alignment: Alignment(1.5, -1.5),
+                child: _buildHeaderImage(dotsGlobeSize: 250),
               ),
             ),
           );
