@@ -20,7 +20,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 //TODO:: Add ash background blob (esp the one that extends between header and about section
 //TODO:: Add huge ash background blob (the one that extends between skills section and projects
 //TODO:: Add FAB that takes user to the top page
-//TODO:: Try and use Monoton for my signature in the future
 
 class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();

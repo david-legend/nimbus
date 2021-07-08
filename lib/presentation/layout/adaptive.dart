@@ -105,6 +105,23 @@ int responsiveSizeInt(
   );
 }
 
+Color responsiveColor(
+  BuildContext context,
+  Color xs,
+  Color lg, {
+  Color? sm,
+  Color? md,
+  Color? xl,
+}) {
+  return context.layout.value(
+    xs: xs,
+    sm: sm ?? xs,
+    md: md ?? xs,
+    lg: lg,
+    xl: xl ?? lg,
+  );
+}
+
 double getSidePadding(BuildContext context) {
   double sidePadding = assignWidth(context, 0.05);
   return responsiveSize(context, 30, sidePadding, md: sidePadding);
