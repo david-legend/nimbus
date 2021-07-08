@@ -11,11 +11,10 @@ import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Add Responsiveness to header section (working on dev_image and globe image)
 //TODO:: Position cards at right position with right spacing (in between them)
 //TODO:: Add background ash blobs
-//TODO:: Add animation to rotating dots_globe_grey and dots_globe_yellow
 //TODO:: Animation to button. (Channel your adventurous self)
+
 const double bodyTextSizeLg = 16.0;
 const double bodyTextSizeSm = 14.0;
 const double socialTextSizeLg = 18.0;
@@ -26,7 +25,31 @@ class HeaderSection extends StatefulWidget {
   _HeaderSectionState createState() => _HeaderSectionState();
 }
 
-class _HeaderSectionState extends State<HeaderSection> {
+class _HeaderSectionState extends State<HeaderSection>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 20),
+      vsync: this,
+    )..repeat();
+
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      _controller.addStatusListener((status) {
+        _controller.forward();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -42,7 +65,6 @@ class _HeaderSectionState extends State<HeaderSection> {
       Sizes.TEXT_SIZE_56,
       md: Sizes.TEXT_SIZE_36,
     );
-
     double bodyTextSize =
         responsiveSize(context, bodyTextSizeSm, bodyTextSizeLg);
     double socialTextSize =
@@ -234,10 +256,13 @@ class _HeaderSectionState extends State<HeaderSection> {
       children: [
         Positioned(
           left: 0,
-          child: Image.asset(
-            ImagePath.DOTS_GLOBE_GREY,
-            height: dotsGlobeSize,
-            width: dotsGlobeSize,
+          child: RotationTransition(
+            turns: _controller,
+            child: Image.asset(
+              ImagePath.DOTS_GLOBE_GREY,
+              height: dotsGlobeSize,
+              width: dotsGlobeSize,
+            ),
           ),
         ),
         Image.asset(
