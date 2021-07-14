@@ -23,7 +23,7 @@ class NimBusCardData {
   });
 }
 
-class NimBusCard extends StatelessWidget {
+class NimBusCard extends StatefulWidget {
   NimBusCard({
     this.leading,
     this.title,
@@ -35,6 +35,7 @@ class NimBusCard extends StatelessWidget {
     this.rowCrossAxisAlignment = CrossAxisAlignment.center,
     this.width,
     this.height,
+    this.offsetY = -40,
     this.elevation = Sizes.ELEVATION_4,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.padding = const EdgeInsets.symmetric(
@@ -50,6 +51,7 @@ class NimBusCard extends StatelessWidget {
   final double? width;
   final double? height;
   final double? elevation;
+  final double offsetY;
   final MainAxisAlignment columnMainAxisAlignment;
   final CrossAxisAlignment columnCrossAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
@@ -58,40 +60,101 @@ class NimBusCard extends StatelessWidget {
   final BorderRadius borderRadius;
 
   @override
+  _NimBusCardState createState() => _NimBusCardState();
+}
+
+class _NimBusCardState extends State<NimBusCard>
+    with SingleTickerProviderStateMixin {
+  bool _hovering = false;
+  late AnimationController _controller;
+  late Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    animation = Tween(begin: 0.0, end: widget.offsetY).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOutQuart),
+    );
+  }
+
+  Future<void> _animateCard() async {
+    if (_hovering) {
+      try {
+        await _controller.forward().orCancel;
+      } on TickerCanceled {}
+    } else {
+      try {
+        await _controller.reverse().orCancel;
+      } on TickerCanceled {}
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (e) => _mouseEnter(true),
+      onExit: (e) => _mouseEnter(false),
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Transform.translate(
+            offset: Offset(0, animation.value),
+            child: _buildCard(),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildCard() {
     return Container(
-      width: width,
-      height: height,
+      width: widget.width,
+      height: widget.height,
       child: ClipRRect(
-        borderRadius: borderRadius,
+        borderRadius: widget.borderRadius,
         child: Card(
-          elevation: elevation,
+          elevation: widget.elevation,
           child: Padding(
-            padding: padding,
+            padding: widget.padding,
             child: Row(
-              mainAxisAlignment: rowMainAxisAlignment,
-              crossAxisAlignment: rowCrossAxisAlignment,
+              mainAxisAlignment: widget.rowMainAxisAlignment,
+              crossAxisAlignment: widget.rowCrossAxisAlignment,
               children: [
-                leading ?? Empty(),
-                leading != null ? Spacer() : Empty(),
+                widget.leading ?? Empty(),
+                widget.leading != null ? Spacer() : Empty(),
                 Column(
-                  mainAxisAlignment: columnMainAxisAlignment,
-                  crossAxisAlignment: columnCrossAxisAlignment,
+                  mainAxisAlignment: widget.columnMainAxisAlignment,
+                  crossAxisAlignment: widget.columnCrossAxisAlignment,
                   children: [
                     Spacer(),
-                    title ?? Empty(),
-                    title != null ? SpaceH8() : Empty(),
-                    subtitle ?? Empty(),
+                    widget.title ?? Empty(),
+                    widget.title != null ? SpaceH8() : Empty(),
+                    widget.subtitle ?? Empty(),
                     Spacer(),
                   ],
                 ),
-                trailing != null ? Spacer() : Empty(),
-                trailing ?? Empty(),
+                widget.trailing != null ? Spacer() : Empty(),
+                widget.trailing ?? Empty(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void _mouseEnter(bool hovering) {
+    setState(() {
+      _hovering = hovering;
+    });
+    _animateCard();
   }
 }

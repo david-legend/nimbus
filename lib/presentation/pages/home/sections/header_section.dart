@@ -91,6 +91,7 @@ class _HeaderSectionState extends State<HeaderSection>
       width: contentAreaWidth * 0.4,
       isWrap: true,
     );
+
     return ContentArea(
       width: contentAreaWidth,
       child: Column(
