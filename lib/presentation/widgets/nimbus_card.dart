@@ -37,6 +37,7 @@ class NimBusCard extends StatefulWidget {
     this.height,
     this.offsetY = -40,
     this.elevation = Sizes.ELEVATION_4,
+    this.hasAnimation = true,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.padding = const EdgeInsets.symmetric(
       horizontal: Sizes.PADDING_20,
@@ -58,6 +59,7 @@ class NimBusCard extends StatefulWidget {
   final MainAxisAlignment rowMainAxisAlignment;
   final EdgeInsetsGeometry padding;
   final BorderRadius borderRadius;
+  final bool hasAnimation;
 
   @override
   _NimBusCardState createState() => _NimBusCardState();
@@ -99,19 +101,21 @@ class _NimBusCardState extends State<NimBusCard>
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (e) => _mouseEnter(true),
-      onExit: (e) => _mouseEnter(false),
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          return Transform.translate(
-            offset: Offset(0, animation.value),
-            child: _buildCard(),
-          );
-        },
-      ),
-    );
+    return widget.hasAnimation
+        ? MouseRegion(
+            onEnter: (e) => _mouseEnter(true),
+            onExit: (e) => _mouseEnter(false),
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return Transform.translate(
+                  offset: Offset(0, animation.value),
+                  child: _buildCard(),
+                );
+              },
+            ),
+          )
+        : _buildCard();
   }
 
   Widget _buildCard() {

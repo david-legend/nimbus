@@ -243,6 +243,7 @@ class _HeaderSectionState extends State<HeaderSection>
                           data: Data.nimbusCardData,
                           width: contentAreaWidth,
                           isHorizontal: false,
+                          hasAnimation: false,
                         ),
                       );
                     } else if (screenWidth >=
@@ -397,6 +398,7 @@ class _HeaderSectionState extends State<HeaderSection>
     required double width,
     bool isHorizontal = true,
     bool isWrap = false,
+    bool hasAnimation = true,
   }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     List<Widget> items = [];
@@ -406,6 +408,7 @@ class _HeaderSectionState extends State<HeaderSection>
         NimBusCard(
           width: width,
           height: 120,
+          hasAnimation: hasAnimation,
           leading: CircularContainer(
             width: Sizes.WIDTH_40,
             height: Sizes.HEIGHT_40,

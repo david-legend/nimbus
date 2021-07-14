@@ -221,7 +221,6 @@ class _AboutMeSectionState extends State<AboutMeSection>
       children: [
         //positions blob on the far right of the section
         //based on the calculation only 10% of blob is showing
-
         Positioned(
           top: height * 0.2,
           left: width * 0.90,

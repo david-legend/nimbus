@@ -27,7 +27,7 @@ class SocialButton2 extends StatelessWidget {
     required this.onPressed,
     this.titleStyle,
     this.titleColor = AppColors.black,
-    this.width = Sizes.WIDTH_40,
+    this.width = Sizes.WIDTH_60,
     this.height = Sizes.HEIGHT_40,
     this.elevation = Sizes.ELEVATION_1,
     this.buttonColor = AppColors.white,
