@@ -50,8 +50,8 @@ class _HeaderSectionState extends State<HeaderSection>
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _controller.dispose();
   }
 
   @override

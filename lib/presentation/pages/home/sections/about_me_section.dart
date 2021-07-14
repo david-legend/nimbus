@@ -15,7 +15,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 //TODO:: Add the right colors to text and dividers
 //TODO:: Add the right colors to text and dividers
 //TODO:: Add animation to socialButton2
-//TODO:: Add floating bubbles if I am feeling adventurous
+//TODO:: Add floating bubbles (if I am feeling adventurous)
 
 const double kSpacingSm = 40.0;
 const double kRunSpacingSm = 24.0;
@@ -27,10 +27,55 @@ class AboutMeSection extends StatefulWidget {
   _AboutMeSectionState createState() => _AboutMeSectionState();
 }
 
-class _AboutMeSectionState extends State<AboutMeSection> {
+class _AboutMeSectionState extends State<AboutMeSection>
+    with TickerProviderStateMixin {
+  late AnimationController _scaleController;
+  late Animation<double> _scaleAnimation;
+  late AnimationController _fadeInController;
+  late Animation<double> _fadeInAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _scaleController = AnimationController(
+      duration: const Duration(seconds: 4),
+      vsync: this,
+    );
+    _fadeInController = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+    _scaleAnimation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _scaleController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
+    _fadeInAnimation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _fadeInController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      _scaleController.forward();
+    });
+    _scaleController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _fadeInController.forward();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scaleController.dispose();
+    _fadeInController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
     double screenWidth = widthOfScreen(context) - getSidePadding(context);
     double screenHeight = heightOfScreen(context);
     double contentAreaWidthSm = screenWidth * 1.0;
@@ -137,25 +182,31 @@ class _AboutMeSectionState extends State<AboutMeSection> {
             },
           ),
         ),
-        Image.asset(
-          ImagePath.DEV_ABOUT_ME,
-          width: width * 0.95,
+        ScaleTransition(
+          scale: _scaleAnimation,
+          child: Image.asset(
+            ImagePath.DEV_ABOUT_ME,
+            width: width * 0.95,
+          ),
         ),
         Positioned(
           top: width * 0.2,
           left: width * 0.2,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                StringConst.HI,
-                style: titleStyle,
-              ),
-              Text(
-                StringConst.THERE,
-                style: titleStyle,
-              ),
-            ],
+          child: FadeTransition(
+            opacity: _fadeInAnimation,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  StringConst.HI,
+                  style: titleStyle,
+                ),
+                Text(
+                  StringConst.THERE,
+                  style: titleStyle,
+                ),
+              ],
+            ),
           ),
         ),
       ],
