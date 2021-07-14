@@ -12,8 +12,6 @@ import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Priority
-//TODO:: Position cards at right position with right spacing (in between them)
 //TODO:: Add animation to cards
 
 //TODO:: Later
@@ -87,9 +85,14 @@ class _HeaderSectionState extends State<HeaderSection>
         textTheme.bodyText1?.copyWith(fontSize: bodyTextSize);
     TextStyle? socialTitleStyle =
         textTheme.subtitle1?.copyWith(fontSize: socialTextSize);
+
+    List<Widget> cardsForTabletView = _buildCardRow(
+      data: Data.nimbusCardData,
+      width: contentAreaWidth * 0.4,
+      isWrap: true,
+    );
     return ContentArea(
       width: contentAreaWidth,
-//      height: contentAreaHeight,
       child: Column(
         children: [
           Stack(
@@ -153,20 +156,6 @@ class _HeaderSectionState extends State<HeaderSection>
                           isRepeatingAnimation: true,
                           totalRepeatCount: 5,
                         ),
-//                    SelectableText(
-//                      StringConst.INTRO,
-//                      style: textTheme.headline2?.copyWith(
-//                        fontSize: headerIntroTextSize,
-//                      ),
-//                    ),
-//                    SelectableText(
-//                      StringConst.POSITION,
-//                      style: textTheme.headline2?.copyWith(
-//                        fontSize: headerIntroTextSize,
-//                        color: AppColors.primaryColor,
-//                        height: 1.2,
-//                      ),
-//                    ),
                         SpaceH16(),
                         SelectableText(
                           StringConst.ABOUT_ME_1,
@@ -244,35 +233,54 @@ class _HeaderSectionState extends State<HeaderSection>
             child: Column(
               children: [
                 ResponsiveBuilder(
-                    refinedBreakpoints: RefinedBreakpoints(),
-                    builder: (context, sizingInformation) {
-                      double screenWidth = sizingInformation.screenSize.width;
-                      if (screenWidth > RefinedBreakpoints().tabletExtraLarge) {
-                        return Column(
-                          children: [
-                            Spacer(),
-                            Row(
-                              children: [
-                                Spacer(),
-                                ..._buildCardRow(
-                                  data: Data.nimbusCardData,
-                                  width: contentAreaWidth / 4,
-                                ),
-                                Spacer(),
-                              ],
+                  refinedBreakpoints: RefinedBreakpoints(),
+                  builder: (context, sizingInformation) {
+                    double screenWidth = sizingInformation.screenSize.width;
+                    if (screenWidth < RefinedBreakpoints().tabletNormal) {
+                      return Column(
+                        children: _buildCardRow(
+                          data: Data.nimbusCardData,
+                          width: contentAreaWidth,
+                          isHorizontal: false,
+                        ),
+                      );
+                    } else if (screenWidth >=
+                            RefinedBreakpoints().tabletNormal &&
+                        screenWidth <= 1024) {
+                      return Wrap(
+                        runSpacing: 24,
+                        children: [
+                          SizedBox(width: contentAreaWidth * 0.03),
+                          cardsForTabletView[0],
+                          SpaceW40(),
+                          cardsForTabletView[1],
+                          SizedBox(width: contentAreaWidth * 0.03),
+                          Center(
+                            child: Container(
+                              margin: EdgeInsets.only(top: 20),
+                              child: cardsForTabletView[2],
                             ),
-                          ],
-                        );
-                      } else {
-                        return Column(
-                          children: _buildCardRow(
-                            data: Data.nimbusCardData,
-                            width: contentAreaWidth,
-                            isHorizontal: false,
                           ),
-                        );
-                      }
-                    }),
+                        ],
+                      );
+                    } else {
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Spacer(),
+                              ..._buildCardRow(
+                                data: Data.nimbusCardData,
+                                width: contentAreaWidth / 3.8,
+                              ),
+                              Spacer(),
+                            ],
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                ),
               ],
             ),
           ),
@@ -387,6 +395,7 @@ class _HeaderSectionState extends State<HeaderSection>
     required List<NimBusCardData> data,
     required double width,
     bool isHorizontal = true,
+    bool isWrap = false,
   }) {
     TextTheme textTheme = Theme.of(context).textTheme;
     List<Widget> items = [];
@@ -395,7 +404,7 @@ class _HeaderSectionState extends State<HeaderSection>
       items.add(
         NimBusCard(
           width: width,
-          height: 100,
+          height: 120,
           leading: CircularContainer(
             width: Sizes.WIDTH_40,
             height: Sizes.HEIGHT_40,
@@ -403,13 +412,17 @@ class _HeaderSectionState extends State<HeaderSection>
             backgroundColor: data[index].circleBgColor,
             iconColor: data[index].leadingIconColor,
           ),
-          title: SelectableText(
-            data[index].title,
-            style: textTheme.subtitle1?.copyWith(),
+          title: Flexible(
+            child: SelectableText(
+              data[index].title,
+              style: textTheme.subtitle1?.copyWith(),
+            ),
           ),
-          subtitle: SelectableText(
-            data[index].subtitle,
-            style: textTheme.bodyText1,
+          subtitle: Flexible(
+            child: SelectableText(
+              data[index].subtitle,
+              style: textTheme.bodyText1,
+            ),
           ),
           trailing: Icon(
             Icons.chevron_right,
@@ -418,10 +431,14 @@ class _HeaderSectionState extends State<HeaderSection>
           ),
         ),
       );
-      if (isHorizontal) {
-        items.add(SpaceW40());
-      } else {
-        items.add(SpaceH40());
+      //run this only on mobile devices and laptops but not on tablets.
+      // We use `Wrap` to make the widgets wrap on the tablet view
+      if (!isWrap) {
+        if (isHorizontal) {
+          items.add(SpaceW36());
+        } else {
+          items.add(SpaceH40());
+        }
       }
     }
 
