@@ -27,8 +27,10 @@ class SocialButton2 extends StatelessWidget {
     required this.onPressed,
     this.titleStyle,
     this.titleColor = AppColors.black,
-    this.width = Sizes.WIDTH_60,
-    this.height = Sizes.HEIGHT_40,
+    this.buttonWidth = Sizes.WIDTH_40,
+    this.buttonHeight = Sizes.HEIGHT_40,
+    this.width,
+    this.height,
     this.elevation = Sizes.ELEVATION_1,
     this.buttonColor = AppColors.white,
     this.iconColor = AppColors.black,
@@ -40,8 +42,10 @@ class SocialButton2 extends StatelessWidget {
   final Color? titleColor;
   final TextStyle? titleStyle;
   final bool hasTitle;
-  final double width;
-  final double height;
+  final double buttonWidth;
+  final double buttonHeight;
+  final double? width;
+  final double? height;
   final double elevation;
   final IconData iconData;
   final double iconSize;
@@ -52,33 +56,37 @@ class SocialButton2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    return Row(
-      children: [
-        Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-              color: buttonColor,
-              borderRadius: BorderRadius.all(Radius.circular(4))),
-          child: MaterialButton(
-            onPressed: onPressed,
-            child: Icon(
-              iconData,
-              size: iconSize,
-              color: iconColor,
+    return Container(
+      width: width,
+      height: height,
+      child: Row(
+        children: [
+          Container(
+            width: buttonWidth,
+            height: buttonHeight,
+            decoration: BoxDecoration(
+                color: buttonColor,
+                borderRadius: BorderRadius.all(Radius.circular(4))),
+            child: MaterialButton(
+              onPressed: onPressed,
+              child: Icon(
+                iconData,
+                size: iconSize,
+                color: iconColor,
+              ),
             ),
           ),
-        ),
-        SpaceW12(),
-        Text(
-          title,
-          style: titleStyle ??
-              textTheme.subtitle2?.copyWith(
-                fontSize: Sizes.TEXT_SIZE_13,
-                color: titleColor,
-              ),
-        ),
-      ],
+          SpaceW12(),
+          Text(
+            title,
+            style: titleStyle ??
+                textTheme.subtitle2?.copyWith(
+                  fontSize: Sizes.TEXT_SIZE_13,
+                  color: titleColor,
+                ),
+          ),
+        ],
+      ),
     );
   }
 }

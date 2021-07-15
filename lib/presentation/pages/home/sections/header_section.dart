@@ -40,18 +40,13 @@ class _HeaderSectionState extends State<HeaderSection>
       duration: const Duration(seconds: 20),
       vsync: this,
     )..repeat();
-
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      _controller.addStatusListener((status) {
-        _controller.forward();
-      });
-    });
+    _controller.forward();
   }
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -69,8 +64,6 @@ class _HeaderSectionState extends State<HeaderSection>
       Sizes.TEXT_SIZE_56,
       md: Sizes.TEXT_SIZE_36,
     );
-    Color headerTextColor =
-        responsiveColor(context, AppColors.black, AppColors.primaryColor);
     double bodyTextSize =
         responsiveSize(context, bodyTextSizeSm, bodyTextSizeLg);
     double socialTextSize =

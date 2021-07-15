@@ -57,9 +57,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
         curve: Curves.fastOutSlowIn,
       ),
     );
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      _scaleController.forward();
-    });
+    _scaleController.forward();
     _scaleController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _fadeInController.forward();
@@ -136,7 +134,10 @@ class _AboutMeSectionState extends State<AboutMeSection>
     );
   }
 
-  List<Widget> _buildSocialButtons(List<SocialButton2Data> data) {
+  List<Widget> _buildSocialButtons(
+    List<SocialButton2Data> data, {
+    double? width,
+  }) {
     List<Widget> items = [];
 
     for (int index = 0; index < data.length; index++) {
@@ -285,16 +286,12 @@ class _AboutMeSectionState extends State<AboutMeSection>
                           textTheme.headline6?.copyWith(color: AppColors.black),
                     ),
                     SpaceH16(),
-                    Row(
-                      children: [
-                        Wrap(
-                          spacing: kSpacingLg,
-                          runSpacing: kRunSpacingLg,
-                          children: _buildSocialButtons(
-                            Data.socialData2,
-                          ),
-                        ),
-                      ],
+                    Wrap(
+                      spacing: kSpacingLg,
+                      runSpacing: kRunSpacingLg,
+                      children: _buildSocialButtons(
+                        Data.socialData2,
+                      ),
                     ),
                   ],
                 ),
@@ -322,17 +319,13 @@ class _AboutMeSectionState extends State<AboutMeSection>
             style: textTheme.headline6?.copyWith(color: AppColors.black),
           ),
           SpaceH16(),
-          Row(
-            children: [
-              Wrap(
-                spacing: kSpacingSm,
-                runSpacing: kRunSpacingSm,
-                children: _buildSocialButtons(
-                  Data.socialData2,
-                ),
-              ),
-            ],
-          ),
+//          Wrap(
+//            spacing: kSpacingSm,
+//            runSpacing: kRunSpacingSm,
+//            children: _buildSocialButtons(
+//              Data.socialData2,
+//            ),
+//          ),
         ],
       ),
     );
