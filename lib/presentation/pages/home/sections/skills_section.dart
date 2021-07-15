@@ -14,7 +14,6 @@ const double kMainAxisSpacing = 16.0;
 const double kCrossAxisSpacing = 16.0;
 
 //TODO:: Stop hardcoding height values and find a dynamic way to let content grow
-//TODO:: Add animation to load skillLevel
 //TODO:: Add animation onHover of skillBoxes
 //TODO:: Add proper background Blobs
 

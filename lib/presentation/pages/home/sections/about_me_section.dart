@@ -86,7 +86,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
       key: Key('about-section'),
       onVisibilityChanged: (visibilityInfo) {
         double visiblePercentage = visibilityInfo.visibleFraction * 100;
-        if (visiblePercentage > 35) {
+        if (visiblePercentage > 25) {
           _scaleController.forward();
         }
       },
