@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
@@ -25,7 +26,7 @@ class SkillLevel extends StatefulWidget {
     this.baseThickness = 2.0,
     this.skillLevelThickness = 7.0,
     this.curve = Curves.linearToEaseOut,
-    this.duration = const Duration(milliseconds: 10000),
+    this.duration = const Duration(seconds: 4),
   });
 
   final String skill;
@@ -51,14 +52,16 @@ class _SkillLevelState extends State<SkillLevel>
 
   @override
   void initState() {
-    _controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
-    animation = Tween<double>(begin: 0, end: 300).animate(_controller)
-      ..addListener(() {
-        setState(() {
-          // The state that has changed here is the animation object’s value.
-        });
-      });
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.duration,
+    );
+    animation = Tween(begin: 0.0, end: widget.level).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
     _controller.forward();
     super.initState();
   }
@@ -71,6 +74,16 @@ class _SkillLevelState extends State<SkillLevel>
 
   @override
   Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: animation,
+      child: _buildChild(animation.value),
+      builder: (context, _) {
+        return _buildChild(animation.value);
+      },
+    );
+  }
+
+  Widget _buildChild(double level) {
     TextTheme textTheme = Theme.of(context).textTheme;
     TextStyle? defaultStyle = textTheme.subtitle2;
     return Container(
@@ -86,7 +99,7 @@ class _SkillLevelState extends State<SkillLevel>
                 style: widget.skillStyle ?? defaultStyle,
               ),
               Text(
-                "${widget.level} %",
+                "${level.toInt()} %",
                 style: widget.levelStyle ?? defaultStyle,
               ),
             ],
@@ -102,12 +115,10 @@ class _SkillLevelState extends State<SkillLevel>
                 width: widthOfScreen(context),
                 color: widget.baseColor,
               ),
-              AnimatedContainer(
+              Container(
                 height: widget.skillLevelThickness,
-                width: _controller.value,
+                width: widget.skillLevelWidth * (level / 100),
                 color: widget.skillLevelColor,
-                duration: widget.duration,
-                curve: widget.curve,
               ),
             ],
           ),

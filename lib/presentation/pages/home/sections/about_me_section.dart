@@ -8,6 +8,7 @@ import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 //TODO:: Make nimbusInfoSection 1 & 2 break at right break points
 //TODO:: Add the right fontFamily and styles to text in this section
@@ -29,6 +30,7 @@ class AboutMeSection extends StatefulWidget {
 
 class _AboutMeSectionState extends State<AboutMeSection>
     with TickerProviderStateMixin {
+  bool _isVisibleEnough = false;
   late AnimationController _scaleController;
   late Animation<double> _scaleAnimation;
   late AnimationController _fadeInController;
@@ -38,7 +40,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
   void initState() {
     super.initState();
     _scaleController = AnimationController(
-      duration: const Duration(seconds: 4),
+      duration: const Duration(milliseconds: 750),
       vsync: this,
     );
     _fadeInController = AnimationController(
@@ -57,7 +59,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
         curve: Curves.fastOutSlowIn,
       ),
     );
-    _scaleController.forward();
+
     _scaleController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _fadeInController.forward();
@@ -80,56 +82,65 @@ class _AboutMeSectionState extends State<AboutMeSection>
     double contentAreaHeightSm = screenHeight * 0.6;
     double contentAreaWidthLg = screenWidth * 0.5;
     double contentAreaHeightLg = screenHeight * 0.9;
-    return Container(
-      padding: EdgeInsets.only(left: getSidePadding(context)),
-      child: ResponsiveBuilder(
-        refinedBreakpoints: RefinedBreakpoints(),
-        builder: (context, sizingInformation) {
-          double screenWidth = sizingInformation.screenSize.width;
-          if (screenWidth < (RefinedBreakpoints().tabletLarge)) {
-            return Column(
-              children: [
-                ContentArea(
-                  width: contentAreaWidthSm,
-                  child: _buildImage(
+    return VisibilityDetector(
+      key: Key('about-section'),
+      onVisibilityChanged: (visibilityInfo) {
+        double visiblePercentage = visibilityInfo.visibleFraction * 100;
+        if (visiblePercentage > 35) {
+          _scaleController.forward();
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.only(left: getSidePadding(context)),
+        child: ResponsiveBuilder(
+          refinedBreakpoints: RefinedBreakpoints(),
+          builder: (context, sizingInformation) {
+            double screenWidth = sizingInformation.screenSize.width;
+            if (screenWidth < (RefinedBreakpoints().tabletLarge)) {
+              return Column(
+                children: [
+                  ContentArea(
+                    width: contentAreaWidthSm,
+                    child: _buildImage(
+                      width: contentAreaWidthSm,
+                      height: contentAreaHeightSm,
+                    ),
+                  ),
+                  SpaceH40(),
+                  ContentArea(
                     width: contentAreaWidthSm,
                     height: contentAreaHeightSm,
+                    child: _buildAboutMe(
+                      width: contentAreaWidthSm,
+                      height: contentAreaHeightSm,
+                    ),
                   ),
-                ),
-                SpaceH40(),
-                ContentArea(
-                  width: contentAreaWidthSm,
-                  height: contentAreaHeightSm,
-                  child: _buildAboutMe(
-                    width: contentAreaWidthSm,
-                    height: contentAreaHeightSm,
-                  ),
-                ),
-              ],
-            );
-          } else {
-            return Row(
-              children: [
-                ContentArea(
-                  width: contentAreaWidthLg,
-                  height: contentAreaHeightLg,
-                  child: _buildImage(
+                ],
+              );
+            } else {
+              return Row(
+                children: [
+                  ContentArea(
                     width: contentAreaWidthLg,
                     height: contentAreaHeightLg,
+                    child: _buildImage(
+                      width: contentAreaWidthLg,
+                      height: contentAreaHeightLg,
+                    ),
                   ),
-                ),
-                ContentArea(
-                  width: contentAreaWidthLg,
-                  height: contentAreaHeightLg,
-                  child: _buildAboutMe(
+                  ContentArea(
                     width: contentAreaWidthLg,
                     height: contentAreaHeightLg,
+                    child: _buildAboutMe(
+                      width: contentAreaWidthLg,
+                      height: contentAreaHeightLg,
+                    ),
                   ),
-                ),
-              ],
-            );
-          }
-        },
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }

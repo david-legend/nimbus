@@ -40,6 +40,7 @@ dependencies:
   carousel_slider: ^4.0.0
   dots_indicator: ^2.0.0
   animated_text_kit: ^4.2.1
+  visibility_detector: ^0.2.0
 
 dev_dependencies:
   flutter_test:

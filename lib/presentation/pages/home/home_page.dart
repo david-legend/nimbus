@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/pages/home/sections/about_me_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/awards_section.dart';
-import 'package:nimbus/presentation/pages/home/sections/blog_section.dart';
-import 'package:nimbus/presentation/pages/home/sections/brand_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/footer_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/header_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/nav_section/nav_section_mobile.dart';
@@ -13,10 +11,9 @@ import 'package:nimbus/presentation/pages/home/sections/skills_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/statistics_section.dart';
 import 'package:nimbus/presentation/widgets/app_drawer.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
-import 'package:nimbus/presentation/widgets/skill_level.dart';
-import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 //TODO:: Add ash background blob (esp the one that extends between header and about section
 //TODO:: Add huge ash background blob (the one that extends between skills section and projects
@@ -74,11 +71,6 @@ class HomePage extends StatelessWidget {
               controller: _scrollController,
               child: Column(
                 children: [
-                  SkillLevel(
-                    skillLevelWidth: 200,
-                    skill: "Skill",
-                    level: 80,
-                  ),
                   HeaderSection(),
                   SizedBox(height: spacerHeight),
                   AboutMeSection(),
