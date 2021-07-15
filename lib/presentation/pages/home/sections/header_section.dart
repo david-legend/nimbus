@@ -40,7 +40,14 @@ class _HeaderSectionState extends State<HeaderSection>
       duration: const Duration(seconds: 20),
       vsync: this,
     )..repeat();
+
     _controller.forward();
+    _controller.addListener(() {
+      if (_controller.status == AnimationStatus.completed) {
+        _controller.reset();
+        _controller.forward();
+      }
+    });
   }
 
   @override

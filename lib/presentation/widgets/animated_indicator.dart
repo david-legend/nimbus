@@ -9,6 +9,7 @@ class AnimatedHoverIndicator extends StatelessWidget {
     this.opacity = 0.85,
     this.curve = Curves.linearToEaseOut,
     this.isHover = false,
+    this.duration = const Duration(milliseconds: 300),
   });
 
   final Color indicatorColor;
@@ -16,6 +17,7 @@ class AnimatedHoverIndicator extends StatelessWidget {
   final double height;
   final double opacity;
   final Curve curve;
+  final Duration duration;
   final bool isHover;
 
   @override
@@ -26,7 +28,7 @@ class AnimatedHoverIndicator extends StatelessWidget {
         width: isHover ? width : 0,
         height: height,
         color: indicatorColor,
-        duration: Duration(milliseconds: 300),
+        duration: duration,
         curve: curve,
       ),
     );

@@ -143,6 +143,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
     for (int index = 0; index < data.length; index++) {
       items.add(
         SocialButton2(
+//          width: width,
           title: data[index].title.toUpperCase(),
           iconData: data[index].iconData,
           onPressed: () => openUrlLink(data[index].url),
@@ -319,13 +320,13 @@ class _AboutMeSectionState extends State<AboutMeSection>
             style: textTheme.headline6?.copyWith(color: AppColors.black),
           ),
           SpaceH16(),
-//          Wrap(
-//            spacing: kSpacingSm,
-//            runSpacing: kRunSpacingSm,
-//            children: _buildSocialButtons(
-//              Data.socialData2,
-//            ),
-//          ),
+          Wrap(
+            spacing: kSpacingSm,
+            runSpacing: kRunSpacingSm,
+            children: _buildSocialButtons(
+              Data.socialData2,
+            ),
+          ),
         ],
       ),
     );

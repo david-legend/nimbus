@@ -13,6 +13,7 @@ import 'package:nimbus/presentation/pages/home/sections/skills_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/statistics_section.dart';
 import 'package:nimbus/presentation/widgets/app_drawer.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
+import 'package:nimbus/presentation/widgets/skill_level.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -73,6 +74,11 @@ class HomePage extends StatelessWidget {
               controller: _scrollController,
               child: Column(
                 children: [
+                  SkillLevel(
+                    skillLevelWidth: 200,
+                    skill: "Skill",
+                    level: 80,
+                  ),
                   HeaderSection(),
                   SizedBox(height: spacerHeight),
                   AboutMeSection(),
