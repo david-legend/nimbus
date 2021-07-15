@@ -7,6 +7,7 @@ import 'package:nimbus/presentation/widgets/skill_card.dart';
 import 'package:nimbus/presentation/widgets/skill_level.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 const double kRunSpacing = 20.0;
 const double kMainAxisSpacing = 16.0;
@@ -22,10 +23,22 @@ class SkillsSection extends StatefulWidget {
   _SkillsSectionState createState() => _SkillsSectionState();
 }
 
-class _SkillsSectionState extends State<SkillsSection> {
+class _SkillsSectionState extends State<SkillsSection>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -42,46 +55,76 @@ class _SkillsSectionState extends State<SkillsSection> {
       sm: screenHeight * 1.6,
     );
 
-    return Container(
-      height: contentAreaHeight,
-      padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
-      child: ResponsiveBuilder(
-        refinedBreakpoints: RefinedBreakpoints(),
-        builder: (context, sizingInformation) {
-          double screenWidth = sizingInformation.screenSize.width;
-          if (screenWidth <= RefinedBreakpoints().tabletSmall) {
-            return Column(
-              children: [
-                ContentArea(
-                  width: contentAreaWidthSm,
-                  height: contentAreaHeight * 0.4,
-                  child: _buildNimbusSm(width: contentAreaWidthSm),
-                ),
-                Flexible(
-                  child: ContentArea(
+    return VisibilityDetector(
+      key: Key('skills-section'),
+      onVisibilityChanged: (visibilityInfo) {
+        double visiblePercentage = visibilityInfo.visibleFraction * 100;
+        if (visiblePercentage > 60) {
+          _controller.forward();
+        }
+      },
+      child: Container(
+        height: contentAreaHeight,
+        padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
+        child: ResponsiveBuilder(
+          refinedBreakpoints: RefinedBreakpoints(),
+          builder: (context, sizingInformation) {
+            double screenWidth = sizingInformation.screenSize.width;
+            if (screenWidth <= RefinedBreakpoints().tabletSmall) {
+              return Column(
+                children: [
+                  ContentArea(
                     width: contentAreaWidthSm,
-                    child: Center(
-                      child: _buildSkillBoxes(
-                        boxHeight: 150,
-                        crossAxisCount: 1,
+                    height: contentAreaHeight * 0.4,
+                    child: _buildNimbusSm(width: contentAreaWidthSm),
+                  ),
+                  Flexible(
+                    child: ContentArea(
+                      width: contentAreaWidthSm,
+                      child: Center(
+                        child: _buildSkillBoxes(
+                          boxHeight: 150,
+                          crossAxisCount: 1,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            );
-          } else if (screenWidth > RefinedBreakpoints().tabletSmall &&
-              screenWidth <= 1024) {
-            return Column(
-              children: [
-                ContentArea(
-                  width: contentAreaWidthSm,
-                  height: contentAreaHeight * 0.4,
-                  child: _buildNimbusSm(width: contentAreaWidthSm),
-                ),
-                Flexible(
-                  child: ContentArea(
+                ],
+              );
+            } else if (screenWidth > RefinedBreakpoints().tabletSmall &&
+                screenWidth <= 1024) {
+              return Column(
+                children: [
+                  ContentArea(
                     width: contentAreaWidthSm,
+                    height: contentAreaHeight * 0.4,
+                    child: _buildNimbusSm(width: contentAreaWidthSm),
+                  ),
+                  Flexible(
+                    child: ContentArea(
+                      width: contentAreaWidthSm,
+                      child: Center(
+                        child: _buildSkillBoxes(
+                          boxHeight: 250,
+                          crossAxisCount: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Row(
+                children: [
+                  ContentArea(
+                    width: contentAreaWidthLg,
+                    height: contentAreaHeight,
+                    child: _buildNimbusLg(width: contentAreaWidthLg),
+                  ),
+                  ContentArea(
+                    width: contentAreaWidthLg,
+                    height: contentAreaHeight,
+                    padding: EdgeInsets.symmetric(horizontal: Sizes.HEIGHT_48),
                     child: Center(
                       child: _buildSkillBoxes(
                         boxHeight: 250,
@@ -89,32 +132,11 @@ class _SkillsSectionState extends State<SkillsSection> {
                       ),
                     ),
                   ),
-                ),
-              ],
-            );
-          } else {
-            return Row(
-              children: [
-                ContentArea(
-                  width: contentAreaWidthLg,
-                  height: contentAreaHeight,
-                  child: _buildNimbusLg(width: contentAreaWidthLg),
-                ),
-                ContentArea(
-                  width: contentAreaWidthLg,
-                  height: contentAreaHeight,
-                  padding: EdgeInsets.symmetric(horizontal: Sizes.HEIGHT_48),
-                  child: Center(
-                    child: _buildSkillBoxes(
-                      boxHeight: 250,
-                      crossAxisCount: 2,
-                    ),
-                  ),
-                ),
-              ],
-            );
-          }
-        },
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }
@@ -128,6 +150,7 @@ class _SkillsSectionState extends State<SkillsSection> {
       items.add(
         SkillLevel(
           skillLevelWidth: width,
+          controller: _controller,
           skill: skillLevels[index].skill,
           level: skillLevels[index].level,
         ),

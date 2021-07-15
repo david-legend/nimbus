@@ -18,6 +18,7 @@ class SkillLevel extends StatefulWidget {
   SkillLevel({
     required this.skill,
     required this.level,
+    required this.controller,
     this.skillStyle,
     this.levelStyle,
     this.skillLevelColor = AppColors.yellow300,
@@ -25,8 +26,7 @@ class SkillLevel extends StatefulWidget {
     this.skillLevelWidth = 100,
     this.baseThickness = 2.0,
     this.skillLevelThickness = 7.0,
-    this.curve = Curves.linearToEaseOut,
-    this.duration = const Duration(seconds: 4),
+    this.curve = Curves.fastOutSlowIn,
   });
 
   final String skill;
@@ -38,38 +38,25 @@ class SkillLevel extends StatefulWidget {
   final double skillLevelWidth;
   final double baseThickness;
   final double skillLevelThickness;
+  final AnimationController controller;
   final Curve curve;
-  final Duration duration;
 
   @override
   _SkillLevelState createState() => _SkillLevelState();
 }
 
-class _SkillLevelState extends State<SkillLevel>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+class _SkillLevelState extends State<SkillLevel> {
   late Animation<double> animation;
 
   @override
   void initState() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
     animation = Tween(begin: 0.0, end: widget.level).animate(
       CurvedAnimation(
-        parent: _controller,
-        curve: Curves.fastOutSlowIn,
+        parent: widget.controller,
+        curve: widget.curve,
       ),
     );
-    _controller.forward();
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override
