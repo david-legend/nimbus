@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 
-import 'animated_strike_through.dart';
+import 'animated_line_through.dart';
 import 'buttons/animated_nimbus_button.dart';
 
 class BlogCardData {
@@ -122,7 +121,7 @@ class _BlogCardState extends State<BlogCard> {
                   ],
                 ),
                 SpaceH8(),
-                AnimatedStrikeThrough(
+                AnimatedLineThrough(
                   text: widget.title,
                   textStyle: widget.titleStyle ?? textTheme.headline5,
                 ),
