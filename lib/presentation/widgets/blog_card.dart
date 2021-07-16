@@ -3,6 +3,9 @@ import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 
+import 'animated_strike_through.dart';
+import 'buttons/animated_nimbus_button.dart';
+
 class BlogCardData {
   final String category;
   final String date;
@@ -19,7 +22,7 @@ class BlogCardData {
   });
 }
 
-class BlogCard extends StatelessWidget {
+class BlogCard extends StatefulWidget {
   BlogCard({
     required this.category,
     required this.title,
@@ -55,12 +58,32 @@ class BlogCard extends StatelessWidget {
   final VoidCallback? onPressed;
 
   @override
+  _BlogCardState createState() => _BlogCardState();
+}
+
+class _BlogCardState extends State<BlogCard> {
+  bool _isHoveringOnImage = false;
+
+  Color startValue = Colors.black.withOpacity(0.5);
+  Color targetValue = Colors.black.withOpacity(0);
+
+//  late Color targetValue;
+//  late Color startValue;
+
+  @override
+  void initState() {
+//    targetValue = lightOpacity;
+//    startValue = dimOpacity;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Container(
-      width: width,
-      height: height,
+      width: widget.width,
+      height: widget.height,
       child: Stack(
         children: [
           Container(
@@ -69,37 +92,50 @@ class BlogCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(Sizes.RADIUS_16),
+                MouseRegion(
+                  onEnter: (e) => _onImageHover(true),
+                  onExit: (e) => _onImageHover(false),
+                  child: AnimatedOpacity(
+                    opacity: _isHoveringOnImage ? 1.0 : 0.85,
+                    duration: Duration(milliseconds: 300),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(Sizes.RADIUS_16),
+                      ),
+                      child: Image.asset(widget.imageUrl),
+                    ),
                   ),
-                  child: Image.asset(imageUrl),
                 ),
                 SpaceH8(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(
-                      dateIcon,
+                      widget.dateIcon,
                       color: AppColors.primaryColor,
                     ),
                     SpaceW8(),
                     Text(
-                      date,
-                      style: dateStyle ?? textTheme.subtitle2,
+                      widget.date,
+                      style: widget.dateStyle ?? textTheme.subtitle2,
                     )
                   ],
                 ),
                 SpaceH8(),
-                Text(
-                  title,
-                  style: titleStyle ?? textTheme.headline5,
+                AnimatedStrikeThrough(
+                  text: widget.title,
+                  textStyle: widget.titleStyle ?? textTheme.headline5,
                 ),
+//                Text(
+//                  widget.title,
+//                  style: widget.titleStyle ?? textTheme.headline5,
+//                ),
                 SpaceH16(),
-                NimbusButton(
-                  buttonTitle: buttonText,
-                  buttonColor: buttonColor,
-                  onPressed: onPressed,
+                AnimatedNimbusButton(
+                  title: widget.buttonText,
+                  iconData: Icons.arrow_forward_ios,
+                  leadingButtonColor: widget.buttonColor,
+                  onTap: widget.onPressed,
                 ),
               ],
             ),
@@ -115,8 +151,8 @@ class BlogCard extends StatelessWidget {
               ),
             ),
             child: Text(
-              category,
-              style: categoryStyle ??
+              widget.category,
+              style: widget.categoryStyle ??
                   textTheme.subtitle1?.copyWith(
                     fontSize: Sizes.TEXT_SIZE_15,
                     color: AppColors.white,
@@ -126,5 +162,11 @@ class BlogCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onImageHover(bool hovering) {
+    setState(() {
+      _isHoveringOnImage = hovering;
+    });
   }
 }
