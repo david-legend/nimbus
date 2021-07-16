@@ -6,6 +6,7 @@ import 'package:nimbus/presentation/widgets/nimbus_info_section.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 //TODO:: Add correct spacing and padding
 //TODO:: Add animation for My CV and image
@@ -15,7 +16,46 @@ class AwardsSection extends StatefulWidget {
   _AwardsSectionState createState() => _AwardsSectionState();
 }
 
-class _AwardsSectionState extends State<AwardsSection> {
+class _AwardsSectionState extends State<AwardsSection>
+    with TickerProviderStateMixin {
+  late AnimationController _text1Controller;
+  late Animation<Offset> _text1Animation;
+  late AnimationController _text2Controller;
+  late Animation<Offset> _text2Animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _text1Controller = AnimationController(
+      duration: const Duration(milliseconds: 750),
+      vsync: this,
+    );
+    _text2Controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+//    _text1Animation = Tween(begin: Offset(0, 0), end: Offset(1, 0)).animate(
+    _text1Animation =
+        Tween(begin: Offset(-0.5, 0), end: Offset(0.5, 0)).animate(
+      CurvedAnimation(
+        parent: _text1Controller,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
+    _text2Animation = Tween(begin: Offset(2, 0), end: Offset(1.6, 0)).animate(
+      CurvedAnimation(
+        parent: _text2Controller,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
+
+    _text1Controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _text2Controller.forward();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = widthOfScreen(context) - (getSidePadding(context));
@@ -27,63 +67,74 @@ class _AwardsSectionState extends State<AwardsSection> {
       md: screenWidth * 0.5,
     );
     double contentAreaHeight = screenHeight * 0.9;
-    return Container(
-      padding: EdgeInsets.only(left: getSidePadding(context)),
-      child: ResponsiveBuilder(
-        refinedBreakpoints: RefinedBreakpoints(),
-        builder: (context, sizingInformation) {
-          double screenWidth = sizingInformation.screenSize.width;
-          if (screenWidth <= 1024) {
-            return Column(
-              children: [
-                ResponsiveBuilder(
-                  builder: (context, sizingInformation) {
-                    double screenWidth = sizingInformation.screenSize.width;
-                    if (screenWidth < (RefinedBreakpoints().tabletSmall)) {
-                      return _buildNimbusInfoSectionSm();
-                    } else {
-                      return _buildNimbusInfoSectionLg();
-                    }
-                  },
-                ),
-                SpaceH50(),
-                _buildImage(
-                  width: contentAreaWidth,
-                  height: contentAreaHeight,
-                ),
-              ],
-            );
-          } else {
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ContentArea(
-                  width: contentAreaWidth,
-                  height: contentAreaHeight,
-                  child: Container(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Spacer(),
-                              _buildNimbusInfoSectionLg(),
-                              Spacer(flex: 2),
-                            ],
+    return VisibilityDetector(
+      key: Key('awards-section'),
+      onVisibilityChanged: (visibilityInfo) {
+        double visiblePercentage = visibilityInfo.visibleFraction * 100;
+        debugPrint(
+            'Widget ${visibilityInfo.key} is $visiblePercentage% visible');
+        if (visiblePercentage > 30) {
+          _text1Controller.forward();
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.only(left: getSidePadding(context)),
+        child: ResponsiveBuilder(
+          refinedBreakpoints: RefinedBreakpoints(),
+          builder: (context, sizingInformation) {
+            double screenWidth = sizingInformation.screenSize.width;
+            if (screenWidth <= 1024) {
+              return Column(
+                children: [
+                  ResponsiveBuilder(
+                    builder: (context, sizingInformation) {
+                      double screenWidth = sizingInformation.screenSize.width;
+                      if (screenWidth < (RefinedBreakpoints().tabletSmall)) {
+                        return _buildNimbusInfoSectionSm();
+                      } else {
+                        return _buildNimbusInfoSectionLg();
+                      }
+                    },
+                  ),
+                  SpaceH50(),
+                  _buildImage(
+                    width: contentAreaWidth,
+                    height: contentAreaHeight,
+                  ),
+                ],
+              );
+            } else {
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ContentArea(
+                    width: contentAreaWidth,
+                    height: contentAreaHeight,
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Spacer(),
+                                _buildNimbusInfoSectionLg(),
+                                Spacer(flex: 2),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                _buildImage(
-                  width: contentAreaWidth,
-                  height: contentAreaHeight,
-                ),
-              ],
-            );
-          }
-        },
+                  _buildImage(
+                    width: contentAreaWidth,
+                    height: contentAreaHeight,
+                  ),
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }
@@ -169,6 +220,14 @@ class _AwardsSectionState extends State<AwardsSection> {
               ),
             ],
           ),
+//          SlideTransition(
+//            position: _text1Animation,
+//            child: Text(StringConst.MY, style: titleStyle),
+//          ),
+//          SlideTransition(
+//            position: _text2Animation,
+//            child: Text(StringConst.CV, style: titleStyle),
+//          ),
           Positioned(
             child: Padding(
               padding: EdgeInsets.only(

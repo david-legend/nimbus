@@ -92,25 +92,30 @@ class _FooterSectionState extends State<FooterSection> {
                 ),
               ],
             ),
+            textAlign: TextAlign.center,
           ),
           SpaceH4(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RichText(
-                text: TextSpan(
-                  text: StringConst.BUILT_BY + " ",
-                  style: footerTextStyle,
-                  children: [
-                    TextSpan(
-                      text: StringConst.DAVID_COBBINA + ". ",
-                      style: footerTextStyle?.copyWith(
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.w900,
-                        color: AppColors.black,
-                      ),
+              Expanded(
+                child: Center(
+                  child: RichText(
+                    text: TextSpan(
+                      text: StringConst.BUILT_BY + " ",
+                      style: footerTextStyle,
+                      children: [
+                        TextSpan(
+                          text: StringConst.DAVID_COBBINA + ". ",
+                          style: footerTextStyle?.copyWith(
+                            decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ],
@@ -181,7 +186,8 @@ class _FooterSectionState extends State<FooterSection> {
           Spacer(flex: 3),
           Text(
             StringConst.LETS_TALK,
-            style: textTheme.headline3?.copyWith(color: AppColors.white),
+            textAlign: TextAlign.center,
+            style: textTheme.headline4?.copyWith(color: AppColors.white),
           ),
           Spacer(flex: 2),
           ..._buildFooterItems(footerItems),

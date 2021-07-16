@@ -67,10 +67,12 @@ class BlogCard extends StatelessWidget {
             margin: const EdgeInsets.only(left: Sizes.MARGIN_16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 ClipRRect(
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(Sizes.RADIUS_16)),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(Sizes.RADIUS_16),
+                  ),
                   child: Image.asset(imageUrl),
                 ),
                 SpaceH8(),

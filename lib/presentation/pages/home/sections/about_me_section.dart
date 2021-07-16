@@ -30,7 +30,6 @@ class AboutMeSection extends StatefulWidget {
 
 class _AboutMeSectionState extends State<AboutMeSection>
     with TickerProviderStateMixin {
-  bool _isVisibleEnough = false;
   late AnimationController _scaleController;
   late Animation<double> _scaleAnimation;
   late AnimationController _fadeInController;
