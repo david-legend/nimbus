@@ -34,7 +34,7 @@ class AnimatedNimbusButton extends StatefulWidget {
     this.leadingButtonColor = AppColors.yellow500,
     this.trailingButtonColor = AppColors.yellow700,
     this.duration = const Duration(milliseconds: 300),
-    this.curve = Curves.linearToEaseOut,
+    this.curve = Curves.easeIn,
     this.leadingButtonBorderRadius = const BorderRadius.all(Radius.circular(4)),
     this.leadingButtonHoverBorderRadius = const BorderRadius.only(
       topLeft: Radius.circular(4),
@@ -55,13 +55,13 @@ class AnimatedNimbusButton extends StatefulWidget {
 
 class _AnimatedNimbusButtonState extends State<AnimatedNimbusButton> {
   bool _isHovering = false;
-  bool _showText = false;
 
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return InkWell(
       onTap: _isHovering ? widget.onTap : null,
+      hoverColor: Colors.transparent,
       child: Container(
         width: widget.width,
         child: Row(
