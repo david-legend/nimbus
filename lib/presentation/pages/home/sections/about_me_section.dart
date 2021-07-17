@@ -153,7 +153,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
     for (int index = 0; index < data.length; index++) {
       items.add(
         SocialButton2(
-//          width: width,
+          width: width,
           title: data[index].title.toUpperCase(),
           iconData: data[index].iconData,
           onPressed: () => openUrlLink(data[index].url),
@@ -199,10 +199,13 @@ class _AboutMeSectionState extends State<AboutMeSection>
             Positioned(
               left: 0,
               bottom: 0,
-              child: Image.asset(
-                ImagePath.DOTS_GLOBE_GREY,
-                width: 180,
-                height: 180,
+              child: ScaleTransition(
+                scale: _scaleAnimation,
+                child: Image.asset(
+                  ImagePath.DOTS_GLOBE_GREY,
+                  width: 180,
+                  height: 180,
+                ),
               ),
             ),
             ScaleTransition(
@@ -271,7 +274,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
           builder: (context, sizingInformation) {
             double screenWidth = sizingInformation.screenSize.width;
             if (screenWidth < (RefinedBreakpoints().tabletNormal)) {
-              return nimbusInfoSectionSm();
+              return nimbusInfoSectionSm(width: width);
             } else {
               //This container takes 85% of the space and leave 15% as spacing
               //between the blob and the content
@@ -306,8 +309,9 @@ class _AboutMeSectionState extends State<AboutMeSection>
                   children: [
                     Text(
                       StringConst.FOLLOW_ME_1,
-                      style:
-                          textTheme.headline6?.copyWith(color: AppColors.black),
+                      style: textTheme.headline6?.copyWith(
+                        color: AppColors.black,
+                      ),
                     ),
                     SpaceH16(),
                     Wrap(
@@ -328,7 +332,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
     );
   }
 
-  Widget nimbusInfoSectionSm() {
+  Widget nimbusInfoSectionSm({required double width}) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return NimbusInfoSection2(
       sectionTitle: StringConst.ABOUT_ME,
@@ -346,9 +350,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
           Wrap(
             spacing: kSpacingSm,
             runSpacing: kRunSpacingSm,
-            children: _buildSocialButtons(
-              Data.socialData2,
-            ),
+            children: _buildSocialButtons(Data.socialData2, width: width * 0.4),
           ),
         ],
       ),

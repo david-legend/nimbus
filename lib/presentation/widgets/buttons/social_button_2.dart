@@ -60,6 +60,7 @@ class SocialButton2 extends StatelessWidget {
       width: width,
       height: height,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             width: buttonWidth,
