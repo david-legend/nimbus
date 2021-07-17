@@ -194,12 +194,25 @@ class _AboutMeSectionState extends State<AboutMeSection>
             },
           ),
         ),
-        ScaleTransition(
-          scale: _scaleAnimation,
-          child: Image.asset(
-            ImagePath.DEV_ABOUT_ME,
-            width: width * 0.95,
-          ),
+        Stack(
+          children: [
+            Positioned(
+              left: 0,
+              bottom: 0,
+              child: Image.asset(
+                ImagePath.DOTS_GLOBE_GREY,
+                width: 180,
+                height: 180,
+              ),
+            ),
+            ScaleTransition(
+              scale: _scaleAnimation,
+              child: Image.asset(
+                ImagePath.DEV_ABOUT_ME,
+                width: width * 0.95,
+              ),
+            ),
+          ],
         ),
         Positioned(
           top: width * 0.2,
