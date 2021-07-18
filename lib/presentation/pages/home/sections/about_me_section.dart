@@ -345,7 +345,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
           Wrap(
             spacing: kSpacingSm,
             runSpacing: kRunSpacingSm,
-            children: _buildSocialButtons(Data.socialData2, width: width * 0.35),
+            children: _buildSocialButtons(Data.socialData2),
           ),
         ],
       ),

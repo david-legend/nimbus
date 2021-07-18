@@ -5,6 +5,7 @@ import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/nimbus_info_section.dart';
 import 'package:nimbus/presentation/widgets/skill_card.dart';
 import 'package:nimbus/presentation/widgets/skill_level.dart';
+import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -63,7 +64,7 @@ class _SkillsSectionState extends State<SkillsSection>
         }
       },
       child: Container(
-        height: contentAreaHeight,
+        // height: contentAreaHeight,
         padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
         child: ResponsiveBuilder(
           refinedBreakpoints: RefinedBreakpoints(),
@@ -74,17 +75,16 @@ class _SkillsSectionState extends State<SkillsSection>
                 children: [
                   ContentArea(
                     width: contentAreaWidthSm,
-                    height: contentAreaHeight * 0.4,
+                    // height: contentAreaHeight * 0.4,
                     child: _buildNimbusSm(width: contentAreaWidthSm),
                   ),
-                  Flexible(
-                    child: ContentArea(
-                      width: contentAreaWidthSm,
-                      child: Center(
-                        child: _buildSkillBoxes(
-                          boxHeight: 150,
-                          crossAxisCount: 1,
-                        ),
+                  SpaceH40(),
+                  ContentArea(
+                    width: contentAreaWidthSm,
+                    child: Center(
+                      child: _buildSkillBoxes(
+                        boxHeight: 150,
+                        crossAxisCount: 1,
                       ),
                     ),
                   ),
@@ -96,17 +96,15 @@ class _SkillsSectionState extends State<SkillsSection>
                 children: [
                   ContentArea(
                     width: contentAreaWidthSm,
-                    height: contentAreaHeight * 0.4,
                     child: _buildNimbusSm(width: contentAreaWidthSm),
                   ),
-                  Flexible(
-                    child: ContentArea(
-                      width: contentAreaWidthSm,
-                      child: Center(
-                        child: _buildSkillBoxes(
-                          boxHeight: 250,
-                          crossAxisCount: 2,
-                        ),
+                  SpaceH40(),
+                  ContentArea(
+                    width: contentAreaWidthSm,
+                    child: Center(
+                      child: _buildSkillBoxes(
+                        boxHeight: 250,
+                        crossAxisCount: 2,
                       ),
                     ),
                   ),
@@ -117,7 +115,6 @@ class _SkillsSectionState extends State<SkillsSection>
                 children: [
                   ContentArea(
                     width: contentAreaWidthLg,
-                    height: contentAreaHeight,
                     child: _buildNimbusLg(width: contentAreaWidthLg),
                   ),
                   ContentArea(
@@ -203,7 +200,6 @@ class _SkillsSectionState extends State<SkillsSection>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Spacer(),
                 NimbusInfoSection1(
                   sectionTitle: StringConst.MY_SKILLS,
                   title1: StringConst.SKILLS_TITLE_1,
@@ -217,7 +213,6 @@ class _SkillsSectionState extends State<SkillsSection>
                     ),
                   ),
                 ),
-                Spacer(),
               ],
             ),
           ),
