@@ -32,7 +32,6 @@ class ProjectsSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
       child: ContentArea(
         width: contentAreaWidth,
-        height: contentAreaHeight,
         child: ResponsiveBuilder(
           refinedBreakpoints: RefinedBreakpoints(),
           builder: (context, sizingInformation) {
