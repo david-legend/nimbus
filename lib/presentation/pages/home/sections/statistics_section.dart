@@ -69,7 +69,6 @@ class _StatisticsSectionState extends State<StatisticsSection>
                 double screenWidth = sizingInformation.screenSize.width;
                 if (screenWidth < (RefinedBreakpoints().tabletLarge)) {
                   return Container(
-                    height: contentAreaHeight,
                     width: contentAreaWidth,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -111,7 +110,7 @@ class _StatisticsSectionState extends State<StatisticsSection>
       );
 
       if (index < data.length - 1) {
-        items.add(Spacer(flex: 2));
+        items.add(SpaceH40());
       }
     }
     return items;
