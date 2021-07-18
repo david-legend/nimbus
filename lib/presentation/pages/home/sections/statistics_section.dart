@@ -85,7 +85,7 @@ class _StatisticsSectionState extends State<StatisticsSection>
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Spacer(),
-                      ..._buildItems(Data.statItemsData),
+                      ..._buildItems(Data.statItemsData, isHorizontal: true),
                       Spacer(),
                     ],
                   );
@@ -98,7 +98,10 @@ class _StatisticsSectionState extends State<StatisticsSection>
     );
   }
 
-  List<Widget> _buildItems(List<StatItemData> data) {
+  List<Widget> _buildItems(
+    List<StatItemData> data, {
+    bool isHorizontal = false,
+  }) {
     List<Widget> items = [];
     for (int index = 0; index < data.length; index++) {
       items.add(
@@ -110,7 +113,11 @@ class _StatisticsSectionState extends State<StatisticsSection>
       );
 
       if (index < data.length - 1) {
-        items.add(SpaceH40());
+        if (isHorizontal) {
+          items.add(Spacer(flex: 2));
+        } else {
+          items.add(SpaceH40());
+        }
       }
     }
     return items;
