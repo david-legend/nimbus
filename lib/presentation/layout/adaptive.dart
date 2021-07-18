@@ -81,8 +81,8 @@ double responsiveSize(
 }) {
   return context.layout.value(
     xs: xs,
-    sm: sm ?? xs,
-    md: md ?? xs,
+    sm: sm ?? (md ?? xs), //assign md to sm if it is not null, if null assign xs
+    md: md ?? lg,
     lg: lg,
     xl: xl ?? lg,
   );
@@ -98,8 +98,8 @@ int responsiveSizeInt(
 }) {
   return context.layout.value(
     xs: xs,
-    sm: sm ?? xs,
-    md: md ?? xs,
+    sm: sm ?? (md ?? xs), //assign md to sm if it is not null, if null assign xs
+    md: md ?? lg,
     lg: lg,
     xl: xl ?? lg,
   );
@@ -115,8 +115,8 @@ Color responsiveColor(
 }) {
   return context.layout.value(
     xs: xs,
-    sm: sm ?? xs,
-    md: md ?? xs,
+    sm: sm ?? (md ?? xs), //assign md to sm if it is not null, if null assign xs
+    md: md ?? lg,
     lg: lg,
     xl: xl ?? lg,
   );

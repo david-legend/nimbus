@@ -40,7 +40,7 @@ class NimBusCard extends StatefulWidget {
     this.hasAnimation = true,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.padding = const EdgeInsets.symmetric(
-      horizontal: Sizes.PADDING_20,
+      horizontal: Sizes.PADDING_0,
       vertical: Sizes.PADDING_12,
     ),
   });
@@ -132,6 +132,7 @@ class _NimBusCardState extends State<NimBusCard>
               mainAxisAlignment: widget.rowMainAxisAlignment,
               crossAxisAlignment: widget.rowCrossAxisAlignment,
               children: [
+                widget.leading != null ? Spacer() : Empty(),
                 widget.leading ?? Empty(),
                 widget.leading != null ? Spacer() : Empty(),
                 Column(
@@ -147,6 +148,7 @@ class _NimBusCardState extends State<NimBusCard>
                 ),
                 widget.trailing != null ? Spacer() : Empty(),
                 widget.trailing ?? Empty(),
+                widget.trailing != null ? Spacer() : Empty(),
               ],
             ),
           ),

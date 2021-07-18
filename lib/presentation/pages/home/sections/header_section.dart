@@ -91,144 +91,163 @@ class _HeaderSectionState extends State<HeaderSection>
       width: contentAreaWidth * 0.4,
       isWrap: true,
     );
+    double buttonWidth = responsiveSize(
+      context,
+      80,
+      150,
+    );
+    double buttonHeight = responsiveSize(
+      context,
+      48,
+      60,
+      md: 54,
+    );
 
     return ContentArea(
       width: contentAreaWidth,
       child: Column(
         children: [
-          Stack(
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: headerIntroTextSize),
-                child: SelectableText(
-                  StringConst.FIRST_NAME,
-                  style: textTheme.headline1?.copyWith(
-                    color: AppColors.grey50,
-                    fontSize: headerIntroTextSize * 2,
+          Container(
+            color: Colors.green,
+            child: Stack(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: headerIntroTextSize),
+                  child: SelectableText(
+                    StringConst.FIRST_NAME,
+                    style: textTheme.headline1?.copyWith(
+                      color: AppColors.grey50,
+                      fontSize: headerIntroTextSize * 2,
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                height: screenHeight,
-                child: _buildResponsiveHeaderImage(),
-              ),
-              Positioned(
-                left: -hiddenPortionOfBlackBlob,
-                child: _buildBlob(
-                  blobWidth: widthOfBlackBlob,
-                  blobHeight: contentAreaHeight,
+                Container(
+                  height: screenHeight,
+                  child: _buildResponsiveHeaderImage(),
                 ),
-              ),
-              Positioned(
-                top: contentAreaHeight * 0.2,
-                left: sidePadding,
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AnimatedTextKit(
-                          animatedTexts: [
-                            TypewriterAnimatedText(
-                              StringConst.INTRO,
-                              speed: Duration(milliseconds: 60),
-                              textStyle: textTheme.headline2?.copyWith(
-                                fontSize: headerIntroTextSize,
-                              ),
-                            ),
-                          ],
-                          onTap: () {},
-                          isRepeatingAnimation: true,
-                          totalRepeatCount: 5,
-                        ),
-                        AnimatedTextKit(
-                          animatedTexts: [
-                            TypewriterAnimatedText(
-                              StringConst.POSITION,
-                              speed: Duration(milliseconds: 80),
-                              textStyle: textTheme.headline2?.copyWith(
-                                fontSize: headerIntroTextSize,
-                                color: AppColors.primaryColor,
-                                height: 1.2,
-                              ),
-                            ),
-                          ],
-                          onTap: () {},
-                          isRepeatingAnimation: true,
-                          totalRepeatCount: 5,
-                        ),
-                        SpaceH16(),
-                        SelectableText(
-                          StringConst.ABOUT_ME_1,
-                          style: bodyTextStyle,
-                        ),
-                        SpaceH8(),
-                        SelectableText(
-                          StringConst.ABOUT_ME_2,
-                          style: bodyTextStyle,
-                        ),
-                        SpaceH30(),
-                        Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SelectableText(
-                                  "${StringConst.EMAIL}:",
-                                  style: socialTitleStyle,
-                                ),
-                                SpaceH8(),
-                                SelectableText(
-                                  "${StringConst.DEV_EMAIL_2}",
-                                  style: bodyTextStyle,
-                                ),
-                              ],
-                            ),
-                            SpaceW40(),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SelectableText(
-                                  "${StringConst.BEHANCE}:",
-                                  style: socialTitleStyle,
-                                ),
-                                SpaceH8(),
-                                SelectableText(
-                                  "${StringConst.BEHANCE_ID}",
-                                  style: bodyTextStyle,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SpaceH40(),
-                        Row(
-                          children: [
-                            NimbusButton(
-                              buttonTitle: StringConst.DOWNLOAD_CV,
-                              buttonColor: AppColors.primaryColor,
-                              onPressed: () =>
-                                  openUrlLink(StringConst.EMAIL_URL),
-                            ),
-                            SpaceW20(),
-                            NimbusButton(
-                              buttonTitle: StringConst.HIRE_ME_NOW,
-                              onPressed: () =>
-                                  openUrlLink(StringConst.EMAIL_URL),
-                            ),
-                          ],
-                        ),
-                        SpaceH30(),
-                        Wrap(
-                          children: _buildSocialIcons(Data.socialData),
-                        )
-                      ],
-                    ),
-                  ],
+                Positioned(
+                  left: -hiddenPortionOfBlackBlob,
+                  child: _buildBlob(
+                    blobWidth: widthOfBlackBlob,
+                    blobHeight: contentAreaHeight,
+                  ),
                 ),
-              ),
-            ],
+                Positioned(
+                  top: contentAreaHeight * 0.2,
+                  left: sidePadding,
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AnimatedTextKit(
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                StringConst.INTRO,
+                                speed: Duration(milliseconds: 60),
+                                textStyle: textTheme.headline2?.copyWith(
+                                  fontSize: headerIntroTextSize,
+                                ),
+                              ),
+                            ],
+                            onTap: () {},
+                            isRepeatingAnimation: true,
+                            totalRepeatCount: 5,
+                          ),
+                          AnimatedTextKit(
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                StringConst.POSITION,
+                                speed: Duration(milliseconds: 80),
+                                textStyle: textTheme.headline2?.copyWith(
+                                  fontSize: headerIntroTextSize,
+                                  color: AppColors.primaryColor,
+                                  height: 1.2,
+                                ),
+                              ),
+                            ],
+                            onTap: () {},
+                            isRepeatingAnimation: true,
+                            totalRepeatCount: 5,
+                          ),
+                          SpaceH16(),
+                          SelectableText(
+                            StringConst.ABOUT_ME_1,
+                            style: bodyTextStyle,
+                          ),
+                          SpaceH8(),
+                          SelectableText(
+                            StringConst.ABOUT_ME_2,
+                            style: bodyTextStyle,
+                          ),
+                          SpaceH30(),
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SelectableText(
+                                    "${StringConst.EMAIL}:",
+                                    style: socialTitleStyle,
+                                  ),
+                                  SpaceH8(),
+                                  SelectableText(
+                                    "${StringConst.DEV_EMAIL_2}",
+                                    style: bodyTextStyle,
+                                  ),
+                                ],
+                              ),
+                              SpaceW40(),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SelectableText(
+                                    "${StringConst.BEHANCE}:",
+                                    style: socialTitleStyle,
+                                  ),
+                                  SpaceH8(),
+                                  SelectableText(
+                                    "${StringConst.BEHANCE_ID}",
+                                    style: bodyTextStyle,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SpaceH40(),
+                          Row(
+                            children: [
+                              NimbusButton(
+                                width: buttonWidth,
+                                height: buttonHeight,
+                                buttonTitle: StringConst.DOWNLOAD_CV,
+                                buttonColor: AppColors.primaryColor,
+                                onPressed: () =>
+                                    openUrlLink(StringConst.EMAIL_URL),
+                              ),
+                              SpaceW20(),
+                              NimbusButton(
+                                width: buttonWidth,
+                                height: buttonHeight,
+                                buttonTitle: StringConst.HIRE_ME_NOW,
+                                onPressed: () =>
+                                    openUrlLink(StringConst.EMAIL_URL),
+                              ),
+                            ],
+                          ),
+                          SpaceH30(),
+                          Wrap(
+                            children: _buildSocialIcons(Data.socialData),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
+          // SpaceH40(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
             child: Column(
@@ -403,34 +422,66 @@ class _HeaderSectionState extends State<HeaderSection>
     TextTheme textTheme = Theme.of(context).textTheme;
     List<Widget> items = [];
 
+    double cardWidth = responsiveSize(
+      context,
+      Sizes.WIDTH_32,
+      Sizes.WIDTH_40,
+      md: Sizes.WIDTH_36,
+    );
+    double iconSize = responsiveSize(
+      context,
+      Sizes.ICON_SIZE_18,
+      Sizes.ICON_SIZE_24,
+    );
+    double trailingIconSize = responsiveSize(
+      context,
+      Sizes.ICON_SIZE_28,
+      Sizes.ICON_SIZE_30,
+      md: Sizes.ICON_SIZE_30,
+    );
     for (int index = 0; index < data.length; index++) {
       items.add(
         NimBusCard(
           width: width,
-          height: 120,
+          height: responsiveSize(
+            context,
+            125,
+            140,
+          ),
           hasAnimation: hasAnimation,
           leading: CircularContainer(
-            width: Sizes.WIDTH_40,
-            height: Sizes.HEIGHT_40,
-            iconSize: Sizes.ICON_SIZE_24,
+            width: cardWidth,
+            height: cardWidth,
+            iconSize: iconSize,
             backgroundColor: data[index].circleBgColor,
             iconColor: data[index].leadingIconColor,
           ),
           title: Flexible(
             child: SelectableText(
               data[index].title,
-              style: textTheme.subtitle1?.copyWith(),
+              style: textTheme.subtitle1?.copyWith(
+                fontSize: responsiveSize(
+                  context,
+                  Sizes.TEXT_SIZE_16,
+                  Sizes.TEXT_SIZE_18,
+                ),
+              ),
             ),
           ),
           subtitle: Flexible(
             child: SelectableText(
               data[index].subtitle,
-              style: textTheme.bodyText1,
+              style: textTheme.bodyText1?.copyWith(
+                  fontSize: responsiveSize(
+                context,
+                Sizes.TEXT_SIZE_14,
+                Sizes.TEXT_SIZE_16,
+              )),
             ),
           ),
           trailing: Icon(
             Icons.chevron_right,
-            size: Sizes.ICON_SIZE_30,
+            size: trailingIconSize,
             color: data[index].trailingIconColor,
           ),
         ),
@@ -441,7 +492,7 @@ class _HeaderSectionState extends State<HeaderSection>
         if (isHorizontal) {
           items.add(SpaceW36());
         } else {
-          items.add(SpaceH40());
+          items.add(SpaceH30());
         }
       }
     }
