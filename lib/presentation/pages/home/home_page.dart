@@ -16,6 +16,8 @@ import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import 'sections/brand_section.dart';
+
 //TODO:: Add ash background blob (esp the one that extends between header and about section
 //TODO:: Add huge ash background blob (the one that extends between skills section and projects
 //TODO:: Add FAB that takes user to the top page
@@ -84,13 +86,13 @@ class HomePage extends StatelessWidget {
                   SizedBox(height: spacerHeight),
                   AwardsSection(),
                   SizedBox(height: spacerHeight),
-//                  BrandSection(),
-//                  SizedBox(height: spacerHeight),
+                //  BrandSection(),
+                //  SizedBox(height: spacerHeight),
 //                  TestimonialsSection(),
                   // SizedBox(height: spacerHeight),
-                  // BlogSection(),
-                  // SizedBox(height: spacerHeight),
-                  // FooterSection(),
+                  BlogSection(),
+                  SizedBox(height: spacerHeight),
+                  FooterSection(),
                 ],
               ),
             ),
