@@ -108,7 +108,6 @@ class _HeaderSectionState extends State<HeaderSection>
       child: Column(
         children: [
           Container(
-            color: Colors.green,
             child: Stack(
               children: [
                 Container(

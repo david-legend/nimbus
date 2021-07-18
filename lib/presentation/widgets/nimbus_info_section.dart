@@ -41,7 +41,7 @@ class NimbusInfoSection1 extends StatelessWidget {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     TextStyle? titleStyle = textTheme.headline3?.copyWith(
-      fontSize: responsiveSize(context, 26, 48, md: 32),
+      fontSize: responsiveSize(context, 26, 36, md: 32),
     );
     double fontSize = responsiveSize(context, 16, 18);
     return Container(

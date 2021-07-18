@@ -80,7 +80,6 @@ class _AboutMeSectionState extends State<AboutMeSection>
     double contentAreaWidthSm = screenWidth * 1.0;
     double contentAreaHeightSm = screenHeight * 0.6;
     double contentAreaWidthLg = screenWidth * 0.5;
-    double contentAreaHeightLg = screenHeight * 0.9;
     return VisibilityDetector(
       key: Key('about-section'),
       onVisibilityChanged: (visibilityInfo) {
@@ -108,10 +107,9 @@ class _AboutMeSectionState extends State<AboutMeSection>
                   SpaceH40(),
                   ContentArea(
                     width: contentAreaWidthSm,
-                    height: contentAreaHeightSm,
                     child: _buildAboutMe(
                       width: contentAreaWidthSm,
-                      height: contentAreaHeightSm,
+                      height: screenHeight,
                     ),
                   ),
                 ],
@@ -121,18 +119,16 @@ class _AboutMeSectionState extends State<AboutMeSection>
                 children: [
                   ContentArea(
                     width: contentAreaWidthLg,
-                    height: contentAreaHeightLg,
                     child: _buildImage(
                       width: contentAreaWidthLg,
-                      height: contentAreaHeightLg,
+                      height: screenHeight,
                     ),
                   ),
                   ContentArea(
                     width: contentAreaWidthLg,
-                    height: contentAreaHeightLg,
                     child: _buildAboutMe(
                       width: contentAreaWidthLg,
-                      height: contentAreaHeightLg,
+                      height: screenHeight,
                     ),
                   ),
                 ],
@@ -168,9 +164,9 @@ class _AboutMeSectionState extends State<AboutMeSection>
 
   Widget _buildImage({required double width, required double height}) {
     TextTheme textTheme = Theme.of(context).textTheme;
-
+    double fontSize = responsiveSize(context, 60, 72, md: 64);
     TextStyle? titleStyle = textTheme.bodyText1?.merge(
-      Styles.customTextStyle3(fontSize: 72, height: 1.25),
+      Styles.customTextStyle3(fontSize: fontSize, height: 1.25),
     );
 
     return Stack(
@@ -298,7 +294,6 @@ class _AboutMeSectionState extends State<AboutMeSection>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Spacer(),
               NimbusInfoSection1(
                 sectionTitle: StringConst.ABOUT_ME,
                 title1: StringConst.CREATIVE_DESIGN,
@@ -324,7 +319,6 @@ class _AboutMeSectionState extends State<AboutMeSection>
                   ],
                 ),
               ),
-              Spacer(),
             ],
           ),
         ),
@@ -341,6 +335,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
       body: StringConst.ABOUT_ME_DESC,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+
         children: [
           Text(
             StringConst.FOLLOW_ME_1,
@@ -350,7 +345,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
           Wrap(
             spacing: kSpacingSm,
             runSpacing: kRunSpacingSm,
-            children: _buildSocialButtons(Data.socialData2, width: width * 0.4),
+            children: _buildSocialButtons(Data.socialData2, width: width * 0.35),
           ),
         ],
       ),
