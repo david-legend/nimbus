@@ -27,7 +27,6 @@ class ProjectsSection extends StatelessWidget {
     double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
     double screenHeight = heightOfScreen(context);
     double contentAreaWidth = screenWidth;
-    double contentAreaHeight = screenHeight * 0.5;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
       child: ContentArea(

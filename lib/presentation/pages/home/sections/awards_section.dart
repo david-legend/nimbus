@@ -97,9 +97,23 @@ class _AwardsSectionState extends State<AwardsSection>
                     },
                   ),
                   SpaceH50(),
-                  _buildImage(
-                    width: contentAreaWidth,
-                    height: contentAreaHeight,
+                  ResponsiveBuilder(
+                    builder: (context, sizingInformation) {
+                      double screenWidth = sizingInformation.screenSize.width;
+                      if (screenWidth < (RefinedBreakpoints().tabletSmall)) {
+                        return _buildImage(
+                          width: screenWidth,
+                          height: contentAreaHeight,
+                        );
+                      } else {
+                        return Center(
+                          child: _buildImage(
+                            width: screenWidth * 0.75,
+                            height: contentAreaHeight,
+                          ),
+                        );
+                      }
+                    },
                   ),
                 ],
               );
@@ -182,10 +196,16 @@ class _AwardsSectionState extends State<AwardsSection>
     TextTheme textTheme = Theme.of(context).textTheme;
     TextStyle? titleStyle = textTheme.bodyText1?.merge(
       Styles.customTextStyle3(
-        fontSize: 72,
+        fontSize: responsiveSize(context, 64, 80, md: 76),
         height: 1.25,
         color: AppColors.primaryColor,
       ),
+    );
+    double textPosition = responsiveSize(
+      context,
+      12,
+      assignWidth(context, 0.1),
+      md: assignWidth(context, 0.1),
     );
     return ContentArea(
       width: width,
@@ -218,6 +238,14 @@ class _AwardsSectionState extends State<AwardsSection>
               Image.asset(
                 ImagePath.DEV_AWARD,
               ),
+              Positioned(
+                left: textPosition,
+                child: Text(StringConst.MY, style: titleStyle),
+              ),
+              Positioned(
+                right: textPosition,
+                child: Text(StringConst.CV, style: titleStyle),
+              ),
             ],
           ),
 //          SlideTransition(
@@ -228,22 +256,22 @@ class _AwardsSectionState extends State<AwardsSection>
 //            position: _text2Animation,
 //            child: Text(StringConst.CV, style: titleStyle),
 //          ),
-          Positioned(
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: assignWidth(context, 0.1),
-                top: Sizes.PADDING_24,
-                right: assignWidth(context, 0.1),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(StringConst.MY, style: titleStyle),
-                  Text(StringConst.CV, style: titleStyle),
-                ],
-              ),
-            ),
-          ),
+          // Positioned(
+          //   child: Padding(
+          //     padding: EdgeInsets.only(
+          //       left: assignWidth(context, 0.1),
+          //       top: Sizes.PADDING_24,
+          //       right: assignWidth(context, 0.1),
+          //     ),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         Text(StringConst.MY, style: titleStyle),
+          //         Text(StringConst.CV, style: titleStyle),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
