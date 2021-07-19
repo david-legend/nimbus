@@ -67,7 +67,7 @@ class _HeaderSectionState extends State<HeaderSection>
     );
     double headerIntroTextSize = responsiveSize(
       context,
-      Sizes.TEXT_SIZE_28,
+      Sizes.TEXT_SIZE_24,
       Sizes.TEXT_SIZE_56,
       md: Sizes.TEXT_SIZE_36,
     );
@@ -104,7 +104,7 @@ class _HeaderSectionState extends State<HeaderSection>
     );
 
     return ContentArea(
-      width: contentAreaWidth,
+      // width: contentAreaWidth,
       child: Column(
         children: [
           Container(
