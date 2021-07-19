@@ -12,6 +12,7 @@ import 'package:nimbus/presentation/pages/home/sections/skills_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/statistics_section.dart';
 import 'package:nimbus/presentation/widgets/app_drawer.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
+import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -85,7 +86,8 @@ class HomePage extends StatelessWidget {
                   ProjectsSection(),
                   SizedBox(height: spacerHeight),
                   AwardsSection(),
-                  SizedBox(height: spacerHeight),
+                  SpaceH40(),
+                  // SizedBox(height: spacerHeight),
                 //  BrandSection(),
                 //  SizedBox(height: spacerHeight),
 //                  TestimonialsSection(),

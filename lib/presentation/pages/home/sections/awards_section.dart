@@ -71,8 +71,6 @@ class _AwardsSectionState extends State<AwardsSection>
       key: Key('awards-section'),
       onVisibilityChanged: (visibilityInfo) {
         double visiblePercentage = visibilityInfo.visibleFraction * 100;
-        debugPrint(
-            'Widget ${visibilityInfo.key} is $visiblePercentage% visible');
         if (visiblePercentage > 30) {
           _text1Controller.forward();
         }
@@ -103,13 +101,13 @@ class _AwardsSectionState extends State<AwardsSection>
                       if (screenWidth < (RefinedBreakpoints().tabletSmall)) {
                         return _buildImage(
                           width: screenWidth,
-                          height: contentAreaHeight,
+                          height: screenHeight * 0.5,
                         );
                       } else {
                         return Center(
                           child: _buildImage(
                             width: screenWidth * 0.75,
-                            height: contentAreaHeight,
+                            height: screenHeight * 0.75,
                           ),
                         );
                       }
