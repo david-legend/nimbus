@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 
@@ -33,7 +34,8 @@ class BlogCard extends StatefulWidget {
     this.categoryStyle,
     this.buttonTextStyle,
     this.width,
-    this.height,
+    this.imageWidth,
+    this.imageHeight,
     this.buttonColor = AppColors.primaryColor,
     this.buttonIcon = Icons.chevron_right,
     this.dateIcon = Icons.date_range,
@@ -46,7 +48,8 @@ class BlogCard extends StatefulWidget {
   final String buttonText;
   final String imageUrl;
   final double? width;
-  final double? height;
+  final double? imageWidth;
+  final double? imageHeight;
   final TextStyle? dateStyle;
   final TextStyle? titleStyle;
   final TextStyle? categoryStyle;
@@ -66,13 +69,8 @@ class _BlogCardState extends State<BlogCard> {
   Color startValue = Colors.black.withOpacity(0.5);
   Color targetValue = Colors.black.withOpacity(0);
 
-//  late Color targetValue;
-//  late Color startValue;
-
   @override
   void initState() {
-//    targetValue = lightOpacity;
-//    startValue = dimOpacity;
     super.initState();
   }
 
@@ -82,29 +80,72 @@ class _BlogCardState extends State<BlogCard> {
 
     return Container(
       width: widget.width,
-      height: widget.height,
-      child: Stack(
+      child: Column(
         children: [
+          Stack(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: Sizes.MARGIN_16),
+                
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(Sizes.RADIUS_16),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      MouseRegion(
+                        onEnter: (e) => _onImageHover(true),
+                        onExit: (e) => _onImageHover(false),
+                        child: AnimatedOpacity(
+                          opacity: _isHoveringOnImage ? 1.0 : 0.85,
+                          duration: Duration(milliseconds: 300),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(Sizes.RADIUS_16),
+                            ),
+                            child: Image.asset(
+                              widget.imageUrl,
+                              height: heightOfImage(),
+                              width: widthOfImage(),
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: Sizes.MARGIN_30),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Sizes.PADDING_8,
+                  vertical: Sizes.PADDING_8,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.black,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(6),
+                  ),
+                ),
+                child: Text(
+                  widget.category,
+                  style: widget.categoryStyle ??
+                      textTheme.subtitle1?.copyWith(
+                        fontSize: Sizes.TEXT_SIZE_15,
+                        color: AppColors.white,
+                      ),
+                ),
+              ),
+            ],
+          ),
           Container(
             margin: const EdgeInsets.only(left: Sizes.MARGIN_16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
               children: [
-                MouseRegion(
-                  onEnter: (e) => _onImageHover(true),
-                  onExit: (e) => _onImageHover(false),
-                  child: AnimatedOpacity(
-                    opacity: _isHoveringOnImage ? 1.0 : 0.85,
-                    duration: Duration(milliseconds: 300),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(Sizes.RADIUS_16),
-                      ),
-                      child: Image.asset(widget.imageUrl),
-                    ),
-                  ),
-                ),
                 SpaceH8(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -125,10 +166,6 @@ class _BlogCardState extends State<BlogCard> {
                   text: widget.title,
                   textStyle: widget.titleStyle ?? textTheme.headline5,
                 ),
-//                Text(
-//                  widget.title,
-//                  style: widget.titleStyle ?? textTheme.headline5,
-//                ),
                 SpaceH16(),
                 AnimatedNimbusButton(
                   title: widget.buttonText,
@@ -138,26 +175,7 @@ class _BlogCardState extends State<BlogCard> {
                 ),
               ],
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: Sizes.MARGIN_30),
-            padding: const EdgeInsets.symmetric(
-                horizontal: Sizes.PADDING_8, vertical: Sizes.PADDING_8),
-            decoration: BoxDecoration(
-              color: AppColors.black,
-              borderRadius: BorderRadius.all(
-                Radius.circular(6),
-              ),
-            ),
-            child: Text(
-              widget.category,
-              style: widget.categoryStyle ??
-                  textTheme.subtitle1?.copyWith(
-                    fontSize: Sizes.TEXT_SIZE_15,
-                    color: AppColors.white,
-                  ),
-            ),
-          ),
+          )
         ],
       ),
     );
@@ -167,5 +185,13 @@ class _BlogCardState extends State<BlogCard> {
     setState(() {
       _isHoveringOnImage = hovering;
     });
+  }
+
+  double heightOfImage() {
+    return widget.imageHeight ?? assignHeight(context, 0.5);
+  }
+
+  double widthOfImage() {
+    return widget.imageWidth ?? widthOfScreen(context);
   }
 }

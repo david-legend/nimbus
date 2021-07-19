@@ -108,14 +108,15 @@ class _BlogSectionState extends State<BlogSection> {
                 if (widthOfScreen < (RefinedBreakpoints().tabletLarge)) {
                   return Container(
                     width: widthOfScreen,
-                    height: screenHeight,
+                    height: screenWidth + 250,
                     child: CarouselSlider.builder(
                       itemCount: blogLength,
                       itemBuilder:
                           (BuildContext context, int index, int pageViewIndex) {
                         return BlogCard(
-                          width: contentAreaWidth * 0.9,
-                          height: screenHeight * 0.6,
+                          width: screenWidth,
+                          imageWidth: screenWidth,
+                          imageHeight: screenWidth,
                           category: Data.blogData[index].category,
                           title: Data.blogData[index].title,
                           date: Data.blogData[index].date,
@@ -129,57 +130,60 @@ class _BlogSectionState extends State<BlogSection> {
                   );
                 } else if (widthOfScreen >= RefinedBreakpoints().tabletLarge &&
                     widthOfScreen <= 1024) {
-                  return Container(
-                    height: screenHeight,
-                    width: screenWidth,
-                    child: Column(
-                      children: [
-                        Container(
-                          width: screenWidth,
-                          height: screenHeight * 0.9,
-                          child: CarouselSlider.builder(
-                            itemCount: blogLength,
-                            carouselController: _carouselController,
-                            itemBuilder: (BuildContext context, int index,
-                                int pageViewIndex) {
-                              return BlogCard(
-                                width: screenWidth * 0.45,
-                                height: screenHeight,
-                                category: Data.blogData[index].category,
-                                title: Data.blogData[index].title,
-                                date: Data.blogData[index].date,
-                                buttonText: Data.blogData[index].buttonText,
-                                imageUrl: Data.blogData[index].imageUrl,
-                                onPressed: () {},
-                              );
-                            },
-                            options: carouselOptions(
-                              viewportFraction: 0.50,
-                              autoPlay: false,
-                              initialPage: currentPageIndex.toInt(),
-                              aspectRatio: 1,
-                              enableInfiniteScroll: true,
-                              enlargeCenterPage: false,
-                            ),
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: screenWidth,
+                        child: CarouselSlider.builder(
+                          itemCount: blogLength,
+                          carouselController: _carouselController,
+                          itemBuilder: (BuildContext context, int index,
+                              int pageViewIndex) {
+                            return BlogCard(
+                              width: screenWidth * 0.45,
+                              imageWidth: screenWidth * 0.45,
+                              imageHeight: screenWidth * 0.45,
+                              category: Data.blogData[index].category,
+                              title: Data.blogData[index].title,
+                              date: Data.blogData[index].date,
+                              buttonText: Data.blogData[index].buttonText,
+                              imageUrl: Data.blogData[index].imageUrl,
+                              onPressed: () {},
+                            );
+                          },
+                          options: carouselOptions(
+                            viewportFraction: 0.50,
+                            autoPlay: false,
+                            initialPage: currentPageIndex.toInt(),
+                            aspectRatio: 2 / 1.4,
+                            enableInfiniteScroll: true,
+                            enlargeCenterPage: false,
                           ),
                         ),
-                        _buildDotsIndicator(
-                          pageLength: blogLength,
-                          currentIndex: currentPageIndex,
-                        ),
-                      ],
-                    ),
+                      ),
+                      _buildDotsIndicator(
+                        pageLength: blogLength,
+                        currentIndex: currentPageIndex,
+                      ),
+                      SpaceH100(),
+                    ],
                   );
                 } else {
                   return Align(
                     alignment: Alignment.centerLeft,
-                    child: Wrap(
-                      spacing: kSpacing,
-                      runSpacing: kRunSpacing,
-                      children: _buildBlogCards(
-                        blogData: Data.blogData,
-                        width: screenWidth,
-                      ),
+                    child: Column(
+                      children: [
+                        Wrap(
+                          spacing: kSpacing,
+                          runSpacing: kRunSpacing,
+                          children: _buildBlogCards(
+                            blogData: Data.blogData,
+                            width: screenWidth,
+                          ),
+                        ),
+                        SpaceH100(),
+                      ],
                     ),
                   );
                 }
@@ -226,6 +230,8 @@ class _BlogSectionState extends State<BlogSection> {
       items.add(
         BlogCard(
           width: cardWidth,
+          imageWidth: cardWidth,
+          imageHeight: cardWidth,
           category: blogData[index].category,
           title: blogData[index].title,
           date: blogData[index].date,

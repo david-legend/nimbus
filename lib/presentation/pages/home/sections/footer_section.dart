@@ -151,7 +151,8 @@ class _FooterSectionState extends State<FooterSection> {
     );
   }
 
-  List<Widget> _buildFooterItems(List<FooterItem> data) {
+  List<Widget> _buildFooterItems(List<FooterItem> data,
+      {bool isHorizontal = false}) {
     List<Widget> items = [];
 
     for (int index = 0; index < data.length; index++) {
@@ -163,7 +164,11 @@ class _FooterSectionState extends State<FooterSection> {
         ),
       );
       if (index < data.length - 1) {
-        items.add(Spacer());
+        if (isHorizontal) {
+          items.add(Spacer(flex: 2));
+        } else {
+          items.add(SpaceH40());
+        }
       }
     }
     return items;
@@ -176,28 +181,28 @@ class _FooterSectionState extends State<FooterSection> {
     TextTheme textTheme = Theme.of(context).textTheme;
     return ContentArea(
       width: width,
-      height: height,
+      // height: height,
       backgroundColor: AppColors.black,
       borderRadius: const BorderRadius.all(
         Radius.circular(Sizes.RADIUS_8),
       ),
       child: Column(
         children: [
-          Spacer(flex: 3),
+          SpaceH80(),
           Text(
             StringConst.LETS_TALK,
             textAlign: TextAlign.center,
             style: textTheme.headline4?.copyWith(color: AppColors.white),
           ),
-          Spacer(flex: 2),
+          SpaceH60(),
           ..._buildFooterItems(footerItems),
-          Spacer(flex: 2),
+          SpaceH60(),
           NimbusButton(
             buttonTitle: StringConst.HIRE_ME,
             buttonColor: AppColors.primaryColor,
             onPressed: () {},
           ),
-          Spacer(flex: 3),
+          SpaceH80(),
         ],
       ),
     );
@@ -227,7 +232,7 @@ class _FooterSectionState extends State<FooterSection> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Spacer(flex: 3),
-              ..._buildFooterItems(footerItems),
+              ..._buildFooterItems(footerItems, isHorizontal: true),
               Spacer(flex: 3),
             ],
           ),
