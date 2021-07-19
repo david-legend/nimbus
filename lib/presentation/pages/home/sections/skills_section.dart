@@ -71,64 +71,67 @@ class _SkillsSectionState extends State<SkillsSection>
           builder: (context, sizingInformation) {
             double screenWidth = sizingInformation.screenSize.width;
             if (screenWidth <= RefinedBreakpoints().tabletSmall) {
-              return Column(
-                children: [
-                  ContentArea(
-                    width: contentAreaWidthSm,
-                    // height: contentAreaHeight * 0.4,
-                    child: _buildNimbusSm(width: contentAreaWidthSm),
-                  ),
-                  SpaceH40(),
-                  ContentArea(
-                    width: contentAreaWidthSm,
-                    child: Center(
-                      child: _buildSkillBoxes(
-                        boxHeight: 150,
-                        crossAxisCount: 1,
+              return Container(
+                child: Column(
+                  children: [
+                    ContentArea(
+                      width: contentAreaWidthSm,
+                      // height: contentAreaHeight * 0.4,
+                      child: _buildNimbusSm(width: contentAreaWidthSm),
+                    ),
+                    SpaceH40(),
+                    ContentArea(
+                      width: contentAreaWidthSm,
+                      child: Center(
+                        child: Column(
+                          children: _buildBoxesSm(Data.skillCardData),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             } else if (screenWidth > RefinedBreakpoints().tabletSmall &&
                 screenWidth <= 1024) {
-              return Column(
-                children: [
-                  ContentArea(
-                    width: contentAreaWidthSm,
-                    child: _buildNimbusSm(width: contentAreaWidthSm),
-                  ),
-                  SpaceH40(),
-                  ContentArea(
-                    width: contentAreaWidthSm,
-                    child: Center(
-                      child: _buildSkillBoxes(
-                        boxHeight: 250,
-                        crossAxisCount: 2,
+              return Container(
+                child: Column(
+                  children: [
+                    ContentArea(
+                      width: contentAreaWidthSm,
+                      child: _buildNimbusSm(width: contentAreaWidthSm),
+                    ),
+                    SpaceH40(),
+                    ContentArea(
+                      width: contentAreaWidthSm,
+                      child: Center(
+                        child: _buildSkillBoxes(boxHeight: 250),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             } else {
-              return Row(
-                children: [
-                  ContentArea(
-                    width: contentAreaWidthLg,
-                    child: _buildNimbusLg(width: contentAreaWidthLg),
-                  ),
-                  ContentArea(
-                    width: contentAreaWidthLg,
-                    height: contentAreaHeight,
-                    padding: EdgeInsets.symmetric(horizontal: Sizes.HEIGHT_48),
-                    child: Center(
-                      child: _buildSkillBoxes(
-                        boxHeight: 250,
-                        crossAxisCount: 2,
+              return Container(
+                child: Row(
+                  children: [
+                    ContentArea(
+                      width: contentAreaWidthLg,
+                      child: _buildNimbusLg(width: contentAreaWidthLg),
+                    ),
+                    ContentArea(
+                      width: contentAreaWidthLg,
+                      height: contentAreaHeight,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: Sizes.HEIGHT_48),
+                      child: Center(
+                        child: _buildSkillBoxes(
+                          boxHeight: 250,
+                          crossAxisCount: 2,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             }
           },
@@ -190,6 +193,24 @@ class _SkillsSectionState extends State<SkillsSection>
         crossAxisSpacing: kCrossAxisSpacing,
       ),
     );
+  }
+
+  List<Widget> _buildBoxesSm(List<SkillCardData> skill) {
+    List<Widget> items = [];
+    for (int index = 0; index < skill.length; index++) {
+      if (index != 1 && index != 5) {
+        items.add(
+          SkillCard(
+            width: widthOfScreen(context),
+            height: 150,
+            title: skill[index].title,
+            iconData: skill[index].iconData,
+          ),
+        );
+        items.add(SpaceH16());
+      }
+    }
+    return items;
   }
 
   Widget _buildNimbusLg({required double width}) {
