@@ -9,7 +9,6 @@ import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-
 //TODO:: Later
 //TODO:: Add background ash blobs
 //TODO:: Animation to button. (Channel your adventurous self)
@@ -18,6 +17,7 @@ const double bodyTextSizeLg = 16.0;
 const double bodyTextSizeSm = 14.0;
 const double socialTextSizeLg = 18.0;
 const double socialTextSizeSm = 14.0;
+// const double sidePadding = Sizes.PADDING_16;
 
 class HeaderSectionWeb extends StatefulWidget {
   @override
@@ -54,12 +54,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    double sidePadding = responsiveSize(
-      context,
-      16,
-      getSidePadding(context),
-      md: getSidePadding(context),
-    );
+    double sidePadding = getSidePadding(context);
     double headerIntroTextSize = responsiveSize(
       context,
       Sizes.TEXT_SIZE_24,
@@ -99,161 +94,204 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
       md: 54,
     );
 
+    double sizeOfBlobSm = screenWidth * 0.3;
+    double sizeOfGoldenGlobe = screenWidth * 0.2;
+    double dottedGoldenGlobeOffset = sizeOfBlobSm * 0.4;
+    double heightOfBlobAndGlobe =
+        computeHeight(dottedGoldenGlobeOffset, sizeOfGoldenGlobe, sizeOfBlobSm);
+    double heightOfStack = heightOfBlobAndGlobe * 2;
+    double blobOffset = heightOfStack * 0.3;
     return ContentArea(
-      // width: contentAreaWidth,
-      child: Column(
+      child: Stack(
         children: [
           Container(
+            height: heightOfStack,
             child: Stack(
               children: [
-                Container(
-                  margin: EdgeInsets.only(top: headerIntroTextSize),
-                  child: SelectableText(
-                    StringConst.FIRST_NAME,
-                    style: textTheme.headline1?.copyWith(
-                      color: AppColors.grey50,
-                      fontSize: headerIntroTextSize * 2,
-                    ),
-                  ),
-                ),
-                Container(
-                  height: screenHeight,
-                  child: _buildResponsiveHeaderImage(),
-                ),
-                Positioned(
-                  left: -hiddenPortionOfBlackBlob,
-                  child: Image.asset(
+                Stack(
+                  children: [
+                    Positioned(
+                      left: -(sizeOfBlobSm * 0.7),
+                      top: blobOffset,
+                      child: Image.asset(
                         ImagePath.BLOB_BLACK,
-                        height: widthOfBlackBlob,
-                        width: contentAreaHeight,
+                        height: sizeOfBlobSm,
+                        width: sizeOfBlobSm,
                       ),
+                    ),
+                    Positioned(
+                      left: -(sizeOfGoldenGlobe * 0.5),
+                      top: blobOffset + dottedGoldenGlobeOffset,
+                      child: RotationTransition(
+                        turns: _controller,
+                        child: Image.asset(
+                          ImagePath.DOTS_GLOBE_YELLOW,
+                          width: sizeOfGoldenGlobe,
+                          height: sizeOfGoldenGlobe,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Positioned(
-                  top: contentAreaHeight * 0.2,
-                  left: sidePadding,
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AnimatedTextKit(
-                            animatedTexts: [
-                              TypewriterAnimatedText(
-                                StringConst.INTRO,
-                                speed: Duration(milliseconds: 60),
-                                textStyle: textTheme.headline2?.copyWith(
-                                  fontSize: headerIntroTextSize,
-                                ),
-                              ),
-                            ],
-                            onTap: () {},
-                            isRepeatingAnimation: true,
-                            totalRepeatCount: 5,
-                          ),
-                          AnimatedTextKit(
-                            animatedTexts: [
-                              TypewriterAnimatedText(
-                                StringConst.POSITION,
-                                speed: Duration(milliseconds: 80),
-                                textStyle: textTheme.headline2?.copyWith(
-                                  fontSize: headerIntroTextSize,
-                                  color: AppColors.primaryColor,
-                                  height: 1.2,
-                                ),
-                              ),
-                            ],
-                            onTap: () {},
-                            isRepeatingAnimation: true,
-                            totalRepeatCount: 5,
-                          ),
-                          SpaceH16(),
-                          SelectableText(
-                            StringConst.ABOUT_ME_1,
-                            style: bodyTextStyle,
-                          ),
-                          SpaceH8(),
-                          SelectableText(
-                            StringConst.ABOUT_ME_2,
-                            style: bodyTextStyle,
-                          ),
-                          SpaceH30(),
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SelectableText(
-                                    "${StringConst.EMAIL}:",
-                                    style: socialTitleStyle,
-                                  ),
-                                  SpaceH8(),
-                                  SelectableText(
-                                    "${StringConst.DEV_EMAIL_2}",
-                                    style: bodyTextStyle,
-                                  ),
-                                ],
-                              ),
-                              SpaceW40(),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SelectableText(
-                                    "${StringConst.BEHANCE}:",
-                                    style: socialTitleStyle,
-                                  ),
-                                  SpaceH8(),
-                                  SelectableText(
-                                    "${StringConst.BEHANCE_ID}",
-                                    style: bodyTextStyle,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SpaceH40(),
-                          Row(
-                            children: [
-                              NimbusButton(
-                                width: buttonWidth,
-                                height: buttonHeight,
-                                buttonTitle: StringConst.DOWNLOAD_CV,
-                                buttonColor: AppColors.primaryColor,
-                                onPressed: () =>
-                                    openUrlLink(StringConst.EMAIL_URL),
-                              ),
-                              SpaceW20(),
-                              NimbusButton(
-                                width: buttonWidth,
-                                height: buttonHeight,
-                                buttonTitle: StringConst.HIRE_ME_NOW,
-                                onPressed: () =>
-                                    openUrlLink(StringConst.EMAIL_URL),
-                              ),
-                            ],
-                          ),
-                          SpaceH30(),
-                          Wrap(
-                            children: buildSocialIcons(Data.socialData),
-                          )
-                        ],
-                      ),
-                    ],
+                  right: -(sizeOfBlobSm* 0.8),
+                  child: HeaderImage(
+                    controller: _controller,
+                    globeSize: sizeOfGoldenGlobe,
+                    imageHeight: heightOfStack,
                   ),
                 ),
               ],
             ),
           ),
-          // SpaceH40(),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
-            child: Column(
-              children: [
-                ResponsiveBuilder(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: heightOfStack * 0.05),
+                    child: SelectableText(
+                      StringConst.FIRST_NAME,
+                      style: textTheme.headline1?.copyWith(
+                        color: AppColors.grey50,
+                        fontSize: headerIntroTextSize * 2,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: heightOfStack * 0.2, left: (sizeOfBlobSm * 0.35)),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ConstrainedBox(
+                              constraints:
+                                  BoxConstraints(maxWidth: screenWidth),
+                              child: AnimatedTextKit(
+                                animatedTexts: [
+                                  TypewriterAnimatedText(
+                                    StringConst.INTRO,
+                                    speed: Duration(milliseconds: 60),
+                                    textStyle: textTheme.headline2?.copyWith(
+                                      fontSize: headerIntroTextSize,
+                                    ),
+                                  ),
+                                ],
+                                onTap: () {},
+                                isRepeatingAnimation: true,
+                                totalRepeatCount: 5,
+                              ),
+                            ),
+                            ConstrainedBox(
+                              constraints:
+                                  BoxConstraints(maxWidth: screenWidth),
+                              child: AnimatedTextKit(
+                                animatedTexts: [
+                                  TypewriterAnimatedText(
+                                    StringConst.POSITION,
+                                    speed: Duration(milliseconds: 80),
+                                    textStyle: textTheme.headline2?.copyWith(
+                                      fontSize: headerIntroTextSize,
+                                      color: AppColors.primaryColor,
+                                      height: 1.2,
+                                    ),
+                                  ),
+                                ],
+                                onTap: () {},
+                                isRepeatingAnimation: true,
+                                totalRepeatCount: 5,
+                              ),
+                            ),
+                            SpaceH16(),
+                            ConstrainedBox(
+                              constraints:
+                                  BoxConstraints(maxWidth: screenWidth * 0.35),
+                              child: SelectableText(
+                                StringConst.ABOUT_DEV,
+                                style: bodyTextStyle?.copyWith(height: 1.5),
+                              ),
+                            ),
+                            SpaceH30(),
+                            Wrap(
+                              // mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SelectableText(
+                                      "${StringConst.EMAIL}:",
+                                      style: socialTitleStyle,
+                                    ),
+                                    SpaceH8(),
+                                    SelectableText(
+                                      "${StringConst.DEV_EMAIL_2}",
+                                      style: bodyTextStyle,
+                                    ),
+                                  ],
+                                ),
+                                SpaceW16(),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SelectableText(
+                                      "${StringConst.BEHANCE}:",
+                                      style: socialTitleStyle,
+                                    ),
+                                    SpaceH8(),
+                                    SelectableText(
+                                      "${StringConst.BEHANCE_ID}",
+                                      style: bodyTextStyle,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SpaceH40(),
+                            Row(
+                              children: [
+                                NimbusButton(
+                                  width: buttonWidth,
+                                  height: buttonHeight,
+                                  buttonTitle: StringConst.DOWNLOAD_CV,
+                                  buttonColor: AppColors.primaryColor,
+                                  onPressed: () =>
+                                      openUrlLink(StringConst.EMAIL_URL),
+                                ),
+                                SpaceW16(),
+                                NimbusButton(
+                                  width: buttonWidth,
+                                  height: buttonHeight,
+                                  buttonTitle: StringConst.HIRE_ME_NOW,
+                                  onPressed: () =>
+                                      openUrlLink(StringConst.EMAIL_URL),
+                                ),
+                              ],
+                            ),
+                            SpaceH30(),
+                            Wrap(
+                              children: buildSocialIcons(Data.socialData),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 150),
+              Container(
+                margin: EdgeInsets.only(left: (sizeOfBlobSm * 0.35)),
+                child: ResponsiveBuilder(
                   refinedBreakpoints: RefinedBreakpoints(),
                   builder: (context, sizingInformation) {
                     double screenWidth = sizingInformation.screenSize.width;
                     if (screenWidth < RefinedBreakpoints().tabletNormal) {
                       return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: buildCardRow(
                           context: context,
                           data: Data.nimbusCardData,
@@ -262,7 +300,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                           hasAnimation: false,
                         ),
                       );
-                    } else if (screenWidth >=
+                    }else if (screenWidth >=
                             RefinedBreakpoints().tabletNormal &&
                         screenWidth <= 1024) {
                       return Wrap(
@@ -283,10 +321,10 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                       );
                     } else {
                       return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
-                              Spacer(),
                               ...buildCardRow(
                                 context: context,
                                 data: Data.nimbusCardData,
@@ -297,17 +335,16 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                           ),
                         ],
                       );
-                    }
+                    } 
                   },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
     );
   }
-
 
   Widget _buildResponsiveHeaderImage() {
     return ResponsiveBuilder(
@@ -363,6 +400,4 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
       },
     );
   }
-
-
 }

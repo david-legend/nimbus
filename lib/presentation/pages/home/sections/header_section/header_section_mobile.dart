@@ -49,15 +49,6 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
     super.dispose();
   }
 
-  double computeHeight(double offset, double sizeOfGlobe, double sizeOfBlob) {
-    double sum = (offset + sizeOfGlobe) - sizeOfBlob;
-    if (sum < 0) {
-      return sizeOfBlob;
-    } else {
-      return sum + sizeOfBlob;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -69,12 +60,6 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
     TextStyle? socialTitleStyle =
         textTheme.subtitle1?.copyWith(fontSize: socialTextSizeSm);
 
-    List<Widget> cardsForTabletView = buildCardRow(
-      context: context,
-      data: Data.nimbusCardData,
-      width: contentAreaWidth * 0.4,
-      isWrap: true,
-    );
     double buttonWidth = 80;
     double buttonHeight = 48;
 
@@ -95,7 +80,7 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                 Stack(
                   children: [
                     Positioned(
-                      left: -(sizeOfBlobSm / 2),
+                      left: -(sizeOfBlobSm * 0.7),
                       top: blobOffset,
                       child: Image.asset(
                         ImagePath.BLOB_BLACK,
@@ -129,22 +114,24 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
             ),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
                   Container(
-                  margin: EdgeInsets.only(top: heightOfStack * 0.6),
-                  child: SelectableText(
-                    StringConst.FIRST_NAME,
-                    style: textTheme.headline1?.copyWith(
-                      color: AppColors.grey50,
-                      fontSize: headerIntroTextSize * 2,
+                    margin: EdgeInsets.only(top: heightOfStack * 0.1),
+                    child: SelectableText(
+                      StringConst.FIRST_NAME,
+                      style: textTheme.headline1?.copyWith(
+                        color: AppColors.grey50,
+                        fontSize: headerIntroTextSize * 2,
+                      ),
                     ),
                   ),
-                ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: sidePadding),
-                    margin: EdgeInsets.only(top: heightOfStack * 0.8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: sidePadding),
+                    margin: EdgeInsets.only(top: heightOfStack * 0.3),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -153,7 +140,8 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: screenWidth),
+                              constraints:
+                                  BoxConstraints(maxWidth: screenWidth),
                               child: AnimatedTextKit(
                                 animatedTexts: [
                                   TypewriterAnimatedText(
@@ -170,7 +158,8 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                               ),
                             ),
                             ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: screenWidth),
+                              constraints:
+                                  BoxConstraints(maxWidth: screenWidth),
                               child: AnimatedTextKit(
                                 animatedTexts: [
                                   TypewriterAnimatedText(
@@ -190,10 +179,13 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                             ),
                             SpaceH16(),
                             ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: screenWidth),
+                              constraints:
+                                  BoxConstraints(maxWidth: screenWidth),
                               child: SelectableText(
                                 StringConst.ABOUT_DEV,
-                                style: bodyTextStyle,
+                                style: bodyTextStyle?.copyWith(
+                                  height: 1.5,
+                                ),
                               ),
                             ),
                             SpaceH30(),
@@ -263,22 +255,23 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                   ),
                 ],
               ),
-            SpaceH40(),
-            Padding(
-            padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
-            child: Column(
-              children: buildCardRow(
-                context: context,
-                data: Data.nimbusCardData,
-                width: contentAreaWidth,
-                isHorizontal: false,
-                hasAnimation: false,
+              SpaceH40(),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: sidePadding,
+                ),
+                child: Column(
+                  children: buildCardRow(
+                    context: context,
+                    data: Data.nimbusCardData,
+                    width: contentAreaWidth,
+                    isHorizontal: false,
+                    hasAnimation: false,
+                  ),
+                ),
               ),
-            ),
-          ),
             ],
           ),
-          
         ],
       ),
     );
