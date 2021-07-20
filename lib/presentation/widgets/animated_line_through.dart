@@ -79,7 +79,6 @@ class _AnimatedLineThroughState extends State<AnimatedLineThrough>
 
   void _mouseEnter(bool hovering) {
     if (hovering) {
-      print("HOVERING");
 
       setState(() {
         controller.forward();
@@ -90,7 +89,6 @@ class _AnimatedLineThroughState extends State<AnimatedLineThrough>
         controller.reverse();
         _isHovering = hovering;
       });
-      print("GETTING OUT HOVERING");
     }
   }
 }
