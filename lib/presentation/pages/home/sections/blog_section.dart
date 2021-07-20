@@ -42,8 +42,6 @@ class _BlogSectionState extends State<BlogSection> {
       key: Key('blog-section'),
       onVisibilityChanged: (visibilityInfo) {
         double visiblePercentage = visibilityInfo.visibleFraction * 100;
-        debugPrint(
-            'Widget ${visibilityInfo.key} is $visiblePercentage% visible');
         if (visiblePercentage > 30) {
 //          _text1Controller.forward();
         }

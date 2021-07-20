@@ -202,7 +202,7 @@ class _SkillsSectionState extends State<SkillsSection>
         items.add(
           SkillCard(
             width: widthOfScreen(context),
-            height: 150,
+            height: 200,
             title: skill[index].title,
             iconData: skill[index].iconData,
           ),
