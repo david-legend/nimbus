@@ -290,14 +290,17 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                   builder: (context, sizingInformation) {
                     double screenWidth = sizingInformation.screenSize.width;
                     if (screenWidth < RefinedBreakpoints().tabletNormal) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: buildCardRow(
-                          context: context,
-                          data: Data.nimbusCardData,
-                          width: contentAreaWidth,
-                          isHorizontal: false,
-                          hasAnimation: false,
+                      return Container(
+                         margin: EdgeInsets.only(right: (sizeOfBlobSm * 0.35)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: buildCardRow(
+                            context: context,
+                            data: Data.nimbusCardData,
+                            width: contentAreaWidth,
+                            isHorizontal: false,
+                            hasAnimation: false,
+                          ),
                         ),
                       );
                     }else if (screenWidth >=
