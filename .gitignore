@@ -1,6 +1,6 @@
 # Miscellaneous
-./fvm
-./fvm/flutter_sdk
+.fvm
+.fvm/flutter_sdk
 *.class
 *.log
 *.pyc
