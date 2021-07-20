@@ -21,6 +21,8 @@ class StringConst {
   static const String FIRST_NAME = "Ameli";
   static const String INTRO = "Hi! I'm Ameli Nimbus -";
   static const String POSITION = "UI/UX Designer";
+   static const String ABOUT_DEV =
+      "Product Designer and Digital Creative Director working in design field for 13 years so far, specialized in UI/UX, Branding and digital designs.";
   static const String ABOUT_ME_1 =
       "Product Designer and Digital Creative Director working in design field for";
   static const String ABOUT_ME_2 =
