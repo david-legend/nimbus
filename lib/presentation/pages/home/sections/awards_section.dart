@@ -17,45 +17,15 @@ class AwardsSection extends StatefulWidget {
 }
 
 class _AwardsSectionState extends State<AwardsSection>
-    with TickerProviderStateMixin {
-  late AnimationController _text1Controller;
-  late Animation<Offset> _text1Animation;
-  late AnimationController _text2Controller;
-  late Animation<Offset> _text2Animation;
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-
+  bool text1InView = false;
+  bool text2InView = false;
 
   @override
   void initState() {
     super.initState();
-    _text1Controller = AnimationController(
-      duration: const Duration(milliseconds: 750),
-      vsync: this,
-    );
-    _text2Controller = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    );
-//    _text1Animation = Tween(begin: Offset(0, 0), end: Offset(1, 0)).animate(
-    _text1Animation =
-        Tween(begin: Offset(-0.5, 0), end: Offset(0.5, 0)).animate(
-      CurvedAnimation(
-        parent: _text1Controller,
-        curve: Curves.fastOutSlowIn,
-      ),
-    );
-    _text2Animation = Tween(begin: Offset(2, 0), end: Offset(1.6, 0)).animate(
-      CurvedAnimation(
-        parent: _text2Controller,
-        curve: Curves.fastOutSlowIn,
-      ),
-    );
-
-    _text1Controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _text2Controller.forward();
-      }
-    });
+  
     _controller = AnimationController(
       duration: const Duration(seconds: 20),
       vsync: this,
@@ -68,6 +38,12 @@ class _AwardsSectionState extends State<AwardsSection>
         _controller.forward();
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -85,8 +61,10 @@ class _AwardsSectionState extends State<AwardsSection>
       key: Key('awards-section'),
       onVisibilityChanged: (visibilityInfo) {
         double visiblePercentage = visibilityInfo.visibleFraction * 100;
-        if (visiblePercentage > 30) {
-          _text1Controller.forward();
+        if (visiblePercentage > 50) {
+          setState(() {
+            text1InView = true;
+          });
         }
       },
       child: Container(
@@ -213,12 +191,7 @@ class _AwardsSectionState extends State<AwardsSection>
         color: AppColors.primaryColor,
       ),
     );
-    double textPosition = responsiveSize(
-      context,
-      12,
-      assignWidth(context, 0.1),
-      md: assignWidth(context, 0.1),
-    );
+    double textPosition = assignWidth(context, 0.1);
     return ContentArea(
       width: width,
       height: height,
@@ -256,40 +229,25 @@ class _AwardsSectionState extends State<AwardsSection>
               Image.asset(
                 ImagePath.DEV_AWARD,
               ),
-              Positioned(
-                left: textPosition,
+              AnimatedPositioned(
+                left: text1InView ? textPosition : -100,
                 child: Text(StringConst.MY, style: titleStyle),
+                 curve: Curves.fastOutSlowIn,
+                 onEnd: (){
+                   setState(() {
+                     text2InView = true;
+                   });
+                 },
+                 duration: Duration(milliseconds: 750),
               ),
-              Positioned(
-                right: textPosition,
+              AnimatedPositioned(
+                right: text2InView ? textPosition : -100,
                 child: Text(StringConst.CV, style: titleStyle),
+                 curve: Curves.fastOutSlowIn,
+                 duration: Duration(milliseconds: 750),
               ),
             ],
           ),
-//          SlideTransition(
-//            position: _text1Animation,
-//            child: Text(StringConst.MY, style: titleStyle),
-//          ),
-//          SlideTransition(
-//            position: _text2Animation,
-//            child: Text(StringConst.CV, style: titleStyle),
-//          ),
-          // Positioned(
-          //   child: Padding(
-          //     padding: EdgeInsets.only(
-          //       left: assignWidth(context, 0.1),
-          //       top: Sizes.PADDING_24,
-          //       right: assignWidth(context, 0.1),
-          //     ),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: [
-          //         Text(StringConst.MY, style: titleStyle),
-          //         Text(StringConst.CV, style: titleStyle),
-          //       ],
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );
