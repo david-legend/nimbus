@@ -22,6 +22,8 @@ class _AwardsSectionState extends State<AwardsSection>
   late Animation<Offset> _text1Animation;
   late AnimationController _text2Controller;
   late Animation<Offset> _text2Animation;
+  late AnimationController _controller;
+
 
   @override
   void initState() {
@@ -52,6 +54,18 @@ class _AwardsSectionState extends State<AwardsSection>
     _text1Controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _text2Controller.forward();
+      }
+    });
+    _controller = AnimationController(
+      duration: const Duration(seconds: 20),
+      vsync: this,
+    )..repeat();
+
+    _controller.forward();
+    _controller.addListener(() {
+      if (_controller.status == AnimationStatus.completed) {
+        _controller.reset();
+        _controller.forward();
       }
     });
   }
@@ -220,14 +234,20 @@ class _AwardsSectionState extends State<AwardsSection>
                   builder: (context, sizingInformation) {
                     double screenWidth = sizingInformation.screenSize.width;
                     if (screenWidth < (RefinedBreakpoints().tabletSmall)) {
-                      return Image.asset(
-                        ImagePath.DOTS_GLOBE_YELLOW,
-                        width: Sizes.WIDTH_150,
-                        height: Sizes.HEIGHT_150,
+                      return RotationTransition(
+                        turns: _controller,
+                        child: Image.asset(
+                          ImagePath.DOTS_GLOBE_YELLOW,
+                          width: Sizes.WIDTH_150,
+                          height: Sizes.HEIGHT_150,
+                        ),
                       );
                     } else {
-                      return Image.asset(
-                        ImagePath.DOTS_GLOBE_YELLOW,
+                      return RotationTransition(
+                        turns: _controller,
+                        child: Image.asset(
+                          ImagePath.DOTS_GLOBE_YELLOW,
+                        ),
                       );
                     }
                   },
