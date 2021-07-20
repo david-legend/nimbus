@@ -14,7 +14,6 @@ const double kRunSpacing = 20.0;
 const double kMainAxisSpacing = 16.0;
 const double kCrossAxisSpacing = 16.0;
 
-//TODO:: Stop hardcoding height values and find a dynamic way to let content grow
 //TODO:: Add animation onHover of skillBoxes
 //TODO:: Add proper background Blobs
 
@@ -33,6 +32,7 @@ class _SkillsSectionState extends State<SkillsSection>
       vsync: this,
       duration: const Duration(milliseconds: 1000),
     );
+    // _controller.forward();
   }
 
   @override
@@ -55,28 +55,26 @@ class _SkillsSectionState extends State<SkillsSection>
       sm: screenHeight * 1.6,
     );
 
-    return VisibilityDetector(
-      key: Key('skills-section'),
-      onVisibilityChanged: (visibilityInfo) {
-        double visiblePercentage = visibilityInfo.visibleFraction * 100;
-        if (visiblePercentage > 60) {
-          _controller.forward();
-        }
-      },
-      child: Container(
-        // height: contentAreaHeight,
-        padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
-        child: ResponsiveBuilder(
-          refinedBreakpoints: RefinedBreakpoints(),
-          builder: (context, sizingInformation) {
-            double screenWidth = sizingInformation.screenSize.width;
-            if (screenWidth <= RefinedBreakpoints().tabletSmall) {
-              return Container(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
+      child: ResponsiveBuilder(
+        refinedBreakpoints: RefinedBreakpoints(),
+        builder: (context, sizingInformation) {
+          double screenWidth = sizingInformation.screenSize.width;
+          if (screenWidth <= RefinedBreakpoints().tabletSmall) {
+            return VisibilityDetector(
+              key: Key('skills-section-sm'),
+              onVisibilityChanged: (visibilityInfo) {
+                double visiblePercentage = visibilityInfo.visibleFraction * 100;
+                if (visiblePercentage > 20) {
+                  _controller.forward();
+                }
+              },
+              child: Container(
                 child: Column(
                   children: [
                     ContentArea(
                       width: contentAreaWidthSm,
-                      // height: contentAreaHeight * 0.4,
                       child: _buildNimbusSm(width: contentAreaWidthSm),
                     ),
                     SpaceH40(),
@@ -90,10 +88,19 @@ class _SkillsSectionState extends State<SkillsSection>
                     ),
                   ],
                 ),
-              );
-            } else if (screenWidth > RefinedBreakpoints().tabletSmall &&
-                screenWidth <= 1024) {
-              return Container(
+              ),
+            );
+          } else if (screenWidth > RefinedBreakpoints().tabletSmall &&
+              screenWidth <= 1024) {
+            return VisibilityDetector(
+              key: Key('skills-section-md'),
+              onVisibilityChanged: (visibilityInfo) {
+                double visiblePercentage = visibilityInfo.visibleFraction * 100;
+                if (visiblePercentage > 25) {
+                  _controller.forward();
+                }
+              },
+              child: Container(
                 child: Column(
                   children: [
                     ContentArea(
@@ -109,9 +116,18 @@ class _SkillsSectionState extends State<SkillsSection>
                     ),
                   ],
                 ),
-              );
-            } else {
-              return Container(
+              ),
+            );
+          } else {
+            return VisibilityDetector(
+              key: Key('skills-section-lg'),
+              onVisibilityChanged: (visibilityInfo) {
+                double visiblePercentage = visibilityInfo.visibleFraction * 100;
+                if (visiblePercentage > 50) {
+                  _controller.forward();
+                }
+              },
+              child: Container(
                 child: Row(
                   children: [
                     ContentArea(
@@ -132,10 +148,10 @@ class _SkillsSectionState extends State<SkillsSection>
                     ),
                   ],
                 ),
-              );
-            }
-          },
-        ),
+              ),
+            );
+          }
+        },
       ),
     );
   }
