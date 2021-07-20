@@ -14,10 +14,6 @@ import 'package:visibility_detector/visibility_detector.dart';
 const double kSpacing = 28.0;
 const double kRunSpacing = 16.0;
 
-//TODO:: Add right padding for all views
-//TODO:: Fix View All Button Designs
-//TODO:: Add animation for readMore Button
-//TODO:: Add proper Sizes for images etc.
 
 class BlogSection extends StatefulWidget {
   @override

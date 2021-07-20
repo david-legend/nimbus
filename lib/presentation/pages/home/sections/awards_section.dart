@@ -8,8 +8,6 @@ import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-//TODO:: Add correct spacing and padding
-//TODO:: Add animation for My CV and image
 
 class AwardsSection extends StatefulWidget {
   @override

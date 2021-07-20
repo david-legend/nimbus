@@ -10,10 +10,6 @@ import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-//TODO:: Make nimbusInfoSection 1 & 2 break at right break points
-//TODO:: Add the right fontFamily and styles to text in this section
-//TODO:: Add grey dotted globe image
-//TODO:: Add the right colors to text and dividers
 //TODO:: Add the right colors to text and dividers
 //TODO:: Add animation to socialButton2
 //TODO:: Add floating bubbles (if I am feeling adventurous)

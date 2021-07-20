@@ -5,10 +5,8 @@ import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-//TODO:: Add appropriate fontsSizes and families
 //TODO:: Add background curves and designs
-//TODO:: Add appropriate text colors
-//TODO:: Add the right boxHeight for section
+
 class StatItemData {
   final int value;
   final String subtitle;
