@@ -48,10 +48,6 @@ class AppTheme {
   static const _light = FontWeight.w300;
 
   static final TextTheme _textTheme = TextTheme(
-//    dancingScript
-//    kirangHaerang
-//    indieFlower
-//    shadowsIntoLight
     headline1: GoogleFonts.gloriaHallelujah(
       fontSize: Sizes.TEXT_SIZE_96,
       color: AppColors.black,

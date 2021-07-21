@@ -15,9 +15,6 @@ import 'package:nimbus/presentation/widgets/nav_item.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:visibility_detector/visibility_detector.dart';
-
-import 'sections/brand_section.dart';
 
 //TODO:: Add ash background blob (esp the one that extends between header and about section
 //TODO:: Add huge ash background blob (the one that extends between skills section and projects
@@ -46,7 +43,8 @@ class HomePage extends StatelessWidget {
       drawer: ResponsiveBuilder(
         refinedBreakpoints: RefinedBreakpoints(),
         builder: (context, sizingInformation) {
-          if (sizingInformation.isMobile) {
+          double screenWidth = sizingInformation.screenSize.width;
+          if (screenWidth < RefinedBreakpoints().desktopSmall) {
             return AppDrawer(
               menuList: navItems,
             );
@@ -81,41 +79,31 @@ class HomePage extends StatelessWidget {
                   SizedBox(height: spacerHeight),
                   Container(
                     key: navItems[1].key,
-                    child: AboutMeSection(
-                      
-                    ),
+                    child: AboutMeSection(),
                   ),
                   SizedBox(height: spacerHeight),
                   Container(
                     key: navItems[2].key,
-                    child: SkillsSection(
-                      
-                    ),
+                    child: SkillsSection(),
                   ),
                   SizedBox(height: spacerHeight),
                   StatisticsSection(),
                   SizedBox(height: spacerHeight),
                   Container(
-                     key: navItems[3].key,
-                    child: ProjectsSection(
-                     
-                    ),
+                    key: navItems[3].key,
+                    child: ProjectsSection(),
                   ),
                   SizedBox(height: spacerHeight),
                   Container(
                     key: navItems[4].key,
-                    child: AwardsSection(
-                      
-                    ),
+                    child: AwardsSection(),
                   ),
                   SpaceH40(),
                   //BrandSection(),
                   //TestimonialsSection(),
                   Container(
                     key: navItems[5].key,
-                    child: BlogSection(
-                      
-                    ),
+                    child: BlogSection(),
                   ),
                   FooterSection(),
                 ],

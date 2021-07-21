@@ -31,8 +31,14 @@ class AppDrawer extends StatefulWidget {
 class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
+    double defaultWidthOfDrawer = responsiveSize(
+      context,
+      assignWidth(context, 0.85),
+      assignWidth(context, 0.60),
+      md: assignWidth(context, 0.60),
+    );
     return Container(
-      width: widget.width ?? assignWidth(context, 0.85),
+      width: widget.width ?? defaultWidthOfDrawer,
       child: Drawer(
         child: Container(
           color: widget.color,
@@ -63,7 +69,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   ),
                 ],
               ),
-              Spacer(),
+              Spacer(flex: 2),
               ..._buildMenuList(
                 context: context,
                 menuList: widget.menuList,
@@ -137,21 +143,24 @@ class _AppDrawerState extends State<AppDrawer> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SelectableText.rich(
-          TextSpan(
-            text: StringConst.RIGHTS_RESERVED + " ",
-            style: footerTextStyle,
-            children: [
-              TextSpan(text: StringConst.DESIGNED_BY + " "),
-              TextSpan(
-                text: StringConst.WEB_GENIUS_LAB,
-                style: footerTextStyle?.copyWith(
-                  decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.w900,
-                  color: AppColors.white,
+        Center(
+          child: SelectableText.rich(
+            TextSpan(
+              text: StringConst.RIGHTS_RESERVED + " ",
+              style: footerTextStyle,
+              children: [
+                TextSpan(text: StringConst.DESIGNED_BY + " "),
+                TextSpan(
+                  text: StringConst.WEB_GENIUS_LAB,
+                  style: footerTextStyle?.copyWith(
+                    decoration: TextDecoration.underline,
+                    fontWeight: FontWeight.w900,
+                    color: AppColors.white,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
+            textAlign: TextAlign.center,
           ),
         ),
         Row(
