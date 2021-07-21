@@ -10,6 +10,8 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 
 class AwardsSection extends StatefulWidget {
+
+  AwardsSection({Key? key});
   @override
   _AwardsSectionState createState() => _AwardsSectionState();
 }

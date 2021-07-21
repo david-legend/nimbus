@@ -31,6 +31,8 @@ List<FooterItem> footerItems = [
 ];
 
 class FooterSection extends StatefulWidget {
+  
+  FooterSection({Key? key});
   @override
   _FooterSectionState createState() => _FooterSectionState();
 }

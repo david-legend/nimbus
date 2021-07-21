@@ -6,6 +6,8 @@ import 'package:nimbus/values/values.dart';
 
 //TODO:: Add proper testimonial Section
 class TestimonialsSection extends StatelessWidget {
+  
+  TestimonialsSection({Key? key});
   @override
   Widget build(BuildContext context) {
     double screenWidth = widthOfScreen(context);

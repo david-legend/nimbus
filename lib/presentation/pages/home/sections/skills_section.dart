@@ -18,6 +18,7 @@ const double kCrossAxisSpacing = 16.0;
 //TODO:: Add proper background Blobs
 
 class SkillsSection extends StatefulWidget {
+  SkillsSection({Key? key});
   @override
   _SkillsSectionState createState() => _SkillsSectionState();
 }
@@ -167,6 +168,7 @@ class _SkillsSectionState extends State<SkillsSection>
           skillLevelWidth: width,
           controller: _controller,
           skill: skillLevels[index].skill,
+          
           level: skillLevels[index].level,
         ),
       );
@@ -194,6 +196,7 @@ class _SkillsSectionState extends State<SkillsSection>
             return SkillCard(
               width: boxWidth,
               title: Data.skillCardData[index].title,
+              description: Data.skillCardData[index].description,
               iconData: Data.skillCardData[index].iconData,
             );
           }
@@ -220,6 +223,7 @@ class _SkillsSectionState extends State<SkillsSection>
             width: widthOfScreen(context),
             height: 200,
             title: skill[index].title,
+            description: skill[index].description,
             iconData: skill[index].iconData,
           ),
         );

@@ -10,6 +10,8 @@ class StringConst {
   static const String SERVICES = "Services";
   static const String ABOUT = "About";
   static const String PROJECTS = "Projects";
+  static const String AWARDS = "Awards";
+  static const String BLOG = "Blog";
   static const String SKILLS = "Skills";
   static const String CONTACT = "Contacts";
 

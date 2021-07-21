@@ -16,6 +16,8 @@ const double kRunSpacing = 16.0;
 
 
 class BlogSection extends StatefulWidget {
+
+  BlogSection({Key? key});
   @override
   _BlogSectionState createState() => _BlogSectionState();
 }

@@ -124,7 +124,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
   }) {
     for (int index = 0; index < widget.navItems.length; index++) {
       if (navItemName == widget.navItems[index].name) {
-//        scrollToSection(context.currentContext!);
+       scrollToSection(context.currentContext!);
         setState(() {
           widget.navItems[index].isSelected = true;
         });

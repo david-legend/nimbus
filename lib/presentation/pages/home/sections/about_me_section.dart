@@ -20,6 +20,7 @@ const double kSpacingLg = 24.0;
 const double kRunSpacingLg = 16.0;
 
 class AboutMeSection extends StatefulWidget {
+  AboutMeSection({Key? key});
   @override
   _AboutMeSectionState createState() => _AboutMeSectionState();
 }

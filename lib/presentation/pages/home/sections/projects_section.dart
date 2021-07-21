@@ -22,6 +22,8 @@ class ProjectCategoryData {
 }
 
 class ProjectsSection extends StatelessWidget {
+
+  ProjectsSection({Key? key});
   @override
   Widget build(BuildContext context) {
     double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);

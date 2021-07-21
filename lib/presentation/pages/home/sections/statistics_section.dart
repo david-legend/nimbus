@@ -15,6 +15,8 @@ class StatItemData {
 }
 
 class StatisticsSection extends StatefulWidget {
+
+  StatisticsSection({Key? key});
   @override
   _StatisticsSectionState createState() => _StatisticsSectionState();
 }

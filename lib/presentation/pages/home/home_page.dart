@@ -29,11 +29,11 @@ class HomePage extends StatelessWidget {
 
   final List<NavItemData> navItems = [
     NavItemData(name: StringConst.HOME, key: GlobalKey(), isSelected: true),
-    NavItemData(name: StringConst.SERVICES, key: GlobalKey()),
     NavItemData(name: StringConst.ABOUT, key: GlobalKey()),
-    NavItemData(name: StringConst.PROJECTS, key: GlobalKey()),
     NavItemData(name: StringConst.SKILLS, key: GlobalKey()),
-    NavItemData(name: StringConst.CONTACT, key: GlobalKey()),
+    NavItemData(name: StringConst.PROJECTS, key: GlobalKey()),
+    NavItemData(name: StringConst.AWARDS, key: GlobalKey()),
+    NavItemData(name: StringConst.BLOG, key: GlobalKey()),
   ];
 
   @override
@@ -75,24 +75,48 @@ class HomePage extends StatelessWidget {
               controller: _scrollController,
               child: Column(
                 children: [
-                  HeaderSection(),
+                  HeaderSection(
+                    key: navItems[0].key,
+                  ),
                   SizedBox(height: spacerHeight),
-                  AboutMeSection(),
+                  Container(
+                    key: navItems[1].key,
+                    child: AboutMeSection(
+                      
+                    ),
+                  ),
                   SizedBox(height: spacerHeight),
-                  SkillsSection(),
+                  Container(
+                    key: navItems[2].key,
+                    child: SkillsSection(
+                      
+                    ),
+                  ),
                   SizedBox(height: spacerHeight),
                   StatisticsSection(),
                   SizedBox(height: spacerHeight),
-                  ProjectsSection(),
+                  Container(
+                     key: navItems[3].key,
+                    child: ProjectsSection(
+                     
+                    ),
+                  ),
                   SizedBox(height: spacerHeight),
-                  AwardsSection(),
+                  Container(
+                    key: navItems[4].key,
+                    child: AwardsSection(
+                      
+                    ),
+                  ),
                   SpaceH40(),
-                //  BrandSection(),
-                //  SizedBox(height: spacerHeight),
-//                  TestimonialsSection(),
-                  // SizedBox(height: spacerHeight),
-                  BlogSection(),
-                  // SizedBox(height: spacerHeight),
+                  //BrandSection(),
+                  //TestimonialsSection(),
+                  Container(
+                    key: navItems[5].key,
+                    child: BlogSection(
+                      
+                    ),
+                  ),
                   FooterSection(),
                 ],
               ),

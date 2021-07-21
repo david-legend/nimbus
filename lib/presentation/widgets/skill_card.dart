@@ -5,29 +5,35 @@ import 'package:nimbus/values/values.dart';
 
 class SkillCardData {
   final String title;
+  final String description;
   final IconData iconData;
 
-  SkillCardData({required this.title, required this.iconData});
+  SkillCardData({required this.title, required this.iconData,required this.description});
 }
 
-class SkillCard extends StatelessWidget {
+class SkillCard extends StatefulWidget {
   SkillCard({
     this.title = "",
+    this.description = "",
     this.titleStyle,
+    this.descriptionStyle,
     this.width,
     this.height,
     this.iconSize = 40,
     this.elevation = Sizes.ELEVATION_4,
-    this.borderRadius = const BorderRadius.all(Radius.circular(4)),
+    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
     this.backgroundColor = AppColors.white,
     this.iconData = Icons.phone,
     this.iconColor = AppColors.white,
     this.iconBackgroundColor = AppColors.black,
     this.child,
+    this.onHoverChild,
   });
 
   final String title;
+  final String description;
   final TextStyle? titleStyle;
+  final TextStyle? descriptionStyle;
   final double? width;
   final double? height;
   final double iconSize;
@@ -38,40 +44,150 @@ class SkillCard extends StatelessWidget {
   final Color iconBackgroundColor;
   final IconData iconData;
   final Widget? child;
+  final Widget? onHoverChild;
+
+  @override
+  _SkillCardState createState() => _SkillCardState();
+}
+
+class _SkillCardState extends State<SkillCard> {
+  //   with SingleTickerProviderStateMixin {
+  // bool _isHovering = false;
+
+  // late AnimationController controller;
+
+  // void initState() {
+  //   super.initState();
+
+  //   controller = AnimationController(
+  //     duration: Duration(milliseconds: 1000),
+  //     vsync: this,
+  //   );
+  // }
+
+  // void _mouseEnter(bool hovering) {
+  //   setState(() {
+  //     _isHovering = hovering;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
-      width: width,
-      height: height,
+      width: widget.width,
+      height: widget.height,
       decoration: BoxDecoration(
-        borderRadius: borderRadius,
+        borderRadius: widget.borderRadius,
       ),
-      child: Card(
-        color: backgroundColor,
-        elevation: elevation,
-        child: child ??
+      child: defaultChild(),
+      // MouseRegion(
+      //   onEnter: (e) => _mouseEnter(true),
+      //   onExit: (e) => _mouseEnter(false),
+      //   child: AnimatedSwitcher(
+      //     duration: Duration(milliseconds: 300),
+      //     reverseDuration: Duration(milliseconds: 100),
+      //     transitionBuilder: (child, animation) => ScaleTransition(
+      //       child: SizedBox.expand(child: child),
+      //       scale: animation,
+      //       // position: Tween<Offset>(
+      //       //   begin: Offset(0, -animation.value),
+      //       //   end: Offset(0, animation.value),
+      //       // ).animate(controller),
+      //     ),
+      //     // switchInCurve: Curves.bounceIn,
+      //     // switchOutCurve: Curves.bounceOut,
+      //     // switchInCurve: Curves.easeIn,
+      //     // switchOutCurve: Curves.easeOut,
+      //     child: _isHovering ? onHoverChild() : defaultChild(),
+      //   ),
+      // ),
+    );
+  }
+
+  Widget defaultChild() {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    return Card(
+      color: widget.backgroundColor,
+      elevation: widget.elevation,
+      shape: RoundedRectangleBorder(borderRadius: widget.borderRadius),
+      child: Container(
+        key: Key("default"),
+        child: widget.child ??
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CircularContainer(
-                  backgroundColor: iconBackgroundColor,
+                  backgroundColor: widget.iconBackgroundColor,
                   padding: const EdgeInsets.all(16),
                   borderRadius: const BorderRadius.all(Radius.circular(40)),
-                  iconData: iconData,
-                  iconColor: iconColor,
-                  iconSize: iconSize,
+                  iconData: widget.iconData,
+                  iconColor: widget.iconColor,
+                  iconSize: widget.iconSize,
                 ),
                 SpaceH12(),
                 SelectableText(
-                  title,
+                  widget.title,
                   textAlign: TextAlign.center,
-                  style: titleStyle ?? textTheme.subtitle1,
+                  style: widget.titleStyle ?? textTheme.subtitle1,
                 ),
               ],
             ),
       ),
     );
+  }
+
+  Widget onHoverChild() {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    return widget.onHoverChild ??
+        Stack(
+          children: [
+            ClipRRect(
+              borderRadius: widget.borderRadius,
+              child: Opacity(
+                opacity: 0.9,
+                child: Image.asset(
+                  ImagePath.ICON_BOX,
+                  width: widget.width,
+                  height: widget.height,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.title,
+                    style: widget.titleStyle ??
+                        textTheme.subtitle1?.copyWith(
+                          color: AppColors.white,
+                        ),
+                  ),
+                  SpaceH8(),
+                  Text(
+                    widget.description,
+                    style: widget.descriptionStyle ??
+                        textTheme.bodyText2?.copyWith(
+                          color: AppColors.primaryText1,
+                        ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        );
+    // Container(
+    //   key: Key("onHover"),
+    //   child: Stack(
+    //     children: [
+    //       Image.asset(
+    //         ImagePath.ICON_BOX,
+    //         fit: BoxFit.fill,
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 }

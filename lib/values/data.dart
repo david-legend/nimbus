@@ -68,22 +68,26 @@ class Data {
   static List<SkillCardData> skillCardData = [
     SkillCardData(
       title: StringConst.SKILLS_1,
+       description: StringConst.SKILLS_1_DESC,
       iconData: FontAwesomeIcons.compress,
     ),
-    SkillCardData(title: "", iconData: Icons.pages_outlined), //not being used
+    SkillCardData(title: "", description: "",iconData: Icons.pages_outlined), //not being used
     SkillCardData(
       title: StringConst.SKILLS_2,
+       description: StringConst.SKILLS_2_DESC,
       iconData: Icons.pages_outlined,
     ),
     SkillCardData(
       title: StringConst.SKILLS_3,
+       description:StringConst.SKILLS_3_DESC,
       iconData: FontAwesomeIcons.paintBrush,
     ),
     SkillCardData(
       title: StringConst.SKILLS_4,
+       description: StringConst.SKILLS_4_DESC,
       iconData: FontAwesomeIcons.recordVinyl,
     ),
-    SkillCardData(title: "", iconData: Icons.pages_outlined), //not being used
+    SkillCardData(title: "",  description: "", iconData: Icons.pages_outlined), //not being used
   ];
   static List<StatItemData> statItemsData = [
     StatItemData(value: 120, subtitle: StringConst.HAPPY_CLIENTS),
