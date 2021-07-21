@@ -230,7 +230,7 @@ class _AwardsSectionState extends State<AwardsSection>
                 ImagePath.DEV_AWARD,
               ),
               AnimatedPositioned(
-                left: text1InView ? textPosition : -100,
+                left: text1InView ? textPosition : -150,
                 child: Text(StringConst.MY, style: titleStyle),
                  curve: Curves.fastOutSlowIn,
                  onEnd: (){
@@ -241,7 +241,7 @@ class _AwardsSectionState extends State<AwardsSection>
                  duration: Duration(milliseconds: 750),
               ),
               AnimatedPositioned(
-                right: text2InView ? textPosition : -100,
+                right: text2InView ? textPosition : -150,
                 child: Text(StringConst.CV, style: titleStyle),
                  curve: Curves.fastOutSlowIn,
                  duration: Duration(milliseconds: 750),

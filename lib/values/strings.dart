@@ -23,7 +23,7 @@ class StringConst {
   static const String FIRST_NAME = "Ameli";
   static const String INTRO = "Hi! I'm Ameli Nimbus -";
   static const String POSITION = "UI/UX Designer";
-   static const String ABOUT_DEV =
+  static const String ABOUT_DEV =
       "Product Designer and Digital Creative Director working in design field for 13 years so far, specialized in UI/UX, Branding and digital designs.";
   static const String ABOUT_ME_1 =
       "Product Designer and Digital Creative Director working in design field for";
@@ -117,6 +117,12 @@ class StringConst {
   static const String PACKAGING = "Packaging";
   static const String PHOTOGRAPHY = "Photography";
   static const String WEB_DESIGN = "Web Design";
+  static const String PORTFOLIO_1_TITLE = "Urban Experience";
+  static const String PORTFOLIO_2_TITLE = "Graphic Design";
+  static const String PORTFOLIO_3_TITLE = "Launch Product";
+  static const String PORTFOLIO_4_TITLE = "3D Animation";
+  static const String PORTFOLIO_5_TITLE = "Collect Idea";
+  static const String PORTFOLIO_6_TITLE = "Company Branding";
 
   //Awards & Section
   static const String MY = "My";

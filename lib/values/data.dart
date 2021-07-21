@@ -68,26 +68,32 @@ class Data {
   static List<SkillCardData> skillCardData = [
     SkillCardData(
       title: StringConst.SKILLS_1,
-       description: StringConst.SKILLS_1_DESC,
+      description: StringConst.SKILLS_1_DESC,
       iconData: FontAwesomeIcons.compress,
     ),
-    SkillCardData(title: "", description: "",iconData: Icons.pages_outlined), //not being used
+    SkillCardData(
+        title: "",
+        description: "",
+        iconData: Icons.pages_outlined), //not being used
     SkillCardData(
       title: StringConst.SKILLS_2,
-       description: StringConst.SKILLS_2_DESC,
+      description: StringConst.SKILLS_2_DESC,
       iconData: Icons.pages_outlined,
     ),
     SkillCardData(
       title: StringConst.SKILLS_3,
-       description:StringConst.SKILLS_3_DESC,
+      description: StringConst.SKILLS_3_DESC,
       iconData: FontAwesomeIcons.paintBrush,
     ),
     SkillCardData(
       title: StringConst.SKILLS_4,
-       description: StringConst.SKILLS_4_DESC,
+      description: StringConst.SKILLS_4_DESC,
       iconData: FontAwesomeIcons.recordVinyl,
     ),
-    SkillCardData(title: "",  description: "", iconData: Icons.pages_outlined), //not being used
+    SkillCardData(
+        title: "",
+        description: "",
+        iconData: Icons.pages_outlined), //not being used
   ];
   static List<StatItemData> statItemsData = [
     StatItemData(value: 120, subtitle: StringConst.HAPPY_CLIENTS),
@@ -163,6 +169,45 @@ class Data {
       trailingIcon: Icons.chevron_right,
       leadingIconColor: AppColors.black,
       circleBgColor: AppColors.grey50,
+    ),
+  ];
+
+  static List<ProjectData> allProjects = [
+    ProjectData(
+      title: StringConst.PORTFOLIO_1_TITLE,
+      category: StringConst.PHOTOGRAPHY,
+      projectCoverUrl: ImagePath.PORTFOLIO_1,
+      width: 0.5
+    ),
+    ProjectData(
+      title: StringConst.PORTFOLIO_2_TITLE,
+      category: StringConst.WEB_DESIGN,
+      projectCoverUrl: ImagePath.PORTFOLIO_2,
+      width: 0.225
+    ),
+    ProjectData(
+      title: StringConst.PORTFOLIO_3_TITLE,
+      category: StringConst.BRANDING,
+      projectCoverUrl: ImagePath.PORTFOLIO_3,
+      width: 0.225
+    ),
+    ProjectData(
+      title: StringConst.PORTFOLIO_4_TITLE,
+      category: StringConst.WEB_DESIGN,
+      projectCoverUrl: ImagePath.PORTFOLIO_4,
+      width: 0.225
+    ),
+    ProjectData(
+      title: StringConst.PORTFOLIO_5_TITLE,
+      category: StringConst.PACKAGING,
+      projectCoverUrl: ImagePath.PORTFOLIO_5,
+      width: 0.225
+    ),
+    ProjectData(
+      title: StringConst.PORTFOLIO_6_TITLE,
+      category: StringConst.PHOTOGRAPHY,
+      projectCoverUrl: ImagePath.PORTFOLIO_6,
+      width: 0.5
     ),
   ];
 }
