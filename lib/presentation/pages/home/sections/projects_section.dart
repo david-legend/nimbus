@@ -12,7 +12,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 //TODO:: Add project slides and tabs
 //TODO:: Add proper padding and arrangements of screens
 
-const double kSpacing = 16.0;
+const double kSpacing = 20.0;
 const double kRunSpacing = 16.0;
 
 class ProjectCategoryData {
@@ -29,9 +29,9 @@ class ProjectsSection extends StatefulWidget {
   _ProjectsSectionState createState() => _ProjectsSectionState();
 }
 
-class _ProjectsSectionState extends State<ProjectsSection>  with SingleTickerProviderStateMixin{
-
-   late AnimationController _scaleController;
+class _ProjectsSectionState extends State<ProjectsSection>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _scaleController;
   late Animation<double> _scaleAnimation;
   late AnimationController _fadeInController;
   late Animation<double> _fadeInAnimation;
@@ -47,6 +47,7 @@ class _ProjectsSectionState extends State<ProjectsSection>  with SingleTickerPro
       _scaleController.forward();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
@@ -180,31 +181,94 @@ class _ProjectsSectionState extends State<ProjectsSection>  with SingleTickerPro
   }
 }
 
-class ProjectCategory extends StatelessWidget {
+class ProjectCategory extends StatefulWidget {
   ProjectCategory({
     required this.title,
     required this.number,
     this.titleColor = AppColors.black,
-    this.numberColor = AppColors.primaryColor,
+    this.numberColor = Colors.transparent,
+    this.hoverColor = AppColors.primaryColor,
     this.titleStyle,
     this.numberStyle,
   });
 
   final String title;
   final Color titleColor;
+  final Color numberColor;
   final TextStyle? titleStyle;
   final int number;
-  final Color numberColor;
+  final Color hoverColor;
   final TextStyle? numberStyle;
+
+  @override
+  _ProjectCategoryState createState() => _ProjectCategoryState();
+}
+
+class _ProjectCategoryState extends State<ProjectCategory> {
+  bool _isHovering = false;
 
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    return Container(
-      child: Text(
-        title,
-        style: titleStyle ?? textTheme.subtitle1,
-      ),
-    );
+    return MouseRegion(
+        onEnter: (e) => _mouseEnter(true),
+        onExit: (e) => _mouseEnter(false),
+        child: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: widget.title,
+                style: widget.titleStyle?.copyWith(
+                      color:
+                          _isHovering ? widget.hoverColor : widget.titleColor,
+                    ) ??
+                    textTheme.subtitle1?.copyWith(
+                      fontSize: Sizes.TEXT_SIZE_16,
+                      color:
+                          _isHovering ? widget.hoverColor : widget.titleColor,
+                    ),
+              ),
+              WidgetSpan(
+                child: Transform.translate(
+                  offset: const Offset(2, -8),
+                  child: Text(
+                    "(${widget.number})",
+                    textScaleFactor: 0.7,
+                    style: widget.numberStyle?.copyWith(
+                          color: _isHovering
+                              ? widget.hoverColor
+                              : widget.numberColor,
+                        ) ??
+                        textTheme.subtitle1?.copyWith(
+                          fontSize: Sizes.TEXT_SIZE_16,
+                          color: _isHovering
+                              ? widget.hoverColor
+                              : widget.numberColor,
+                        ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        )
+        // Container(
+        //   child: Text(
+        //     widget.title,
+        // style: widget.titleStyle?.copyWith(
+        //       color: _isHovering ? widget.hoverColor : widget.titleColor,
+        //     ) ??
+        //     textTheme.subtitle1?.copyWith(
+        //       fontSize: Sizes.TEXT_SIZE_16,
+        //       color: _isHovering ? widget.hoverColor : widget.titleColor,
+        //     ),
+        //   ),
+        // ),
+        );
+  }
+
+  void _mouseEnter(bool hovering) {
+    setState(() {
+      _isHovering = hovering;
+    });
   }
 }
