@@ -258,8 +258,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                                   height: buttonHeight,
                                   buttonTitle: StringConst.DOWNLOAD_CV,
                                   buttonColor: AppColors.primaryColor,
-                                  onPressed: () =>
-                                      openUrlLink(StringConst.EMAIL_URL),
+                                  onPressed: () {},
                                 ),
                                 SpaceW16(),
                                 NimbusButton(

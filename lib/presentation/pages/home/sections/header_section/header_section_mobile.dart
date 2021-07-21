@@ -239,8 +239,7 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                                   width: buttonWidth,
                                   height: buttonHeight,
                                   buttonTitle: StringConst.HIRE_ME_NOW,
-                                  onPressed: () =>
-                                      openUrlLink(StringConst.EMAIL_URL),
+                                  onPressed: (){},
                                 ),
                               ],
                             ),

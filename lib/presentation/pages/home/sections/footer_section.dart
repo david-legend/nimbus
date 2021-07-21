@@ -5,6 +5,7 @@ import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
+import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -31,7 +32,6 @@ List<FooterItem> footerItems = [
 ];
 
 class FooterSection extends StatefulWidget {
-  
   FooterSection({Key? key});
   @override
   _FooterSectionState createState() => _FooterSectionState();
@@ -242,7 +242,7 @@ class _FooterSectionState extends State<FooterSection> {
           NimbusButton(
             buttonTitle: StringConst.HIRE_ME,
             buttonColor: AppColors.primaryColor,
-            onPressed: () {},
+            onPressed: () => openUrlLink(StringConst.EMAIL_URL),
           ),
           Spacer(flex: 2),
         ],

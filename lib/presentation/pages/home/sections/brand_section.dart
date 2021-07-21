@@ -14,7 +14,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 //TODO:: Add proper background blobs
 
 class BrandSection extends StatelessWidget {
-
   BrandSection({Key? key});
   CarouselOptions carouselOptions({
     bool autoPlay = true,

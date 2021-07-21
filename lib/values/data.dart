@@ -27,7 +27,7 @@ class Data {
     SocialButton2Data(
       title: StringConst.BEHANCE,
       iconData: FontAwesomeIcons.behance,
-      url: StringConst.TWITTER_URL,
+      url: StringConst.BEHANCE_URL,
       titleColor: AppColors.blue300,
       buttonColor: AppColors.blue300,
       iconColor: AppColors.white,
@@ -35,7 +35,7 @@ class Data {
     SocialButton2Data(
       title: StringConst.DRIBBLE,
       iconData: FontAwesomeIcons.dribbble,
-      url: StringConst.TWITTER_URL,
+      url: StringConst.DRIBBLE_URL,
       titleColor: AppColors.pink300,
       buttonColor: AppColors.pink300,
       iconColor: AppColors.white,
@@ -43,7 +43,7 @@ class Data {
     SocialButton2Data(
       title: StringConst.INSTA,
       iconData: FontAwesomeIcons.instagram,
-      url: StringConst.TWITTER_URL,
+      url: StringConst.INSTAGRAM_URL,
       titleColor: AppColors.yellow300,
       buttonColor: AppColors.yellow300,
       iconColor: AppColors.white,

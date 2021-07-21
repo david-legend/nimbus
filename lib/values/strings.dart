@@ -2,7 +2,7 @@ part of values;
 
 class StringConst {
   //strings
-  static const String APP_NAME = "Nimbus";
+  static const String APP_NAME = "Nimbus CV";
 
   //Nav Section
   static const String NAME_ABBREV = "CA";
@@ -187,8 +187,10 @@ class StringConst {
   static const String FIND_ME = "Find me on..";
 
   //URL Links
+  static const String BEHANCE_URL = "https://www.behance.net/";
+  static const String DRIBBLE_URL = "https://dribbble.com/";
   static const String LINKED_IN_URL = "https:linkedin.com/in/";
-  static const String INSTAGRAM_URL = "https:instagram.com/in/";
+  static const String INSTAGRAM_URL = "https://www.instagram.com/";
   static const String GITHUB_URL = "https://github.com/";
   static const String FACEBOOK_URL = "https://facebook.com/";
   static const String TWITTER_URL = "http://twitter.com/";
