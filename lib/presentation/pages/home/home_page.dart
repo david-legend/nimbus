@@ -95,32 +95,59 @@ class HomePage extends StatelessWidget {
                       )
                     ],
                   ),
-
                   SizedBox(height: spacerHeight),
-                  Container(
-                    key: navItems[2].key,
-                    child: SkillsSection(),
+                  Stack(
+                    children: [
+                      Positioned(
+                        top: assignWidth(context, 0.1),
+                        left: -assignWidth(context, 0.05),
+                        child: Image.asset(ImagePath.BLOB_FEMUR_ASH),
+                      ),
+                      Positioned(
+                        right: -assignWidth(context, 0.5),
+                        child: Image.asset(ImagePath.BLOB_SMALL_BEAN_ASH),
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            key: navItems[2].key,
+                            child: SkillsSection(),
+                          ),
+                          SizedBox(height: spacerHeight),
+                          StatisticsSection(),
+                          SizedBox(height: spacerHeight),
+                          Container(
+                            key: navItems[3].key,
+                            child: ProjectsSection(),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                   SizedBox(height: spacerHeight),
-                  StatisticsSection(),
-                  SizedBox(height: spacerHeight),
-                  Container(
-                    key: navItems[3].key,
-                    child: ProjectsSection(),
+                  Stack(
+                    children: [
+                      Positioned(
+                        left: -assignWidth(context, 0.6),
+                        child: Image.asset(ImagePath.BLOB_ASH),
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            key: navItems[4].key,
+                            child: AwardsSection(),
+                          ),
+                          SpaceH40(),
+                          Container(
+                            key: navItems[5].key,
+                            child: BlogSection(),
+                          ),
+                           FooterSection(),
+                        ],
+                      )
+                    ],
                   ),
-                  SizedBox(height: spacerHeight),
-                  Container(
-                    key: navItems[4].key,
-                    child: AwardsSection(),
-                  ),
-                  SpaceH40(),
-                  //BrandSection(),
-                  //TestimonialsSection(),
-                  Container(
-                    key: navItems[5].key,
-                    child: BlogSection(),
-                  ),
-                  FooterSection(),
+                 
                 ],
               ),
             ),
