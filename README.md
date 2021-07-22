@@ -14,10 +14,5 @@
 
 <br/><br/>
 
-![Screenshot](assets/screenshots/design_shot_1.png)
-![Screenshot](assets/screenshots/design_shot_2.png)
-![Screenshot](assets/screenshots/design_shot_3.png)
-![Screenshot](assets/screenshots/design_shot_4.png)
-![Screenshot](assets/screenshots/design_shot_5.png)
-![Screenshot](assets/screenshots/design_shot_6.png)
-![Screenshot](assets/screenshots/design_shot_7.png)
+![Screenshot](assets/screenshots/nimbus.jpg)
+![Screenshot](assets/screenshots/nimbus_2.jpg)
