@@ -183,28 +183,52 @@ class _FooterSectionState extends State<FooterSection> {
     TextTheme textTheme = Theme.of(context).textTheme;
     return ContentArea(
       width: width,
-      // height: height,
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.black400,
       borderRadius: const BorderRadius.all(
         Radius.circular(Sizes.RADIUS_8),
       ),
-      child: Column(
+      child: Stack(
         children: [
-          SpaceH80(),
-          Text(
-            StringConst.LETS_TALK,
-            textAlign: TextAlign.center,
-            style: textTheme.headline4?.copyWith(color: AppColors.white),
+          Positioned(
+            top: -(height * 0.1),
+            left: -(height * 0.15),
+            child: Image.asset(
+              ImagePath.BOX_COVER_GOLD,
+              // width: width * 0.6 ,
+              height: height * 0.5,
+              // fit: BoxFit.fill,
+            ),
           ),
-          SpaceH60(),
-          ..._buildFooterItems(footerItems),
-          SpaceH60(),
-          NimbusButton(
-            buttonTitle: StringConst.HIRE_ME,
-            buttonColor: AppColors.primaryColor,
-            onPressed: () {},
+          Positioned(
+            bottom: -(height * 0.1),
+            right: -(height * 0.1),
+            child: Image.asset(
+              ImagePath.BOX_COVER_BLACK,
+              height: height * 0.6,
+              fit: BoxFit.cover,
+            ),
           ),
-          SpaceH80(),
+          Center(
+            child: Column(
+              children: [
+                SpaceH80(),
+                Text(
+                  StringConst.LETS_TALK,
+                  textAlign: TextAlign.center,
+                  style: textTheme.headline4?.copyWith(color: AppColors.white),
+                ),
+                SpaceH60(),
+                ..._buildFooterItems(footerItems),
+                SpaceH60(),
+                NimbusButton(
+                  buttonTitle: StringConst.HIRE_ME,
+                  buttonColor: AppColors.primaryColor,
+                  onPressed: () {},
+                ),
+                SpaceH80(),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -218,33 +242,57 @@ class _FooterSectionState extends State<FooterSection> {
     return ContentArea(
       width: width,
       height: height,
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.black400,
       borderRadius: const BorderRadius.all(
         Radius.circular(Sizes.RADIUS_8),
       ),
-      child: Column(
+      child: Stack(
         children: [
-          Spacer(flex: 2),
-          Text(
-            StringConst.LETS_TALK,
-            style: textTheme.headline3?.copyWith(color: AppColors.white),
+          Positioned(
+            top: -(height * 0.15),
+            left: -(height * 0.15),
+            child: Image.asset(
+              ImagePath.BOX_COVER_GOLD,
+              // width: width ,
+              height: height * 0.5,
+              // fit: BoxFit.fill,
+            ),
           ),
-          Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Positioned(
+            top: -(height * 0.15),
+            right: -(height * 0.1),
+            // bottom: -25,
+            child: Image.asset(
+              ImagePath.BOX_COVER_BLACK,
+              height: height * 1.25,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Column(
             children: [
-              Spacer(flex: 3),
-              ..._buildFooterItems(footerItems, isHorizontal: true),
-              Spacer(flex: 3),
+              Spacer(flex: 2),
+              Text(
+                StringConst.LETS_TALK,
+                style: textTheme.headline3?.copyWith(color: AppColors.white),
+              ),
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Spacer(flex: 3),
+                  ..._buildFooterItems(footerItems, isHorizontal: true),
+                  Spacer(flex: 3),
+                ],
+              ),
+              Spacer(),
+              NimbusButton(
+                buttonTitle: StringConst.HIRE_ME,
+                buttonColor: AppColors.primaryColor,
+                onPressed: () => openUrlLink(StringConst.EMAIL_URL),
+              ),
+              Spacer(flex: 2),
             ],
           ),
-          Spacer(),
-          NimbusButton(
-            buttonTitle: StringConst.HIRE_ME,
-            buttonColor: AppColors.primaryColor,
-            onPressed: () => openUrlLink(StringConst.EMAIL_URL),
-          ),
-          Spacer(flex: 2),
         ],
       ),
     );

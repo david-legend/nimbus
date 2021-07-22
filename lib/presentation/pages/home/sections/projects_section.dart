@@ -32,9 +32,6 @@ class ProjectsSection extends StatefulWidget {
 class _ProjectsSectionState extends State<ProjectsSection>
     with SingleTickerProviderStateMixin {
   late AnimationController _scaleController;
-  late Animation<double> _scaleAnimation;
-  late AnimationController _fadeInController;
-  late Animation<double> _fadeInAnimation;
 
   @override
   void initState() {
@@ -43,11 +40,14 @@ class _ProjectsSectionState extends State<ProjectsSection>
       duration: const Duration(milliseconds: 750),
       vsync: this,
     );
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      _scaleController.forward();
-    });
+    _scaleController.forward();
   }
 
+  @override
+  void dispose() {
+    _scaleController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
