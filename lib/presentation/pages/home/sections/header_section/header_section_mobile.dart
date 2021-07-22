@@ -52,7 +52,7 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    double headerIntroTextSize = Sizes.TEXT_SIZE_24;
+    double headerIntroTextSize = Sizes.TEXT_SIZE_36;
     double screenWidth = widthOfScreen(context) - (sidePadding * 2);
     double contentAreaWidth = screenWidth;
     TextStyle? bodyTextStyle =
