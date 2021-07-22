@@ -32,8 +32,7 @@ class ProjectItem extends StatefulWidget {
     this.subtitleStyle,
     this.textColor = AppColors.white,
     this.bannerColor,
-  })  :
-        super(key: key);
+  }) : super(key: key);
 
   final String title;
   final String subtitle;
@@ -51,11 +50,9 @@ class ProjectItem extends StatefulWidget {
 
 class _ProjectItemState extends State<ProjectItem>
     with TickerProviderStateMixin {
-  // late AnimationController _scaleController;
   late AnimationController _slideFadeController;
   late AnimationController _indicatorController;
   late Animation<double> _indicatorAnimation;
-  late Animation<double> _scaleAnimation;
   late Animation<double> _fadeInAnimation;
   late Animation<Offset> _slideAnimation;
   bool _hovering = false;
@@ -63,10 +60,6 @@ class _ProjectItemState extends State<ProjectItem>
   @override
   void initState() {
     super.initState();
-    // _scaleController = AnimationController(
-    //   duration: const Duration(milliseconds: 4000),
-    //   vsync: this,
-    // );
     _indicatorController = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,
@@ -84,15 +77,6 @@ class _ProjectItemState extends State<ProjectItem>
         curve: Curves.easeIn,
       ),
     );
-    // _scaleAnimation = Tween(
-    //   begin: 0.0,
-    //   end: 1.0,
-    // ).animate(
-    //   CurvedAnimation(
-    //     parent: _scaleController,
-    //     curve: Curves.linearToEaseOut,
-    //   ),
-    // );
     _fadeInAnimation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _slideFadeController,
@@ -106,26 +90,10 @@ class _ProjectItemState extends State<ProjectItem>
         curve: Curves.easeIn,
       ),
     );
-
-// WidgetsBinding.instance!.addPostFrameCallback((_) {
-// //Following future can be uncommented to check
-// //if the call back works after 5 seconds.
-// //Future.delayed(const Duration(seconds: 5), () => {
-//   _scaleController.forward();
-//  //});
-// });
-    // _scaleController.forward();
-
-    // _scaleController.addStatusListener((status) {
-    //   if (status == AnimationStatus.completed) {
-    //     _scaleController.reset();
-    //   }
-    // });
   }
 
   @override
   void dispose() {
-    // _scaleController.dispose();
     _slideFadeController.dispose();
     _indicatorController.dispose();
     super.dispose();
@@ -137,8 +105,6 @@ class _ProjectItemState extends State<ProjectItem>
       onEnter: (e) => _mouseEnter(true),
       onExit: (e) => _mouseEnter(false),
       child: Container(
-        // width: widget.width,
-        // height: widget.height,
         child: Stack(
           children: [
             Image.asset(
@@ -178,13 +144,11 @@ class _ProjectItemState extends State<ProjectItem>
       _hovering = hovering;
     });
     if (_hovering) {
-      // _indicatorController.forward();
       _slideFadeController.forward();
       _indicatorController.forward();
     } else {
       _slideFadeController.reverse();
       _indicatorController.reset();
-      // _indicatorController.reverse();
     }
   }
 }
@@ -229,8 +193,6 @@ class ProjectCover extends StatelessWidget {
           AnimatedHoverIndicator2(
             animation: animation,
             indicatorColor: indicatorColor,
-            // height: Sizes.HEIGHT_1,
-            // width: Sizes.WIDTH_100,
           ),
           SpaceW16(),
           Column(

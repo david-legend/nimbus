@@ -277,8 +277,6 @@ class _ProjectCategoryState extends State<ProjectCategory>
     with SingleTickerProviderStateMixin {
   bool _isHovering = false;
   late AnimationController _controller;
-  late Animation<double> opacity;
-  late Animation<Color?> textColor;
   late Color color;
 
   @override
@@ -290,13 +288,7 @@ class _ProjectCategoryState extends State<ProjectCategory>
       duration: Duration(milliseconds: 450),
     );
 
-    // textColor =
-    //     ColorTween(begin: widget.titleColor, end: widget.hoverColor).animate(
-    //   CurvedAnimation(
-    //     parent: _controller,
-    //     curve: Curves.easeIn,
-    //   ),
-    // );
+   
   }
 
   @override
