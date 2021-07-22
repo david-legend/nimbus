@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/pages/home/sections/about_me_section.dart';
 import 'package:nimbus/presentation/pages/home/sections/awards_section.dart';
@@ -13,15 +14,33 @@ import 'package:nimbus/presentation/pages/home/sections/statistics_section.dart'
 import 'package:nimbus/presentation/widgets/app_drawer.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
+import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 //TODO:: Add ash background blob (esp the one that extends between header and about section
 //TODO:: Add huge ash background blob (the one that extends between skills section and projects
 //TODO:: Add FAB that takes user to the top page
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(milliseconds: 300),
+    vsync: this,
+  );
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeInOut,
+  );
+  // bool isFabVisible = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
   final ScrollController _scrollController = ScrollController();
 
   final List<NavItemData> navItems = [
@@ -32,6 +51,22 @@ class HomePage extends StatelessWidget {
     NavItemData(name: StringConst.AWARDS, key: GlobalKey()),
     NavItemData(name: StringConst.BLOG, key: GlobalKey()),
   ];
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels < 100) {
+        _controller.reverse();
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +87,20 @@ class HomePage extends StatelessWidget {
             return Container();
           }
         },
+      ),
+      floatingActionButton: ScaleTransition(
+        scale: _animation,
+        child: FloatingActionButton(
+          onPressed: () {
+            // Scroll to header section
+            scrollToSection(navItems[0].key.currentContext!);
+          },
+          child: Icon(
+            FontAwesomeIcons.arrowUp,
+            size: Sizes.ICON_SIZE_18,
+            color: AppColors.white,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -87,9 +136,19 @@ class HomePage extends StatelessWidget {
                             key: navItems[0].key,
                           ),
                           SizedBox(height: spacerHeight),
-                          Container(
-                            key: navItems[1].key,
-                            child: AboutMeSection(),
+                          VisibilityDetector(
+                            key: Key("about"),
+                            onVisibilityChanged: (visibilityInfo) {
+                              double visiblePercentage =
+                                  visibilityInfo.visibleFraction * 100;
+                              if (visiblePercentage > 10) {
+                                _controller.forward();
+                              }
+                            },
+                            child: Container(
+                              key: navItems[1].key,
+                              child: AboutMeSection(),
+                            ),
                           ),
                         ],
                       )
@@ -142,12 +201,11 @@ class HomePage extends StatelessWidget {
                             key: navItems[5].key,
                             child: BlogSection(),
                           ),
-                           FooterSection(),
+                          FooterSection(),
                         ],
                       )
                     ],
                   ),
-                 
                 ],
               ),
             ),
