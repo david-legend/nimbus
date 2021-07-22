@@ -77,23 +77,26 @@ class _FooterSectionState extends State<FooterSection> {
             },
           ),
           SpaceH20(),
-          SelectableText.rich(
-            TextSpan(
-              text: StringConst.RIGHTS_RESERVED + " ",
-              style: footerTextStyle,
-              children: [
-                TextSpan(text: StringConst.DESIGNED_BY + " "),
-                TextSpan(
-                  text: StringConst.WEB_GENIUS_LAB,
-                  style: footerTextStyle?.copyWith(
-                    decoration: TextDecoration.underline,
-                    fontWeight: FontWeight.w900,
-                    color: AppColors.black,
+          InkWell(
+            onTap: () => openUrlLink(StringConst.WEB_GENIUS_LAB_URL),
+            child: RichText(
+              text: TextSpan(
+                text: StringConst.RIGHTS_RESERVED + " ",
+                style: footerTextStyle,
+                children: [
+                  TextSpan(text: StringConst.DESIGNED_BY + " "),
+                  TextSpan(
+                    text: StringConst.WEB_GENIUS_LAB,
+                    style: footerTextStyle?.copyWith(
+                      decoration: TextDecoration.underline,
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.black,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
           SpaceH4(),
           Row(
@@ -101,20 +104,23 @@ class _FooterSectionState extends State<FooterSection> {
             children: [
               Expanded(
                 child: Center(
-                  child: RichText(
-                    text: TextSpan(
-                      text: StringConst.BUILT_BY + " ",
-                      style: footerTextStyle,
-                      children: [
-                        TextSpan(
-                          text: StringConst.DAVID_COBBINA + ". ",
-                          style: footerTextStyle?.copyWith(
-                            decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.w900,
-                            color: AppColors.black,
+                  child: InkWell(
+                    onTap: () => openUrlLink(StringConst.DAVID_LEGEND_URL),
+                    child: RichText(
+                      text: TextSpan(
+                        text: StringConst.BUILT_BY + " ",
+                        style: footerTextStyle,
+                        children: [
+                          TextSpan(
+                            text: StringConst.DAVID_COBBINA + ". ",
+                            style: footerTextStyle?.copyWith(
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.w900,
+                              color: AppColors.black,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -194,6 +194,7 @@ class StringConst {
   static const String FIND_ME = "Find me on..";
 
   //URL Links
+  static const String WEB_GENIUS_LAB_URL = "https://webgeniuslab.net/";
   static const String BEHANCE_URL = "https://www.behance.net/";
   static const String DRIBBLE_URL = "https://dribbble.com/";
   static const String LINKED_IN_URL = "https:linkedin.com/in/";
