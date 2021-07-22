@@ -10,12 +10,16 @@ class ProjectData {
   final String category;
   final double width;
   final double height;
+  final double mobileWidth;
+  final double mobileHeight;
 
   ProjectData({
     required this.projectCoverUrl,
     required this.title,
     required this.category,
     required this.width,
+    this.mobileHeight = 0.5,
+    this.mobileWidth = 1.0,
     this.height = 0.4,
   });
 }
@@ -28,6 +32,7 @@ class ProjectItem extends StatefulWidget {
     required this.imageUrl,
     required this.width,
     required this.height,
+    this.bannerHeight,
     this.titleStyle,
     this.subtitleStyle,
     this.textColor = AppColors.white,
@@ -43,6 +48,7 @@ class ProjectItem extends StatefulWidget {
   final Color textColor;
   final double width;
   final double height;
+  final double? bannerHeight;
 
   @override
   _ProjectItemState createState() => _ProjectItemState();
@@ -123,7 +129,7 @@ class _ProjectItemState extends State<ProjectItem>
                     animation: _indicatorAnimation,
                     color: widget.bannerColor ?? Colors.black.withOpacity(0.8),
                     width: widget.width,
-                    height: widget.height / 3,
+                    height: widget.bannerHeight ?? widget.height / 3,
                     title: widget.title,
                     subtitle: widget.subtitle,
                     titleStyle: widget.titleStyle,

@@ -84,10 +84,10 @@ class _ProjectsSectionState extends State<ProjectsSection>
     double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
     double contentAreaWidth = screenWidth;
     return VisibilityDetector(
-      key: Key('project-section'),
+      key: Key('project-section-sm'),
       onVisibilityChanged: (visibilityInfo) {
         double visiblePercentage = visibilityInfo.visibleFraction * 100;
-        if (visiblePercentage > 40) {
+        if (visiblePercentage > 20) {
           _playProjectAnimation();
         }
       },
@@ -102,6 +102,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
               child: ContentArea(
                 width: contentAreaWidth,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildNimbusInfoSectionSm(),
                     SpaceH40(),
@@ -111,52 +113,69 @@ class _ProjectsSectionState extends State<ProjectsSection>
                       onPressed: () {},
                     ),
                     SpaceH40(),
-                    //                Wrap(
-                    //                  spacing: kSpacing,
-                    //                  runSpacing: kRunSpacing,
-                    //                  children: _buildProjectCategories(projectCategories),
-                    //                )
+                    Wrap(
+                      spacing: kSpacing,
+                      runSpacing: kRunSpacing,
+                      children: _buildProjectCategories(projectCategories),
+                    ),
+                    SpaceH40(),
+                    Wrap(
+                      runSpacing: assignHeight(context, 0.05),
+                      children: _buildProjects(
+                        selectedProject,
+                        isMobile: true,
+                      ),
+                    ),
                   ],
                 ),
               ),
             );
           } else {
-            return Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: getSidePadding(context),
-                  ),
-                  child: ContentArea(
-                    width: contentAreaWidth,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ContentArea(
-                          width: contentAreaWidth * 0.6,
-                          child: _buildNimbusInfoSectionLg(),
-                        ),
-                        Spacer(),
-                        NimbusButton(
-                          buttonTitle: StringConst.ALL_PROJECTS,
-                          buttonColor: AppColors.primaryColor,
-                          onPressed: () {},
-                        ),
-                      ],
+            return VisibilityDetector(
+              key: Key('project-section_lg'),
+              onVisibilityChanged: (visibilityInfo) {
+                double visiblePercentage = visibilityInfo.visibleFraction * 100;
+                if (visiblePercentage > 40) {
+                  _playProjectAnimation();
+                }
+              },
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: getSidePadding(context),
+                    ),
+                    child: ContentArea(
+                      width: contentAreaWidth,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ContentArea(
+                            width: contentAreaWidth * 0.6,
+                            child: _buildNimbusInfoSectionLg(),
+                          ),
+                          Spacer(),
+                          NimbusButton(
+                            buttonTitle: StringConst.ALL_PROJECTS,
+                            buttonColor: AppColors.primaryColor,
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SpaceH40(),
-                Container(
-                  width: widthOfScreen(context),
-                  child: Wrap(
-                    spacing: assignWidth(context, 0.025),
-                    runSpacing: assignWidth(context, 0.025),
-                    children: _buildProjects(selectedProject),
+                  SpaceH40(),
+                  Container(
+                    width: widthOfScreen(context),
+                    child: Wrap(
+                      spacing: assignWidth(context, 0.025),
+                      runSpacing: assignWidth(context, 0.025),
+                      children: _buildProjects(selectedProject),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           }
         },
@@ -204,15 +223,22 @@ class _ProjectsSectionState extends State<ProjectsSection>
     return items;
   }
 
-  List<Widget> _buildProjects(List<ProjectData> data) {
+  List<Widget> _buildProjects(List<ProjectData> data, {bool isMobile = false}) {
     List<Widget> items = [];
     for (int index = 0; index < data.length; index++) {
       items.add(
         ScaleTransition(
           scale: _projectScaleAnimation,
           child: ProjectItem(
-            width: assignWidth(context, data[index].width),
-            height: assignHeight(context, data[index].height),
+            width: isMobile
+                ? assignWidth(context, data[index].mobileWidth)
+                : assignWidth(context, data[index].width),
+            height: isMobile
+                ? assignHeight(context, data[index].mobileHeight)
+                : assignHeight(context, data[index].height),
+            bannerHeight: isMobile
+                ? assignHeight(context, data[index].mobileHeight) / 2
+                : assignHeight(context, data[index].height) / 3,
             title: data[index].title,
             subtitle: data[index].category,
             imageUrl: data[index].projectCoverUrl,
@@ -287,8 +313,6 @@ class _ProjectCategoryState extends State<ProjectCategory>
       vsync: this,
       duration: Duration(milliseconds: 450),
     );
-
-   
   }
 
   @override
