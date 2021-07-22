@@ -10,7 +10,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 //TODO:: Add proper fontFamilies and styles
 //TODO:: Add project slides and tabs
-//TODO:: Add proper padding and arrangements of screens
 
 const double kSpacing = 20.0;
 const double kRunSpacing = 16.0;

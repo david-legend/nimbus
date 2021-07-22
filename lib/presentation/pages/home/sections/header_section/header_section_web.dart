@@ -10,7 +10,6 @@ import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 //TODO:: Later
-//TODO:: Add background ash blobs
 //TODO:: Animation to button. (Channel your adventurous self)
 
 const double bodyTextSizeLg = 16.0;

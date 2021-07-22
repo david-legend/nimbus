@@ -9,7 +9,6 @@ import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Add proper background to footerCard (Curves and Blobs)
 //TODO:: Revisit icons for footerItems
 //TODO:: Add proper backgrounds to button
 
@@ -219,7 +218,8 @@ class _FooterSectionState extends State<FooterSection> {
                   Text(
                     StringConst.LETS_TALK,
                     textAlign: TextAlign.center,
-                    style: textTheme.headline4?.copyWith(color: AppColors.white),
+                    style:
+                        textTheme.headline4?.copyWith(color: AppColors.white),
                   ),
                   SpaceH60(),
                   ..._buildFooterItems(footerItems),

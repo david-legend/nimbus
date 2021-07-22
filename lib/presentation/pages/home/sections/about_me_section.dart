@@ -10,7 +10,7 @@ import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-//TODO:: Add the right colors to text and dividers
+
 //TODO:: Add animation to socialButton2
 //TODO:: Add floating bubbles (if I am feeling adventurous)
 

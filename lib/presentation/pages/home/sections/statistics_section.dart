@@ -5,7 +5,6 @@ import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-//TODO:: Add background curves and designs
 
 class StatItemData {
   final int value;

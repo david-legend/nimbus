@@ -19,9 +19,7 @@ import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-//TODO:: Add ash background blob (esp the one that extends between header and about section
-//TODO:: Add huge ash background blob (the one that extends between skills section and projects
-//TODO:: Add FAB that takes user to the top page
+
 
 class HomePage extends StatefulWidget {
   @override
