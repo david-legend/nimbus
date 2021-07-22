@@ -52,7 +52,7 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    double headerIntroTextSize = Sizes.TEXT_SIZE_36;
+    double headerIntroTextSize = Sizes.TEXT_SIZE_24;
     double screenWidth = widthOfScreen(context) - (sidePadding * 2);
     double contentAreaWidth = screenWidth;
     TextStyle? bodyTextStyle =
@@ -79,15 +79,15 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
               children: [
                 Stack(
                   children: [
-                    Positioned(
-                      left: -(sizeOfBlobSm * 0.7),
-                      top: blobOffset,
-                      child: Image.asset(
-                        ImagePath.BLOB_BLACK,
-                        height: sizeOfBlobSm,
-                        width: sizeOfBlobSm,
-                      ),
-                    ),
+                    // Positioned(
+                    //   left: -(sizeOfBlobSm * 0.7),
+                    //   top: blobOffset,
+                    //   child: Image.asset(
+                    //     ImagePath.BLOB_BLACK,
+                    //     height: sizeOfBlobSm,
+                    //     width: sizeOfBlobSm,
+                    //   ),
+                    // ),
                     Positioned(
                       left: -(sizeOfGoldenGlobe / 3),
                       top: blobOffset + dottedGoldenGlobeOffset,
@@ -124,7 +124,7 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                       StringConst.FIRST_NAME,
                       style: textTheme.headline1?.copyWith(
                         color: AppColors.grey50,
-                        fontSize: headerIntroTextSize * 2,
+                        fontSize: headerIntroTextSize * 2.5,
                       ),
                     ),
                   ),
@@ -180,11 +180,12 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                             SpaceH16(),
                             ConstrainedBox(
                               constraints:
-                                  BoxConstraints(maxWidth: screenWidth),
+                                  BoxConstraints(maxWidth: screenWidth * 0.5),
                               child: SelectableText(
                                 StringConst.ABOUT_DEV,
                                 style: bodyTextStyle?.copyWith(
                                   height: 1.5,
+                                  // color: AppColors.black,
                                 ),
                               ),
                             ),
