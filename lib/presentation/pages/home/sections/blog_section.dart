@@ -14,9 +14,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 const double kSpacing = 28.0;
 const double kRunSpacing = 16.0;
 
-
 class BlogSection extends StatefulWidget {
-
   BlogSection({Key? key});
   @override
   _BlogSectionState createState() => _BlogSectionState();
@@ -29,12 +27,19 @@ class _BlogSectionState extends State<BlogSection> {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    EdgeInsetsGeometry padding =
+        EdgeInsets.symmetric(horizontal: getSidePadding(context));
+    double headerIntroTextSize = responsiveSize(
+      context,
+      Sizes.TEXT_SIZE_36,
+      Sizes.TEXT_SIZE_56,
+      md: Sizes.TEXT_SIZE_36,
+    );
     double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
     double screenHeight = heightOfScreen(context);
     double contentAreaWidth =
         responsiveSize(context, screenWidth, screenWidth * 0.6);
-//    double blogImageHeight =
-//        responsiveSize(context, screenHeight, screenHeight * 0.5);
 
     return VisibilityDetector(
       key: Key('blog-section'),
@@ -44,102 +49,94 @@ class _BlogSectionState extends State<BlogSection> {
 //          _text1Controller.forward();
         }
       },
-      child: ContentArea(
-        padding: EdgeInsets.symmetric(horizontal: getSidePadding(context)),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ResponsiveBuilder(builder: (context, sizingInformation) {
-              double screenWidth = sizingInformation.screenSize.width;
-              if (screenWidth <= (RefinedBreakpoints().tabletSmall)) {
-                return Column(
-                  children: [
-                    ContentArea(
-                      width: contentAreaWidth,
-                      child: NimbusInfoSection2(
-                        sectionTitle: StringConst.MY_BLOG,
-                        title1: StringConst.BLOG_SECTION_TITLE_1,
-                        title2: StringConst.BLOG_SECTION_TITLE_2,
-                        body: StringConst.BLOG_DESC,
-                      ),
-                    ),
-                    SpaceH50(),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: NimbusButton(
-                        buttonTitle: StringConst.BLOG_VIEW_ALL,
-                        buttonColor: AppColors.primaryColor,
-                        onPressed: () {},
-                      ),
-                    ),
-                  ],
-                );
-              } else {
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ContentArea(
-                      width: screenWidth * 0.7,
-                      child: NimbusInfoSection1(
-                        sectionTitle: StringConst.MY_BLOG,
-                        title1: StringConst.BLOG_SECTION_TITLE_1,
-                        title2: StringConst.BLOG_SECTION_TITLE_2,
-                        body: StringConst.BLOG_DESC,
-                      ),
-                    ),
-                    Spacer(),
-                    NimbusButton(
-                      buttonTitle: StringConst.BLOG_VIEW_ALL,
-                      buttonColor: AppColors.primaryColor,
-                      onPressed: () {},
-                    ),
-                  ],
-                );
-              }
-            }),
-            SpaceH40(),
-            ResponsiveBuilder(
-              builder: (context, sizingInformation) {
-                double widthOfScreen = sizingInformation.screenSize.width;
-                if (widthOfScreen < (RefinedBreakpoints().tabletLarge)) {
-                  return Container(
-                    width: widthOfScreen,
-                    height: screenWidth + 250,
-                    child: CarouselSlider.builder(
-                      itemCount: blogLength,
-                      itemBuilder:
-                          (BuildContext context, int index, int pageViewIndex) {
-                        return BlogCard(
-                          width: screenWidth,
-                          imageWidth: screenWidth,
-                          imageHeight: screenWidth,
-                          category: Data.blogData[index].category,
-                          title: Data.blogData[index].title,
-                          date: Data.blogData[index].date,
-                          buttonText: Data.blogData[index].buttonText,
-                          imageUrl: Data.blogData[index].imageUrl,
-                          onPressed: () {},
-                        );
-                      },
-                      options: carouselOptions(),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 60,
+            right: 0,
+            child: SelectableText(
+              StringConst.BLOGGING,
+              style: textTheme.headline1?.copyWith(
+                color: AppColors.grey50,
+                fontSize: headerIntroTextSize * 2,
+              ),
+            ),
+          ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ResponsiveBuilder(builder: (context, sizingInformation) {
+                double screenWidth = sizingInformation.screenSize.width;
+                if (screenWidth <= (RefinedBreakpoints().tabletSmall)) {
+                  return ContentArea(
+                    padding: padding,
+                    child: Column(
+                      children: [
+                        ContentArea(
+                          width: contentAreaWidth,
+                          child: NimbusInfoSection2(
+                            sectionTitle: StringConst.MY_BLOG,
+                            title1: StringConst.BLOG_SECTION_TITLE_1,
+                            title2: StringConst.BLOG_SECTION_TITLE_2,
+                            body: StringConst.BLOG_DESC,
+                          ),
+                        ),
+                        SpaceH50(),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: NimbusButton(
+                            buttonTitle: StringConst.BLOG_VIEW_ALL,
+                            buttonColor: AppColors.primaryColor,
+                            onPressed: () {},
+                          ),
+                        ),
+                      ],
                     ),
                   );
-                } else if (widthOfScreen >= RefinedBreakpoints().tabletLarge &&
-                    widthOfScreen <= 1024) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: screenWidth,
+                } else {
+                  return ContentArea(
+                    padding: padding,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ContentArea(
+                          width: screenWidth * 0.7,
+                          child: NimbusInfoSection1(
+                            sectionTitle: StringConst.MY_BLOG,
+                            title1: StringConst.BLOG_SECTION_TITLE_1,
+                            title2: StringConst.BLOG_SECTION_TITLE_2,
+                            body: StringConst.BLOG_DESC,
+                          ),
+                        ),
+                        Spacer(),
+                        NimbusButton(
+                          buttonTitle: StringConst.BLOG_VIEW_ALL,
+                          buttonColor: AppColors.primaryColor,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              }),
+              SpaceH40(),
+              Padding(
+                padding: padding,
+                child: ResponsiveBuilder(
+                  builder: (context, sizingInformation) {
+                    double widthOfScreen = sizingInformation.screenSize.width;
+                    if (widthOfScreen < (RefinedBreakpoints().tabletLarge)) {
+                      return Container(
+                        width: widthOfScreen,
+                        height: screenWidth + 250,
                         child: CarouselSlider.builder(
                           itemCount: blogLength,
-                          carouselController: _carouselController,
                           itemBuilder: (BuildContext context, int index,
                               int pageViewIndex) {
                             return BlogCard(
-                              width: screenWidth * 0.45,
-                              imageWidth: screenWidth * 0.45,
-                              imageHeight: screenWidth * 0.45,
+                              width: screenWidth,
+                              imageWidth: screenWidth,
+                              imageHeight: screenWidth,
                               category: Data.blogData[index].category,
                               title: Data.blogData[index].title,
                               date: Data.blogData[index].date,
@@ -148,45 +145,75 @@ class _BlogSectionState extends State<BlogSection> {
                               onPressed: () {},
                             );
                           },
-                          options: carouselOptions(
-                            viewportFraction: 0.50,
-                            autoPlay: false,
-                            initialPage: currentPageIndex.toInt(),
-                            aspectRatio: 2 / 1.4,
-                            enableInfiniteScroll: true,
-                            enlargeCenterPage: false,
-                          ),
+                          options: carouselOptions(),
                         ),
-                      ),
-                      _buildDotsIndicator(
-                        pageLength: blogLength,
-                        currentIndex: currentPageIndex,
-                      ),
-                      SpaceH100(),
-                    ],
-                  );
-                } else {
-                  return Align(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      children: [
-                        Wrap(
-                          spacing: kSpacing,
-                          runSpacing: kRunSpacing,
-                          children: _buildBlogCards(
-                            blogData: Data.blogData,
+                      );
+                    } else if (widthOfScreen >=
+                            RefinedBreakpoints().tabletLarge &&
+                        widthOfScreen <= 1024) {
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
                             width: screenWidth,
+                            child: CarouselSlider.builder(
+                              itemCount: blogLength,
+                              carouselController: _carouselController,
+                              itemBuilder: (BuildContext context, int index,
+                                  int pageViewIndex) {
+                                return BlogCard(
+                                  width: screenWidth * 0.45,
+                                  imageWidth: screenWidth * 0.45,
+                                  imageHeight: screenWidth * 0.45,
+                                  category: Data.blogData[index].category,
+                                  title: Data.blogData[index].title,
+                                  date: Data.blogData[index].date,
+                                  buttonText: Data.blogData[index].buttonText,
+                                  imageUrl: Data.blogData[index].imageUrl,
+                                  onPressed: () {},
+                                );
+                              },
+                              options: carouselOptions(
+                                viewportFraction: 0.50,
+                                autoPlay: false,
+                                initialPage: currentPageIndex.toInt(),
+                                aspectRatio: 2 / 1.4,
+                                enableInfiniteScroll: true,
+                                enlargeCenterPage: false,
+                              ),
+                            ),
                           ),
+                          _buildDotsIndicator(
+                            pageLength: blogLength,
+                            currentIndex: currentPageIndex,
+                          ),
+                          SpaceH100(),
+                        ],
+                      );
+                    } else {
+                      return Align(
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          children: [
+                            Wrap(
+                              spacing: kSpacing,
+                              runSpacing: kRunSpacing,
+                              children: _buildBlogCards(
+                                blogData: Data.blogData,
+                                width: screenWidth,
+                              ),
+                            ),
+                            SpaceH100(),
+                          ],
                         ),
-                        SpaceH100(),
-                      ],
-                    ),
-                  );
-                }
-              },
-            ),
-          ],
-        ),
+                      );
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

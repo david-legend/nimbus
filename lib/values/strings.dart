@@ -175,6 +175,7 @@ class StringConst {
   static const String BLOG_TITLE_2 = "10 Tips How Create Best Packaging Design";
   static const String BLOG_TITLE_3 = "How Get Your Visitors Love Your Brand";
   static const String READ_MORE = "Read More";
+  static const String BLOGGING = "Blogging";
 
   //Footer Section
   static const String LETS_TALK = "Let's Talk!";
