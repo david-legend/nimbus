@@ -195,19 +195,19 @@ class Data {
       title: StringConst.PORTFOLIO_4_TITLE,
       category: StringConst.WEB_DESIGN,
       projectCoverUrl: ImagePath.PORTFOLIO_4,
-      width: 0.225
+      width: 0.2375
     ),
     ProjectData(
       title: StringConst.PORTFOLIO_5_TITLE,
       category: StringConst.PACKAGING,
       projectCoverUrl: ImagePath.PORTFOLIO_5,
-      width: 0.225
+      width: 0.2375
     ),
     ProjectData(
       title: StringConst.PORTFOLIO_6_TITLE,
       category: StringConst.PHOTOGRAPHY,
       projectCoverUrl: ImagePath.PORTFOLIO_6,
-      width: 0.5
+      width: 0.475
     ),
   ];
 }

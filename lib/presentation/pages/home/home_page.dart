@@ -73,14 +73,29 @@ class HomePage extends StatelessWidget {
               controller: _scrollController,
               child: Column(
                 children: [
-                  HeaderSection(
-                    key: navItems[0].key,
+                  Stack(
+                    children: [
+                      Positioned.fill(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Image.asset(ImagePath.BLOB_BEAN_ASH),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          HeaderSection(
+                            key: navItems[0].key,
+                          ),
+                          SizedBox(height: spacerHeight),
+                          Container(
+                            key: navItems[1].key,
+                            child: AboutMeSection(),
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                  SizedBox(height: spacerHeight),
-                  Container(
-                    key: navItems[1].key,
-                    child: AboutMeSection(),
-                  ),
+
                   SizedBox(height: spacerHeight),
                   Container(
                     key: navItems[2].key,
