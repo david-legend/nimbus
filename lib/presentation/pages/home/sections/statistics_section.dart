@@ -42,7 +42,6 @@ class _StatisticsSectionState extends State<StatisticsSection>
   Widget build(BuildContext context) {
     double contentAreaWidth =
         widthOfScreen(context) - (getSidePadding(context) * 2);
-    double contentAreaHeight = assignHeight(context, 0.7);
     return VisibilityDetector(
       key: Key('statistics-section'),
       onVisibilityChanged: (visibilityInfo) {

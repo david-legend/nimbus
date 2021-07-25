@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nimbus/values/values.dart';
+import 'package:url_launcher/link.dart';
 
 class SocialButtonData {
   final String tag;
@@ -21,7 +22,7 @@ class SocialButton extends StatelessWidget {
   const SocialButton({
     required this.tag,
     required this.iconData,
-    required this.onPressed,
+     this.onPressed,
     this.width = Sizes.WIDTH_28,
     this.height = Sizes.HEIGHT_28,
     this.elevation = Sizes.ELEVATION_1,
@@ -50,15 +51,17 @@ class SocialButton extends StatelessWidget {
       decoration: decoration,
       child: FloatingActionButton(
         elevation: elevation,
-        onPressed: onPressed,
+        onPressed:  onPressed,
         backgroundColor: buttonColor,
         heroTag: tag,
         child: Icon(
-          iconData,
-          size: iconSize,
-          color: iconColor,
-        ),
+        iconData,
+        size: iconSize,
+        color: iconColor,
+      ),
       ),
     );
   }
+
+  
 }

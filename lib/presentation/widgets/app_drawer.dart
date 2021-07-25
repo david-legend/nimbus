@@ -6,7 +6,6 @@ import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 
-import 'circular_container.dart';
 import 'nav_item.dart';
 
 const kSpacing20 = Sizes.SIZE_20;

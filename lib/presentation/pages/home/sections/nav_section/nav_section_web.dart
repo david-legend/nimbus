@@ -4,14 +4,13 @@ import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/buttons/social_button.dart';
 import 'package:nimbus/presentation/widgets/empty.dart';
 import 'package:nimbus/presentation/widgets/nav_item.dart';
+import 'package:nimbus/presentation/widgets/buttons/nimbus_button_link.dart';
+import 'package:nimbus/presentation/widgets/nimbus_link.dart';
 import 'package:nimbus/presentation/widgets/nimbus_vertical_divider.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
-//TODO:: Add proper link to nimbus logo to reload the page
-//TODO:: Add animation to contact me button (if I am feeling adventurous)
 
 const double logoSpaceLeftLg = 40.0;
 const double logoSpaceLeftSm = 20.0;
@@ -107,10 +106,12 @@ class _NavSectionWebState extends State<NavSectionWeb> {
             ),
             NimbusVerticalDivider(),
             SizedBox(width: contactBtnSpaceLeft),
-            NimbusButton(
+             NimbusButton(
               buttonTitle: StringConst.CONTACT_ME,
               width: contactBtnWidth,
-              onPressed: () => openUrlLink(StringConst.EMAIL_URL),
+              // onPressed: () => openUrlLink(StringConst.EMAIL_URL),
+              opensUrl: true,
+              url: StringConst.EMAIL_URL,
             ),
             SizedBox(width: contactBtnSpaceRight),
           ],
@@ -125,7 +126,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
   }) {
     for (int index = 0; index < widget.navItems.length; index++) {
       if (navItemName == widget.navItems[index].name) {
-       scrollToSection(context.currentContext!);
+        scrollToSection(context.currentContext!);
         setState(() {
           widget.navItems[index].isSelected = true;
         });
@@ -160,8 +161,17 @@ class _NavSectionWebState extends State<NavSectionWeb> {
         SocialButton(
           tag: socialItems[index].tag,
           iconData: socialItems[index].iconData,
+          
           onPressed: () => openUrlLink(socialItems[index].url),
         ),
+        // NimBusLink(
+        //   url: socialItems[index].url,
+        //   child: SocialButton(
+        //     tag: socialItems[index].tag,
+        //     iconData: socialItems[index].iconData,
+        //     onPressed: (){},
+        //   ),
+        // ),
       );
       items.add(SpaceW16());
     }

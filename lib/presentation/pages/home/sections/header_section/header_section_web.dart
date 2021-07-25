@@ -4,13 +4,12 @@ import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/pages/home/sections/header_section/widgets.dart';
 import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/content_area.dart';
+import 'package:nimbus/presentation/widgets/buttons/nimbus_button_link.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Later
-//TODO:: Animation to button. (Channel your adventurous self)
 
 const double bodyTextSizeLg = 16.0;
 const double bodyTextSizeSm = 14.0;
@@ -53,7 +52,6 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
-    double sidePadding = getSidePadding(context);
     double headerIntroTextSize = responsiveSize(
       context,
       Sizes.TEXT_SIZE_24,
@@ -65,11 +63,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
     double socialTextSize =
         responsiveSize(context, socialTextSizeSm, socialTextSizeLg);
     double screenWidth = widthOfScreen(context);
-    double screenHeight = heightOfScreen(context);
     double contentAreaWidth = screenWidth;
-    double contentAreaHeight = screenHeight * 0.8;
-    double widthOfBlackBlob = contentAreaWidth * 0.5;
-    double hiddenPortionOfBlackBlob = widthOfBlackBlob * 0.95;
     TextStyle? bodyTextStyle =
         textTheme.bodyText1?.copyWith(fontSize: bodyTextSize);
     TextStyle? socialTitleStyle =
@@ -264,9 +258,17 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                                   width: buttonWidth,
                                   height: buttonHeight,
                                   buttonTitle: StringConst.HIRE_ME_NOW,
-                                  onPressed: () =>
-                                      openUrlLink(StringConst.EMAIL_URL),
+                                  opensUrl: true,
+                                  url: StringConst.EMAIL_URL,
+                                  // onPressed: () =>
+                                  //     openUrlLink(StringConst.EMAIL_URL),
                                 ),
+                                // NimBusButtonLink(
+                                //   width: buttonWidth,
+                                //   height: buttonHeight,
+                                //   url: StringConst.EMAIL_URL,
+                                //   buttonTitle: StringConst.HIRE_ME_NOW,
+                                // ),
                               ],
                             ),
                             SpaceH30(),
@@ -347,58 +349,5 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
     );
   }
 
-  Widget _buildResponsiveHeaderImage() {
-    return ResponsiveBuilder(
-      refinedBreakpoints: RefinedBreakpoints(),
-      builder: (context, sizingInformation) {
-        double screenWidth = sizingInformation.screenSize.width;
-        if (screenWidth < RefinedBreakpoints().tabletSmall) {
-          return Align(
-            alignment: Alignment(5, -1.0),
-            child: AspectRatio(
-              aspectRatio: 2.5 / 4,
-              child: Align(
-                alignment: Alignment(5, -1.0),
-                child: HeaderImage(
-                  controller: _controller,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          );
-        } else if (screenWidth >= RefinedBreakpoints().tabletSmall &&
-            screenWidth <= RefinedBreakpoints().tabletExtraLarge) {
-          return Align(
-            alignment: Alignment(2, -1.0),
-            child: AspectRatio(
-              aspectRatio: 3 / 4,
-              child: Align(
-                alignment: Alignment(2, -1.0),
-                child: HeaderImage(
-                  controller: _controller,
-                  globeSize: 200,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          );
-        } else {
-          return Align(
-            alignment: Alignment(1.5, -1.5),
-            child: AspectRatio(
-              aspectRatio: 1 / 1,
-              child: Align(
-                alignment: Alignment(1.5, -1.5),
-                child: HeaderImage(
-                  controller: _controller,
-                  globeSize: 250,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          );
-        }
-      },
-    );
-  }
+  
 }

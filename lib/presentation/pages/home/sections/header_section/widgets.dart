@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nimbus/presentation/layout/adaptive.dart';
+import 'package:nimbus/presentation/widgets/nimbus_link.dart';
 import 'package:nimbus/presentation/widgets/buttons/social_button.dart';
 import 'package:nimbus/presentation/widgets/circular_container.dart';
 import 'package:nimbus/presentation/widgets/nimbus_card.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
-import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 
 class HeaderImage extends StatelessWidget {
@@ -53,8 +53,16 @@ List<Widget> buildSocialIcons(List<SocialButtonData> socialItems) {
   List<Widget> items = [];
   for (int index = 0; index < socialItems.length; index++) {
     items.add(
-      InkWell(
-        onTap: () => openUrlLink(socialItems[index].url),
+      // InkWell(
+      //   onTap: () => openUrlLink(socialItems[index].url),
+      //   child: Icon(
+      //     socialItems[index].iconData,
+      //     color: AppColors.black,
+      //     size: Sizes.ICON_SIZE_18,
+      //   ),
+      // ),
+      NimBusLink(
+        url: socialItems[index].url,
         child: Icon(
           socialItems[index].iconData,
           color: AppColors.black,
@@ -156,12 +164,11 @@ List<Widget> buildCardRow({
   return items;
 }
 
-
 double computeHeight(double offset, double sizeOfGlobe, double sizeOfBlob) {
-    double sum = (offset + sizeOfGlobe) - sizeOfBlob;
-    if (sum < 0) {
-      return sizeOfBlob;
-    } else {
-      return sum + sizeOfBlob;
-    }
+  double sum = (offset + sizeOfGlobe) - sizeOfBlob;
+  if (sum < 0) {
+    return sizeOfBlob;
+  } else {
+    return sum + sizeOfBlob;
   }
+}

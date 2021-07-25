@@ -4,15 +4,13 @@ import 'package:nimbus/presentation/widgets/buttons/social_button_2.dart';
 import 'package:nimbus/presentation/widgets/content_area.dart';
 import 'package:nimbus/presentation/widgets/empty.dart';
 import 'package:nimbus/presentation/widgets/nimbus_info_section.dart';
+import 'package:nimbus/presentation/widgets/nimbus_link.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-
-//TODO:: Add animation to socialButton2
-//TODO:: Add floating bubbles (if I am feeling adventurous)
 
 const double kSpacingSm = 40.0;
 const double kRunSpacingSm = 24.0;
@@ -154,6 +152,18 @@ class _AboutMeSectionState extends State<AboutMeSection>
           buttonColor: data[index].buttonColor,
           iconColor: data[index].iconColor,
         ),
+        // NimBusLink(
+        //   url: data[index].url,
+        //   child: SocialButton2(
+        //     width: width,
+        //     title: data[index].title.toUpperCase(),
+        //     iconData: data[index].iconData,
+        //     onPressed: () {},
+        //     titleColor: data[index].titleColor,
+        //     buttonColor: data[index].buttonColor,
+        //     iconColor: data[index].iconColor,
+        //   ),
+        // ),
       );
     }
     return items;
@@ -332,7 +342,6 @@ class _AboutMeSectionState extends State<AboutMeSection>
       body: StringConst.ABOUT_ME_DESC,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         children: [
           Text(
             StringConst.FOLLOW_ME_1,

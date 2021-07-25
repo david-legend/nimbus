@@ -8,10 +8,6 @@ import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//TODO:: Add right padding to brand Section
-//TODO:: Add proper brand images (add proper child)
-//TODO:: Add proper elevation for card
-//TODO:: Add proper background blobs
 
 class BrandSection extends StatelessWidget {
   BrandSection({Key? key});

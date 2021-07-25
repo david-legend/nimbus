@@ -40,10 +40,10 @@ class AppTheme {
     brightness: Brightness.light,
   );
 
-  static const _superBold = FontWeight.w900;
+  // static const _superBold = FontWeight.w900;
   static const _bold = FontWeight.w700;
-  static const _semiBold = FontWeight.w600;
-  static const _medium = FontWeight.w500;
+  // static const _semiBold = FontWeight.w600;
+  // static const _medium = FontWeight.w500;
   static const _regular = FontWeight.w400;
   static const _light = FontWeight.w300;
 

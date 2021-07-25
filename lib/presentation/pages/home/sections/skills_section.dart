@@ -14,7 +14,6 @@ const double kRunSpacing = 20.0;
 const double kMainAxisSpacing = 16.0;
 const double kCrossAxisSpacing = 16.0;
 
-//TODO:: Add animation onHover of skillBoxes
 
 class SkillsSection extends StatefulWidget {
   SkillsSection({Key? key});

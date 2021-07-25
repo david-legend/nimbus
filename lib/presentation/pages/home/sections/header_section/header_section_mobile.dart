@@ -4,10 +4,9 @@ import 'package:nimbus/presentation/layout/adaptive.dart';
 import 'package:nimbus/presentation/pages/home/sections/header_section/widgets.dart';
 import 'package:nimbus/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:nimbus/presentation/widgets/content_area.dart';
+import 'package:nimbus/presentation/widgets/buttons/nimbus_button_link.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
-import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 const double bodyTextSizeLg = 16.0;
 const double bodyTextSizeSm = 14.0;
@@ -231,17 +230,22 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                                   width: buttonWidth,
                                   height: buttonHeight,
                                   buttonTitle: StringConst.DOWNLOAD_CV,
-                                  buttonColor: AppColors.primaryColor,
-                                  onPressed: () =>
-                                      openUrlLink(StringConst.EMAIL_URL),
+                                  onPressed: () {},
                                 ),
                                 SpaceW16(),
-                                NimbusButton(
+                                  NimbusButton(
                                   width: buttonWidth,
                                   height: buttonHeight,
                                   buttonTitle: StringConst.HIRE_ME_NOW,
                                   onPressed: (){},
                                 ),
+                                // NimBusButtonLink(
+                                //   width: buttonWidth,
+                                //   height: buttonHeight,
+                                //   url: StringConst.EMAIL_URL,
+                                //   buttonColor: AppColors.primaryColor,
+                                //   buttonTitle: StringConst.HIRE_ME_NOW,
+                                // ),
                               ],
                             ),
                             SpaceH30(),

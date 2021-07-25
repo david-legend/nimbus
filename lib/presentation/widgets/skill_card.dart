@@ -51,29 +51,9 @@ class SkillCard extends StatefulWidget {
 }
 
 class _SkillCardState extends State<SkillCard> {
-  //   with SingleTickerProviderStateMixin {
-  // bool _isHovering = false;
-
-  // late AnimationController controller;
-
-  // void initState() {
-  //   super.initState();
-
-  //   controller = AnimationController(
-  //     duration: Duration(milliseconds: 1000),
-  //     vsync: this,
-  //   );
-  // }
-
-  // void _mouseEnter(bool hovering) {
-  //   setState(() {
-  //     _isHovering = hovering;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
       width: widget.width,
       height: widget.height,
@@ -81,27 +61,6 @@ class _SkillCardState extends State<SkillCard> {
         borderRadius: widget.borderRadius,
       ),
       child: defaultChild(),
-      // MouseRegion(
-      //   onEnter: (e) => _mouseEnter(true),
-      //   onExit: (e) => _mouseEnter(false),
-      //   child: AnimatedSwitcher(
-      //     duration: Duration(milliseconds: 300),
-      //     reverseDuration: Duration(milliseconds: 100),
-      //     transitionBuilder: (child, animation) => ScaleTransition(
-      //       child: SizedBox.expand(child: child),
-      //       scale: animation,
-      //       // position: Tween<Offset>(
-      //       //   begin: Offset(0, -animation.value),
-      //       //   end: Offset(0, animation.value),
-      //       // ).animate(controller),
-      //     ),
-      //     // switchInCurve: Curves.bounceIn,
-      //     // switchOutCurve: Curves.bounceOut,
-      //     // switchInCurve: Curves.easeIn,
-      //     // switchOutCurve: Curves.easeOut,
-      //     child: _isHovering ? onHoverChild() : defaultChild(),
-      //   ),
-      // ),
     );
   }
 
