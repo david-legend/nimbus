@@ -10,7 +10,6 @@ import 'package:nimbus/utils/functions.dart';
 import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-
 const double bodyTextSizeLg = 16.0;
 const double bodyTextSizeSm = 14.0;
 const double socialTextSizeLg = 18.0;
@@ -45,7 +44,6 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
   }
 
@@ -127,7 +125,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                   ],
                 ),
                 Positioned(
-                  right: -(sizeOfBlobSm* 0.8),
+                  right: -(sizeOfBlobSm * 0.8),
                   child: HeaderImage(
                     controller: _controller,
                     globeSize: sizeOfGoldenGlobe,
@@ -153,7 +151,8 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: heightOfStack * 0.2, left: (sizeOfBlobSm * 0.35)),
+                    margin: EdgeInsets.only(
+                        top: heightOfStack * 0.2, left: (sizeOfBlobSm * 0.35)),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -291,7 +290,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                     double screenWidth = sizingInformation.screenSize.width;
                     if (screenWidth < RefinedBreakpoints().tabletNormal) {
                       return Container(
-                         margin: EdgeInsets.only(right: (sizeOfBlobSm * 0.35)),
+                        margin: EdgeInsets.only(right: (sizeOfBlobSm * 0.35)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: buildCardRow(
@@ -303,7 +302,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                           ),
                         ),
                       );
-                    }else if (screenWidth >=
+                    } else if (screenWidth >=
                             RefinedBreakpoints().tabletNormal &&
                         screenWidth <= 1024) {
                       return Wrap(
@@ -338,7 +337,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                           ),
                         ],
                       );
-                    } 
+                    }
                   },
                 ),
               ),
@@ -348,6 +347,4 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
       ),
     );
   }
-
-  
 }
