@@ -44,7 +44,6 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
   }
 
@@ -233,11 +232,11 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                                   onPressed: () {},
                                 ),
                                 SpaceW16(),
-                                  NimbusButton(
+                                NimbusButton(
                                   width: buttonWidth,
                                   height: buttonHeight,
                                   buttonTitle: StringConst.HIRE_ME_NOW,
-                                  onPressed: (){},
+                                  onPressed: () {},
                                 ),
                                 // NimBusButtonLink(
                                 //   width: buttonWidth,

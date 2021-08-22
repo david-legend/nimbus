@@ -7,7 +7,7 @@ import 'package:nimbus/presentation/widgets/nimbus_card.dart';
 import 'package:nimbus/presentation/widgets/spaces.dart';
 import 'package:nimbus/values/values.dart';
 
-class HeaderImage extends StatelessWidget {
+class HeaderImage extends StatefulWidget {
   const HeaderImage({
     Key? key,
     required this.controller,
@@ -24,25 +24,36 @@ class HeaderImage extends StatelessWidget {
   final AnimationController controller;
 
   @override
+  _HeaderImageState createState() => _HeaderImageState();
+}
+
+class _HeaderImageState extends State<HeaderImage> {
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned(
           left: 0,
           child: RotationTransition(
-            turns: controller,
+            turns: widget.controller,
             child: Image.asset(
               ImagePath.DOTS_GLOBE_GREY,
-              height: globeSize,
-              width: globeSize,
+              height: widget.globeSize,
+              width: widget.globeSize,
             ),
           ),
         ),
         Image.asset(
           ImagePath.DEV_HEADER,
-          width: imageWidth,
-          height: imageHeight,
-          fit: fit,
+          width: widget.imageWidth,
+          height: widget.imageHeight,
+          fit: widget.fit,
         ),
       ],
     );

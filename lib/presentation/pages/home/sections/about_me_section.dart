@@ -11,7 +11,6 @@ import 'package:nimbus/values/values.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-
 const double kSpacingSm = 40.0;
 const double kRunSpacingSm = 24.0;
 const double kSpacingLg = 24.0;
